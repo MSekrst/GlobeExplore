@@ -44,9 +44,10 @@ function init(){
                 var mouse = d3.mouse(this);
                 d3.select(last).style("fill", "white");
                 last=this;
+
                 d3.select(this).style("fill", "magenta");
                 tooltip.style("display", "block")
-                    .attr("style", "left:"+(mouse[0])+"px;top:"+mouse[1]+"px")
+                    .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
                     .html(d.properties.name)
             })
 
@@ -65,15 +66,24 @@ function init(){
             features.attr('d', path);
 
         }));
+    var lambda = d3.scale.linear()
+        .domain([0, width])
+        .range([-180, 180]);
+
+    var phi = d3.scale.linear()
+        .domain([0, height])
+        .range([90, -90]);
+
+    var sens=0.25;
 
     svg.call(d3.behavior.drag()
         .origin(function() {
             var currentRotation = projection.rotate();
-            return {x: currentRotation[0], y: currentRotation[1]};
+            return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
         })
         .on("drag", function() {
-
-            projection.rotate([d3.event.x, -d3.event.y]);
+            var rotate = projection.rotate();
+            projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
 
             svg.selectAll("path").attr("d", path);
             path.projection(projection);
