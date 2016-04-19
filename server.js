@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const mongoResources = require('./backend/resources').connectToServer(function (err) { //  Initialize database connection
   if (err) {
-    console.log('Database connection failed!');
+    console.log('Database connection failed!', err);
     throw err;
   }
 
@@ -16,7 +16,7 @@ const mongoResources = require('./backend/resources').connectToServer(function (
   app.use(cors());
 
   app.get('/', function (req, res) {
-    res.send('Server radi');
+    res.send('GlobeExplore 2016');
   });
 
   app.listen(3000, function () {

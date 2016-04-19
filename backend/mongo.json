@@ -1,6 +1,6 @@
 {
-  "mongoUsername": "GlobeExplore",
-  "mongoPassword": "globeexplore",
-  "mongoURL2": "mongodb://exam:exam2016@ds019638.mlab.com:19638/exam_app",
-  "mongoURL": "mongodb://localhost:27017/globeExplore"
+  "mongoUsername": "globeExplore",
+  "mongoPassword": "globeexplore2016",
+  "mongoURL": "mongodb://globeExplore:globeexplore2016@ds013310.mlab.com:13310/globe_explore",
+  "mongoURL2": "mongodb://localhost:27017/globeExplore"
 }

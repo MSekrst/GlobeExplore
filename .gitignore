@@ -2,3 +2,4 @@
 node_modules
 database
 start_mongo.bat
+mongo.json
