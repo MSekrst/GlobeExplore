@@ -8,15 +8,35 @@
     <script type="text/javascript" src="externalLibraries/http_d3js.org_d3.v3.js"></script>
     <script type="text/javascript" src="externalLibraries/http_code.jquery.com_jquery-1.9.1.js"></script>
     <script type="text/javascript" src="globe-script.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+        .modal-body,.modal-header{
+            margin:0 30%;
+            background-color:white;
+            width:40%;
+            text-align:center;
+        }
+    </style>
 </head>
 
 <body onload="init()">
 	<div class="navigation">
-        <div class="nav__header">GEO</div>
+        <div class="nav__header">
+            <img src="image/logo.png" width height="100px"/>
+        </div>
         <div class="nav__link nav__link__continents">Continents</div>
         <div class="nav__link nav__link__states">States</div>
         <div class="nav__link nav__link__capitals">Capitals</div>
         <div class="nav__link nav__link__back"><--</div>
     </div>
+
+   <div id="myModal" class="modal fade" role="dialog">
+       <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           </div>
+        <div class="modal-body">
+        </div>
+
 </body>
 </html>
