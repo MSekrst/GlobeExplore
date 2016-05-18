@@ -3,7 +3,7 @@
  */
 function init(){
     
-    var width = $(document).width();
+    var width = $(document).width()*0.75;
     var height = $(document).height();
 
     var features;
@@ -16,7 +16,8 @@ function init(){
 
     var svg = d3.select("body").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .classed("globe", true);
 
     var path = d3.geo.path()
         .projection(projection);

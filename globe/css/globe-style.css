@@ -1,3 +1,18 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+}
+
+.tooltip {
+    right: 0;
+}
+
 path {
     stroke: black;
     stroke-width: 1px;
@@ -13,4 +28,10 @@ div.tooltip {
     box-shadow: 0px 0px 2px 0px #a6a6a6;
     opacity: 0.9;
     position: absolute;
+}
+
+.globe {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
