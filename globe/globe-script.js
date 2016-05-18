@@ -26,7 +26,7 @@ function init(){
         .attr('cx', width / 2)
         .attr('cy', height / 2)
         .attr('r', projection.scale() )
-        .attr('fill', 'blue');
+        .attr('fill', '#009fe1');
 
 
     var g = svg.append("g");
@@ -41,7 +41,6 @@ function init(){
             .append("path")
             .attr("d", path)
             .on("click", function(d,i) {
-
                 var mouse = d3.mouse(this);
                 d3.select(last).style("fill", "white");
                 last=this;
@@ -49,10 +48,12 @@ function init(){
                 d3.select(this).style("fill", "magenta");
                 tooltip.style("display", "block")
                     .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                    .html(d.properties.name)
+                    .html("<div>State: " + d.properties.name + "</div>" +
+                        "<div>Continent: " + d.properties.continent + "</div>");
             })
 
     });
+
     svg.call(d3.behavior.zoom()
         .scale( projection.scale() )
         .scaleExtent([100, 800])
@@ -89,4 +90,17 @@ function init(){
             svg.selectAll("path").attr("d", path);
             path.projection(projection);
         }));
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

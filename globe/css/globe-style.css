@@ -10,6 +10,12 @@ body {
 }
 
 .tooltip {
+    top: -20px;
+}
+
+.stopwatch {
+    position: absolute;
+    top: 0;
     right: 0;
 }
 
