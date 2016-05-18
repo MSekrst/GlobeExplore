@@ -1,8 +1,11 @@
 /**
  * Created by Tea on 10.4.2016..
  */
+
 function init(){
-    
+
+
+
     var width = $(document).width();
     var height = $(document).height();
 
@@ -53,8 +56,7 @@ function init(){
         .attr('cx', width / 2)
         .attr('cy', height / 2)
         .attr('r', projection.scale() )
-       .attr('fill', '#009fe1');
-
+        .attr('fill', '#009fe1');
 
 
     var g = svg.append("g");
@@ -74,11 +76,24 @@ function init(){
                 d3.select(last).style("fill", "#49E20E");
                 last=this;
 
-                d3.select(this).style("fill", "#228B22");
+
+
+                 var searchTerm=d.properties.name_long;
+                var infobox;
+                var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
+                $.getJSON(url,function(data){
+                    wikiHTML = data.parse.text["*"];
+                    $wikiDOM = $("<document>"+wikiHTML+"</document>");
+                    infobox=$wikiDOM.find('.infobox').html();
+
+                    $(".proba").append(infobox);
+                });
+
+                d3.select(this).style("fill", "magenta");
                 tooltip.style("display", "block")
                     .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                    .html("<div>State: " + d.properties.name + "</div>" +
-                        "<div>Continent: " + d.properties.continent + "</div>");
+                    .html("<b>"+d.properties.name_long+"</b>");
+
             })
 
     });
@@ -128,24 +143,5 @@ function init(){
 
         }));
 
-    function createStars(number){
-        var data = [];
-        for(var i = 0; i < number; i++){
-            data.push({
-                geometry: {
-                    type: 'Point',
-                    coordinates: randomLonLat()
-                },
-                type: 'Feature',
-                properties: {
-                    radius: Math.random() * 1.5
-                }
-            });
-        }
-        return data;
-    }
 
-    function randomLonLat(){
-        return [Math.random() * 360 - 180, Math.random() * 180 - 90];
-    }
 }
