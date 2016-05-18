@@ -1,0 +1,18 @@
+.podrucje{
+    width:15%;
+    height:80px;
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 40%;
+    font-weight: bold;
+    border-radius: 5%;
+}
+.home{
+    background-color: lightblue;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
