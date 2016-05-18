@@ -53,7 +53,7 @@ function init(){
         .attr('cx', width / 2)
         .attr('cy', height / 2)
         .attr('r', projection.scale() )
-        .attr('fill', 'blue');
+        .attr('fill', '#42C0FB');
 
 
     var g = svg.append("g");
@@ -71,10 +71,10 @@ function init(){
             .on("click", function(d,i) {
 
                 var mouse = d3.mouse(this);
-                d3.select(last).style("fill", "white");
+                d3.select(last).style("fill", "#49E20E");
                 last=this;
 
-                d3.select(this).style("fill", "magenta");
+                d3.select(this).style("fill", "#228B22");
                 tooltip.style("display", "block")
                     .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
                     .html(d.properties.name)
