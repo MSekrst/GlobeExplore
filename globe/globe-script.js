@@ -1,8 +1,11 @@
 /**
  * Created by Tea on 10.4.2016..
  */
+
 function init(){
-    
+
+
+
     var width = $(document).width();
     var height = $(document).height();
 
@@ -74,10 +77,24 @@ function init(){
                 d3.select(last).style("fill", "white");
                 last=this;
 
+
+
+
+                 var searchTerm=d.properties.name_long;
+                var infobox;
+                var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
+                $.getJSON(url,function(data){
+                    wikiHTML = data.parse.text["*"];
+                    $wikiDOM = $("<document>"+wikiHTML+"</document>");
+                    infobox=$wikiDOM.find('.infobox').html();
+
+                    $(".proba").append(infobox);
+                });
+
                 d3.select(this).style("fill", "magenta");
                 tooltip.style("display", "block")
                     .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                    .html(d.properties.name)
+                    .html("<b>"+d.properties.name_long+"</b>");
             })
 
     });
