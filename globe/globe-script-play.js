@@ -83,7 +83,7 @@ function init(){
             console.log('trazis: ', randomCountries[0].properties.name);
         }
         
-        var width = $(document).width()*0.75;
+        var width = $(document).width()*0.82;
         var height = $(document).height();
 
         var features;
@@ -91,6 +91,15 @@ function init(){
         var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
         show();
         start();
+
+        var space = d3.geo.azimuthalEquidistant()
+            .translate([width / 2, height / 2]);
+
+        space.scale(space.scale() * 3);
+
+        var spacePath = d3.geo.path()
+            .projection(space)
+            .pointRadius(1);
 
         var projection = d3.geo.orthographic()
             .scale(250) // scale the map
@@ -105,6 +114,23 @@ function init(){
 
         var path = d3.geo.path()
             .projection(projection);
+
+        svg.append("rect")
+            .attr("width", width)
+            .attr("height", height);
+
+        var starList = createStars(2000);
+
+        var stars = svg.append("g")
+            .selectAll("g")
+            .data(starList)
+            .enter()
+            .append("path")
+            .attr("class", "pathStars")
+            .attr("d", function(d){
+                spacePath.pointRadius(d.properties.radius);
+                return spacePath(d);
+            });
 
         var backgroundCircle = svg.append("svg:circle")
             .attr('cx', width / 2)
@@ -191,6 +217,12 @@ function init(){
                 projection.scale(_scale);
                 backgroundCircle.attr('r', _scale);
                 path.projection(projection);
+                space.scale(_scale*3);
+
+                stars.attr("d", function(d){
+                    spacePath.pointRadius(d.properties.radius);
+                    return spacePath(d);
+                });
 
                 features.attr('d', path);
 
@@ -213,11 +245,37 @@ function init(){
             .on("drag", function() {
                 var rotate = projection.rotate();
                 projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
-
+                space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
                 svg.selectAll("path").attr("d", path);
+
+                stars.attr("d", function(d){
+                    spacePath.pointRadius(d.properties.radius);
+                    return spacePath(d);
+                });
+
                 path.projection(projection);
             }));
     }
+}
+function createStars(number){
+    var data = [];
+    for(var i = 0; i < number; i++){
+        data.push({
+            geometry: {
+                type: 'Point',
+                coordinates: randomLonLat()
+            },
+            type: 'Feature',
+            properties: {
+                radius: Math.random() * 1.5
+            }
+        });
+    }
+    return data;
+}
+
+function randomLonLat(){
+    return [Math.random() * 360 - 180, Math.random() * 180 - 90];
 }
 
 function getResult(result){

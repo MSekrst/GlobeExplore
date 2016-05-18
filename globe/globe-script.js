@@ -53,10 +53,8 @@ function init(){
         .attr('cx', width / 2)
         .attr('cy', height / 2)
         .attr('r', projection.scale() )
-// <<<<<<< HEAD
-//         .attr('fill', '#009fe1');
-// =======
-        .attr('fill', '#42C0FB');
+       .attr('fill', '#009fe1');
+
 
 
     var g = svg.append("g");
