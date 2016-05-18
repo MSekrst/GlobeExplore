@@ -31,7 +31,6 @@ function init(){
 
 
     svg.append("rect")
-        .attr("background-color", "black")
         .attr("width", width)
         .attr("height", height);
 
@@ -43,6 +42,7 @@ function init(){
         .data(starList)
         .enter()
         .append("path")
+        .attr("class", "pathStars")
         .attr("d", function(d){
             spacePath.pointRadius(d.properties.radius);
             return spacePath(d);

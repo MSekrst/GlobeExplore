@@ -12,13 +12,17 @@ body {
 .tooltip {
     right: 0;
 }
-
+rect{
+    fill:#000033;
+}
 path {
     stroke: black;
     stroke-width: 1px;
     fill: #49E20E;
 }
-
+.pathStars {
+    fill: white;
+}
 div.tooltip {
     color: #222;
     background: #fff;
