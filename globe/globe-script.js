@@ -34,7 +34,6 @@ function init(){
 
 
     svg.append("rect")
-        .attr("background-color", "black")
         .attr("width", width)
         .attr("height", height);
 
@@ -46,6 +45,7 @@ function init(){
         .data(starList)
         .enter()
         .append("path")
+        .attr("class", "pathStars")
         .attr("d", function(d){
             spacePath.pointRadius(d.properties.radius);
             return spacePath(d);
@@ -56,7 +56,9 @@ function init(){
         .attr('cx', width / 2)
         .attr('cy', height / 2)
         .attr('r', projection.scale() )
-        .attr('fill', 'blue');
+    .attr('fill', '#009fe1');
+
+
 
 
     var g = svg.append("g");
@@ -72,11 +74,9 @@ function init(){
             .append("path")
             .attr("d", path)
             .on("click", function(d,i) {
-
                 var mouse = d3.mouse(this);
-                d3.select(last).style("fill", "white");
+                d3.select(last).style("fill", "#49E20E");
                 last=this;
-
 
 
 
@@ -95,6 +95,7 @@ function init(){
                 tooltip.style("display", "block")
                     .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
                     .html("<b>"+d.properties.name_long+"</b>");
+
             })
 
     });
@@ -143,7 +144,6 @@ function init(){
             });
 
         }));
-
 
     function createStars(number){
         var data = [];

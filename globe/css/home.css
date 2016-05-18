@@ -1,0 +1,33 @@
+.podrucje{
+    height:80px;
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-radius: 15%;
+}
+.izbori{
+    position: absolute;
+    width: 15%;
+    top: 250px;
+    left: 40%;
+}
+.slika{
+    position: relative;
+    background-image: url('../image/naslovna200.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 350px;
+    width: 72%;
+    margin: auto;
+    top: 0;
+    left: -19px;
+}
+.home{
+    background-color: #000033;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
