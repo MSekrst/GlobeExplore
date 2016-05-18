@@ -4,8 +4,6 @@
 
 function init(){
 
-
-
     var width = $(document).width();
     var height = $(document).height();
 
@@ -15,7 +13,7 @@ function init(){
         .translate([width / 2, height / 2]);
 
     space.scale(space.scale() * 3);
-
+    
     var spacePath = d3.geo.path()
         .projection(space)
         .pointRadius(1);
@@ -85,14 +83,16 @@ function init(){
                     wikiHTML = data.parse.text["*"];
                     $wikiDOM = $("<document>"+wikiHTML+"</document>");
                     infobox=$wikiDOM.find('.infobox').html();
-
-                    $(".proba").append(infobox);
+                     $('.modal-body').html("");
+                     $('.modal-body').append(infobox);
+                    $('#myModal').modal('show');
                 });
 
-                d3.select(this).style("fill", "magenta");
-                tooltip.style("display", "block")
-                    .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                    .html("<b>"+d.properties.name_long+"</b>");
+                d3.select(this).style("fill", "#228B22");
+                
+                // tooltip.style("display", "block")
+                //     .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+                //     .html("<b>"+d.properties.name_long+"</b>");
 
             })
 
@@ -108,7 +108,6 @@ function init(){
             projection.scale(_scale);
             space.scale(_scale*3);
             backgroundCircle.attr('r', _scale);
-
             path.projection(projection);
 
             stars.attr("d", function(d){
@@ -142,6 +141,25 @@ function init(){
             });
 
         }));
+    function createStars(number){
+        var data = [];
+        for(var i = 0; i < number; i++){
+            data.push({
+                geometry: {
+                    type: 'Point',
+                    coordinates: randomLonLat()
+                },
+                type: 'Feature',
+                properties: {
+                    radius: Math.random() * 1.5
+                }
+            });
+        }
+        return data;
+    }
 
+    function randomLonLat(){
+        return [Math.random() * 360 - 180, Math.random() * 180 - 90];
+    }
 
 }

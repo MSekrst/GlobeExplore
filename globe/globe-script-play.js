@@ -198,6 +198,7 @@ function init(){
                                     alert('gotovo! rezultat: ' + getResult(result) + ' Time: ' + time);
                                     }, 500);
                         
+
                     }
                     
 
@@ -227,13 +228,6 @@ function init(){
                 features.attr('d', path);
 
             }));
-        var lambda = d3.scale.linear()
-            .domain([0, width])
-            .range([-180, 180]);
-
-        var phi = d3.scale.linear()
-            .domain([0, height])
-            .range([90, -90]);
 
         var sens=0.25;
 
