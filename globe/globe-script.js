@@ -4,7 +4,7 @@
 
 function init(){
 
-    var width = $(document).width();
+    var width = $(document).width()*0.84;
     var height = $(document).height();
 
     var features;
@@ -63,7 +63,7 @@ function init(){
 
 
 
-    d3.json("world-countries.json", function(collection) {
+    d3.json("../globe/world-countries.json", function(collection) {
         features=g.selectAll(".feature")
             .data(collection.features)
             .enter()
