@@ -76,7 +76,7 @@ function init(){
 
 
 
-                 var searchTerm=d.properties.name_long;
+                 var searchTerm=d.properties.formal_en;
                 var infobox;
                 var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
                 $.getJSON(url,function(data){
