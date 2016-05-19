@@ -1,1 +1,18 @@
 {{> navbarLearning}}
+
+<script type="text/javascript" src="../../globe/globe-script.js"></script>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-header">
+        <button type="button" class="close" style="color:red; opacity: .8;" data-dismiss="modal" onclick="stopAudio()">&times;</button>
+    </div>
+    <div class="modal-body">
+    </div>
+</div>
+
+<script>
+    function stopAudio() {
+        var audioPlayer = document.getElementsByTagName('audio')[0];
+        audioPlayer.pause();
+    }
+</script>
