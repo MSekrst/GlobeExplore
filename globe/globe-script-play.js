@@ -292,13 +292,18 @@ function init(){
                         if (randomCountries.length > 1) {
                             randomCountries.shift();
                             console.log('trazis: ', randomCountries[0].properties.name_long);
-                            d3.select('.info').html('Select: ' + randomCountries[0].properties.name );
+                            if (vrstaIgre == 'states') {
+                                d3.select('.info').html('Select: ' + randomCountries[0].properties.name_long );
+                            } else if (vrstaIgre == 'capitals') {
+                                d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital );
+                            }
                         } else {
                             var endTime = new Date().getTime();
                             stop();
                             time = d3.select('#time').html();
                             setTimeout(function(){
                                 alert('gotovo! rezultat: ' + getResult(result) + ' Time: ' + time);
+                                window.location = '/play';
                                 result = [];
                                 randomCountries = [];
                                 saveRandomCountries = [];

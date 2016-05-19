@@ -23,7 +23,9 @@
 }
 
 #btn-play-start {
-	
+	position: absolute;
+	top: 200px;
+	left: 56%;
 }
 
 .img-play {
