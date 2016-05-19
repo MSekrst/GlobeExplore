@@ -10,7 +10,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "AFG",
         "name": "Afghanistan",
         "name_long": "Afghanistan",
@@ -4245,7 +4245,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 3,
         "sov_a3": "FR1",
         "name": "Fr. S. Antarctic Lands",
         "name_long": "French Southern and Antarctic Lands",
@@ -7114,7 +7114,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "BOL",
         "name": "Bolivia",
         "name_long": "Bolivia",
@@ -15488,7 +15488,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "CRI",
         "name": "Costa Rica",
         "name_long": "Costa Rica",
@@ -15665,7 +15665,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "CUB",
         "name": "Cuba",
         "name_long": "Cuba",
@@ -15866,7 +15866,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 3,
         "sov_a3": "CYN",
         "name": "N. Cyprus",
         "name_long": "Northern Cyprus",
@@ -15961,7 +15961,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "CYP",
         "name": "Cyprus",
         "name_long": "Cyprus",
@@ -16724,7 +16724,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "DOM",
         "name": "Dominican Rep.",
         "name_long": "Dominican Republic",
@@ -17993,7 +17993,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "ETH",
         "name": "Ethiopia",
         "name_long": "Ethiopia",
@@ -18582,7 +18582,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 3,
         "sov_a3": "GB1",
         "name": "Falkland Is.",
         "name_long": "Falkland Islands",
@@ -22177,7 +22177,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "IDN",
         "name": "Indonesia",
         "name_long": "Indonesia",
@@ -25041,7 +25041,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "JAM",
         "name": "Jamaica",
         "name_long": "Jamaica",
@@ -26012,7 +26012,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "KEN",
         "name": "Kenya",
         "name_long": "Kenya",
@@ -26368,7 +26368,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "KHM",
         "name": "Cambodia",
         "name_long": "Cambodia",
@@ -26765,7 +26765,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 3,
         "sov_a3": "LAO",
         "name": "Lao PDR",
         "name_long": "Lao PDR",
@@ -28301,7 +28301,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "MDG",
         "name": "Madagascar",
         "name_long": "Madagascar",
@@ -31692,7 +31692,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "NER",
         "name": "Niger",
         "name_long": "Niger",
@@ -33609,7 +33609,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "PAK",
         "name": "Pakistan",
         "name_long": "Pakistan",
@@ -35638,7 +35638,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "PRK",
         "name": "Dem. Rep. Korea",
         "name_long": "Dem. Rep. Korea",
@@ -46984,7 +46984,7 @@
     {
       "type": "Feature",
       "properties": {
-        "difficulty": 1,
+        "difficulty": 2,
         "sov_a3": "VEN",
         "name": "Venezuela",
         "name_long": "Venezuela",
