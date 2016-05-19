@@ -10,6 +10,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -361,6 +362,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -742,6 +744,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -905,6 +908,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -1068,6 +1072,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -1633,6 +1638,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -1788,6 +1794,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -4537,6 +4544,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 3,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -4648,6 +4656,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -5693,6 +5702,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -5916,6 +5926,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -6173,6 +6184,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -6300,6 +6312,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -6435,6 +6448,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -6610,6 +6624,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -6841,6 +6856,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -7060,6 +7076,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -7247,6 +7264,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -7416,6 +7434,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -7579,6 +7598,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -7830,6 +7850,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -7985,6 +8006,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -8300,6 +8322,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -9187,6 +9210,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -9294,6 +9318,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -9421,6 +9446,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -9656,6 +9682,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -9979,6 +10006,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -13340,6 +13368,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -13511,6 +13540,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -14048,6 +14078,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -15089,6 +15120,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -15348,6 +15380,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -15667,6 +15700,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -16230,6 +16264,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -16501,6 +16536,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -16976,6 +17012,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -17195,6 +17232,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -17438,6 +17476,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -17577,6 +17616,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -17712,6 +17752,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -17927,6 +17968,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -18234,6 +18276,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -18369,6 +18412,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -18546,6 +18590,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -18725,6 +18770,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -19048,6 +19094,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -19255,6 +19302,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -19498,6 +19546,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -19685,6 +19734,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -19964,6 +20014,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -20107,6 +20158,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -20418,6 +20470,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -20645,6 +20698,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -20818,6 +20872,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -20933,6 +20988,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -21314,6 +21370,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -21513,6 +21570,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -21818,6 +21876,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -21989,6 +22048,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -22164,6 +22224,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -22519,6 +22580,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -22658,6 +22720,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -22809,6 +22872,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -22912,6 +22976,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -23209,6 +23274,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -23812,6 +23878,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -24027,6 +24094,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -24262,6 +24330,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -24565,6 +24634,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -24808,6 +24878,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -24967,6 +25038,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -25166,6 +25238,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -26291,6 +26364,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -26910,6 +26984,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -27037,6 +27112,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -27412,6 +27488,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -27607,6 +27684,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -27762,6 +27840,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -27929,6 +28008,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -28362,6 +28442,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -28481,6 +28562,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -28632,6 +28714,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -28977,6 +29060,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -29500,6 +29584,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -29723,6 +29808,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -29938,6 +30024,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -30081,6 +30168,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -30232,6 +30320,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -30391,6 +30480,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -30502,6 +30592,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -30725,6 +30816,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -30844,6 +30936,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -31027,6 +31120,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -31326,6 +31420,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -31441,6 +31536,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -31564,6 +31660,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -31715,6 +31812,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -31818,6 +31916,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -31981,6 +32080,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -32312,6 +32412,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -32495,6 +32596,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -32766,6 +32868,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -33521,6 +33624,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -33664,6 +33768,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -34043,6 +34148,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -34398,6 +34504,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -34545,6 +34652,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -34920,6 +35028,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -35303,6 +35412,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -35534,6 +35644,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -35721,6 +35832,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -36050,6 +36162,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -36301,6 +36414,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -36428,6 +36542,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -36735,6 +36850,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -37042,6 +37158,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -37325,6 +37442,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -37456,6 +37574,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -37897,6 +38016,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -38064,6 +38184,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -38409,6 +38530,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -38678,6 +38800,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -39017,6 +39140,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -39300,6 +39424,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -39679,6 +39804,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -40220,6 +40346,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -40633,6 +40760,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -40888,6 +41016,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -40999,6 +41128,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -41246,6 +41376,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -41453,6 +41584,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -41660,6 +41792,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -41771,6 +41904,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -41882,6 +42016,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -42133,6 +42268,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -44650,6 +44786,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -44777,6 +44914,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 7.000000,
@@ -44964,6 +45102,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -45343,6 +45482,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -45734,6 +45874,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -46061,6 +46202,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -46312,6 +46454,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -46553,6 +46696,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -46716,6 +46860,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -46871,6 +47016,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -47042,6 +47188,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -47261,6 +47408,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -47520,6 +47668,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -47699,6 +47848,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -47906,6 +48056,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -48053,6 +48204,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -48288,6 +48440,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -48407,6 +48560,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -48590,6 +48744,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -48897,6 +49052,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 6.000000,
@@ -49048,6 +49204,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -49379,6 +49536,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -49618,6 +49776,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -49909,6 +50068,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -50028,6 +50188,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 5.000000,
@@ -50135,6 +50296,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -50334,6 +50496,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -50683,6 +50846,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -50794,6 +50958,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -51065,6 +51230,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -51248,6 +51414,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -51715,6 +51882,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -51874,6 +52042,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -53763,6 +53932,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -54054,6 +54224,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -54497,6 +54668,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -54748,6 +54920,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 3,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 4.000000,
@@ -54877,6 +55050,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -55128,6 +55302,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 1,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 2.000000,
@@ -55581,6 +55756,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
@@ -55900,6 +56076,7 @@
     {
       "type": "Feature",
       "properties": {
+        "difficulty": 2,
         "scalerank": 1,
         "featurecla": "Admin-0 country",
         "labelrank": 3.000000,
