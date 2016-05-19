@@ -4,6 +4,7 @@ var saveRandomCountries = [];
 var randomContinents = [];
 var saveRandomContinents = [];
 var result = [];
+calledFromHandleBars = true;
 
 var difficulty = '1';
 var numberOfQuestions = 5;
@@ -149,6 +150,114 @@ $(document).on('click', '#btn-play-start', function(event) {
 
 function init(){
 
+    //izbjec ono inicijalizaciju iz handleBarsova body onLoad=init()
+    if (calledFromHandleBars) {
+        calledFromHandleBars = false;
+        return false;
+    }
+
+    //inicijalizacija
+    var width = $(document).width()*0.82;
+    var height = $(document).height()*0.9;
+    var features;
+    var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
+    show();
+    start();
+
+    var space = d3.geo.azimuthalEquidistant()
+        .translate([width / 2, height / 2]);
+
+    space.scale(space.scale() * 3);
+
+    var spacePath = d3.geo.path()
+        .projection(space)
+        .pointRadius(1);
+
+    var projection = d3.geo.orthographic()
+        .scale(250) // scale the map
+        .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
+        .clipAngle(90);
+
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .classed("globe", true);
+
+    var path = d3.geo.path()
+        .projection(projection);
+
+    svg.append("rect")
+        .attr("width", width)
+        .attr("height", height);
+
+    var starList = createStars(2000);
+
+    var stars = svg.append("g")
+        .selectAll("g")
+        .data(starList)
+        .enter()
+        .append("path")
+        .attr("class", "pathStars")
+        .attr("d", function(d){
+            spacePath.pointRadius(d.properties.radius);
+            return spacePath(d);
+        });
+
+    var backgroundCircle = svg.append("svg:circle")
+        .attr('cx', width / 2)
+        .attr('cy', height / 2)
+        .attr('r', projection.scale() )
+        .attr('fill', '#009fe1');
+
+
+    var g = svg.append("g");
+    var tooltip = d3.select("body").append("div").attr("class","tooltip");        
+    var last=null;
+
+    svg.call(d3.behavior.zoom()
+        .scale( projection.scale() )
+        .scaleExtent([100, 800])
+        .on('zoom', function(){
+
+            var _scale = d3.event.scale;
+
+            projection.scale(_scale);
+            backgroundCircle.attr('r', _scale);
+            path.projection(projection);
+            space.scale(_scale*3);
+
+            stars.attr("d", function(d){
+                spacePath.pointRadius(d.properties.radius);
+                return spacePath(d);
+            });
+
+            features.attr('d', path);
+
+        }));
+
+    var sens=0.25;
+
+    svg.on("dblclick.zoom", null);
+    svg.call(d3.behavior.drag()
+        .origin(function() {
+            var currentRotation = projection.rotate();
+            return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
+        })
+        .on("drag", function() {
+            var rotate = projection.rotate();
+            projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
+            space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
+            svg.selectAll("path").attr("d", path);
+
+            stars.attr("d", function(d){
+                spacePath.pointRadius(d.properties.radius);
+                return spacePath(d);
+            });
+
+            path.projection(projection);
+        }));
+
     if (vrstaIgre == 'states' || vrstaIgre == 'capitals') {
 
         if (vrstaIgre == 'states') {
@@ -156,64 +265,6 @@ function init(){
         } else if (vrstaIgre == 'capitals') {
             d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital );
         }
-        var width = $(document).width()*0.82;
-        var height = $(document).height()*0.9;
-        var features;
-        var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
-        show();
-        start();
-
-        var space = d3.geo.azimuthalEquidistant()
-            .translate([width / 2, height / 2]);
-
-        space.scale(space.scale() * 3);
-
-        var spacePath = d3.geo.path()
-            .projection(space)
-            .pointRadius(1);
-
-        var projection = d3.geo.orthographic()
-            .scale(250) // scale the map
-            .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
-            .clipAngle(90);
-
-
-        var svg = d3.select("body").append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .classed("globe", true);
-
-        var path = d3.geo.path()
-            .projection(projection);
-
-        svg.append("rect")
-            .attr("width", width)
-            .attr("height", height);
-
-        var starList = createStars(2000);
-
-        var stars = svg.append("g")
-            .selectAll("g")
-            .data(starList)
-            .enter()
-            .append("path")
-            .attr("class", "pathStars")
-            .attr("d", function(d){
-                spacePath.pointRadius(d.properties.radius);
-                return spacePath(d);
-            });
-
-        var backgroundCircle = svg.append("svg:circle")
-            .attr('cx', width / 2)
-            .attr('cy', height / 2)
-            .attr('r', projection.scale() )
-            .attr('fill', '#009fe1');
-
-
-        var g = svg.append("g");
-        var tooltip = d3.select("body").append("div").attr("class","tooltip");        
-        var last=null;
-
 
         d3.json("../globe/world-countries.json", function(collection) {
             features=g.selectAll(".feature")
@@ -298,117 +349,18 @@ function init(){
 
         });
 
-        svg.call(d3.behavior.zoom()
-            .scale( projection.scale() )
-            .scaleExtent([100, 800])
-            .on('zoom', function(){
-
-                var _scale = d3.event.scale;
-
-                projection.scale(_scale);
-                backgroundCircle.attr('r', _scale);
-                path.projection(projection);
-                space.scale(_scale*3);
-
-                stars.attr("d", function(d){
-                    spacePath.pointRadius(d.properties.radius);
-                    return spacePath(d);
-                });
-
-                features.attr('d', path);
-
-            }));
-
-        var sens=0.25;
-
-        svg.on("dblclick.zoom", null);
-        svg.call(d3.behavior.drag()
-            .origin(function() {
-                var currentRotation = projection.rotate();
-                return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
-            })
-            .on("drag", function() {
-                var rotate = projection.rotate();
-                projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
-                space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
-                svg.selectAll("path").attr("d", path);
-
-                stars.attr("d", function(d){
-                    spacePath.pointRadius(d.properties.radius);
-                    return spacePath(d);
-                });
-
-                path.projection(projection);
-            }));
+        
     } else if (vrstaIgre == 'continents') {
 
         d3.select('.info').html('Select: ' + randomContinents[0] );
-        var width = $(document).width()*0.82;
-        var height = $(document).height()*0.9;
-        var features;
-        var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
-        show();
-        start();
-
-        var space = d3.geo.azimuthalEquidistant()
-            .translate([width / 2, height / 2]);
-
-        space.scale(space.scale() * 3);
-
-        var spacePath = d3.geo.path()
-            .projection(space)
-            .pointRadius(1);
-
-        var projection = d3.geo.orthographic()
-            .scale(250) // scale the map
-            .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
-            .clipAngle(90);
-
-
-        var svg = d3.select("body").append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .classed("globe", true);
-
-        var path = d3.geo.path()
-            .projection(projection);
-
-        svg.append("rect")
-            .attr("width", width)
-            .attr("height", height);
-
-        var starList = createStars(2000);
-
-        var stars = svg.append("g")
-            .selectAll("g")
-            .data(starList)
-            .enter()
-            .append("path")
-            .attr("class", "pathStars")
-            .attr("d", function(d){
-                spacePath.pointRadius(d.properties.radius);
-                return spacePath(d);
-            });
-
-        var backgroundCircle = svg.append("svg:circle")
-            .attr('cx', width / 2)
-            .attr('cy', height / 2)
-            .attr('r', projection.scale() )
-            .attr('fill', '#009fe1');
-
-
-        var g = svg.append("g");
-        var tooltip = d3.select("body").append("div").attr("class","tooltip");        
-        var last=null;
-
-
+        
         d3.json("../globe/world-countries.json", function(collection) {
             features=g.selectAll(".feature")
                 .data(collection.features)
                 .enter()
                 .append("path")
                 .attr("d", path)
-                .on("click", function(d,i) {
+                .on("dblclick", function(d,i) {
 
                     var mouse = d3.mouse(this);
                     d3.select(last).style("fill", "#49E20E");
@@ -473,53 +425,8 @@ function init(){
                 })
 
         });
-
-        svg.on("dblclick.zoom", null);
-        svg.call(d3.behavior.zoom()
-            .scale( projection.scale() )
-            .scaleExtent([100, 800])
-            .on('zoom', function(){
-
-                var _scale = d3.event.scale;
-
-                projection.scale(_scale);
-                backgroundCircle.attr('r', _scale);
-                path.projection(projection);
-                space.scale(_scale*3);
-
-                stars.attr("d", function(d){
-                    spacePath.pointRadius(d.properties.radius);
-                    return spacePath(d);
-                });
-
-                features.attr('d', path);
-
-            }));
-
-        var sens=0.25;
-
-        svg.call(d3.behavior.drag()
-            .origin(function() {
-                var currentRotation = projection.rotate();
-                return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
-            })
-            .on("drag", function() {
-                var rotate = projection.rotate();
-                projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
-                space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
-                svg.selectAll("path").attr("d", path);
-
-                stars.attr("d", function(d){
-                    spacePath.pointRadius(d.properties.radius);
-                    return spacePath(d);
-                });
-
-                path.projection(projection);
-            }));
     }
 }
-
-
 
 
 
