@@ -82,12 +82,11 @@ function init(){
                 $.getJSON(url,function(data){
                     wikiHTML = data.parse.text["*"];
                     $wikiDOM = $("<document>"+wikiHTML+"</document>");
-                    infobox=$wikiDOM.find('.infobox').html();
+                    infobox="<table>"+$wikiDOM.find('.infobox').html();
                      $('.modal-body').html("");
 
                     infobox=infobox.replace("<td colspan=\"2\" style=\"border-bottom: 1px solid #DDDDDD;\"></td>","");
 
-                    //console.log(infobox);
                     var position;
                     var index;
 
@@ -98,9 +97,14 @@ function init(){
 
                     var s=infobox.substring(0,position);
 
+                    s+="<tr><th>Capital</th><td>"+d.properties.capital+"</td><tr>";
+                    s+="<tr><th>Languages</th><td>"+d.properties.languages+"</td><tr>";
+                    s+="<tr><th>Area</th><td>"+d.properties.area+" km<sup>2</sup></td><tr>";
+                    s+="<tr><th>Population</th><td>"+d.properties.population+"</td><tr>";
+                    
                     s+="</tbody></table></document>";
-                    s=s.replace("[1]","");
-                    s=s.replace("[2]","");
+                    s=s.replace(/\[.*\]/, '')
+
                      $('.modal-body').append(s);
                     $('#myModal').modal('show');
                 });

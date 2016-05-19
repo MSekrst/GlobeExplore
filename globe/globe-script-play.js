@@ -5,43 +5,157 @@
 var vrstaIgre;
 var randomCountries = [];
 var saveRandomCountries = [];
+var randomContinents = [];
 var result = [];
-var startTime;
 
-function init(){
+var difficulty = '1';
+var numberOfQuestions = 5;
 
-    if (!vrstaIgre) {
-        var randoms = [];
-        console.log('odaberi vrstu igre');
+var continents = {
+    "Europe": [],
+    "Africa": [],
+    "Asia": [],
+    "South America": [],
+    "North America": [],
+    "Antarctica": [],
+    "Oceania": []
+}
 
-        d3.select(".nav__link__play__continents").on('click', function () {
-            vrstaIgre = 'continents';
-            init();
-        });
+$(document).on('change', '#difficulty', function(event) {
+    // console.log($(this).val());
+    if ($(this).val() == 'easy') {
+        difficulty = 1;
+    } else if ($(this).val() == 'medium') {
+        difficulty = 2;
+    } else if ($(this).val() == 'hard') {
+        difficulty = 3;
+    } else if ($(this).val() == 'extreme') {
+        difficulty = 4;
+    }
+    
+});
 
-        d3.select(".nav__link__play__states").on('click', function () {
-            vrstaIgre = 'states';
+$(document).on('change', '#number_of_questions', function(event) {
+    // console.log($(this).val());
+    numberOfQuestions = $(this).val();
+});
 
-            d3.json("world-countries.json", function(collection) {
+function isMissingArguments() {
+    console.log('provjeravam')
+    if (vrstaIgre && numberOfQuestions && difficulty ) {
+        return false;
+    } else {
+        if (!vrstaIgre) {
+            console.log('fali ti vrstaIgre')
+        }
+        if (!numberOfQuestions) {
+            console.log('fali ti numberOfQuestions')
+        }
+        if (!difficulty) {
+            console.log('fali ti difficulty')
+        }
+        return true;
+    }
+}
 
-            for (var i = 0; i < 5; i++) {
+
+
+function getRandomCountries( callback ){
+    var randoms = [];
+    d3.json("world-countries.json", function(collection) {
+
+        if (difficulty == 1) {//easy
+            for (var i = 0; i < numberOfQuestions; i++) {
                 var random = Math.floor( Math.random()*176 );
-                if (randoms.indexOf(random) > -1) {
+                if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != difficulty) {
                     i--;
                 } else {
                     randoms[i] = random;
                     randomCountries[i] = collection.features[random];
                 }
-             }
+            }
+        } else if (difficulty == 2) {//medium
+            for (var i = 0; i < numberOfQuestions; i++) {
+                var random = Math.floor( Math.random()*176 );
+                if (numberOfQuestions%2==0) {//svako drugo pitanje lagano
+                    if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != (difficulty-1)) {
+                        i--;
+                    } else {
+                        randoms[i] = random;
+                        randomCountries[i] = collection.features[random];
+                    }
+                } else {
+                    if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != difficulty) {
+                        i--;
+                    } else {
+                        randoms[i] = random;
+                        randomCountries[i] = collection.features[random];
+                    }
+                }
+                
+            }
+            
+        } else if (difficulty == 3) {//hard
+            for (var i = 0; i < numberOfQuestions; i++) {
+                var random = Math.floor( Math.random()*176 );
+                if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != 2) {
+                    i--;
+                } else {
+                    randoms[i] = random;
+                    randomCountries[i] = collection.features[random];
+                }
+            }
+        } else if (difficulty == 4) {//extreme
+            for (var i = 0; i < numberOfQuestions; i++) {
+                var random = Math.floor( Math.random()*176 );
+                if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != 3) {
+                    i--;
+                } else {
+                    randoms[i] = random;
+                    randomCountries[i] = collection.features[random];
+                }
+            }
+        }
 
-            saveRandomCountries = randomCountries;
+        
+        saveRandomCountries = randomCountries;
 
-            var sec = 0;
-            var min = 0;
+        callback();
+    });
 
-            startTime = new Date().getTime();
+}
+
+$(document).on('click', '#btn-play', function(event) {
+    console.log('start game');
+
+    getRandomCountries( function() {
+        console.log('callback');
+        init();
+    })
+
+});
+
+
+function init(){
+    console.log('init')
+    
+    if (isMissingArguments()) {
+        
+
+        $('.instructions').html("<h1>Choose type of game, difficulty and number of questions </h1>");
+        $('.instructions').show();
+
+        d3.select(".nav__link__play__continents").on('click', function () {
+            vrstaIgre = 'continents';
+            difficulty = 'nebitno'
+            numberOfQuestions = 7;
+
+            randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
             init();
-            }); 
+        });
+
+        d3.select(".nav__link__play__states").on('click', function () {
+            vrstaIgre = 'states';
         });
 
         d3.select(".nav__link__play__capitals").on('click', function () {
@@ -49,185 +163,371 @@ function init(){
             init();
         });
 
+
+
     } else {
         if (vrstaIgre == 'capitals') {
             console.log('trazis glavni grad od blabla: ', randomCountries[0].properties.name_long);
         } else if (vrstaIgre == 'states') {
-            console.log('trazis: ', randomCountries[0].properties.name);
-            $('.modal-body').html('naslov: ');
-            $('.modal-body').html('trazis: ' + randomCountries[0].properties.name);
-            // $('.modal-body').append(infobox);
-            $('#myModal').modal('show');
-        }
-        
-        var width = $(document).width()*0.82;
-        var height = $(document).height();
 
-        var features;
+            d3.select('.info').html('Select: ' + randomCountries[0].properties.name );
+            var width = $(document).width()*0.82;
+            var height = $(document).height()*0.9;
+            var features;
+            var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
+            show();
+            start();
 
-        var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
-        show();
-        start();
+            var space = d3.geo.azimuthalEquidistant()
+                .translate([width / 2, height / 2]);
 
-        var space = d3.geo.azimuthalEquidistant()
-            .translate([width / 2, height / 2]);
+            space.scale(space.scale() * 3);
 
-        space.scale(space.scale() * 3);
+            var spacePath = d3.geo.path()
+                .projection(space)
+                .pointRadius(1);
 
-        var spacePath = d3.geo.path()
-            .projection(space)
-            .pointRadius(1);
-
-        var projection = d3.geo.orthographic()
-            .scale(250) // scale the map
-            .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
-            .clipAngle(90);
+            var projection = d3.geo.orthographic()
+                .scale(250) // scale the map
+                .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
+                .clipAngle(90);
 
 
-        var svg = d3.select("body").append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .classed("globe", true);
+            var svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .classed("globe", true);
 
-        var path = d3.geo.path()
-            .projection(projection);
+            var path = d3.geo.path()
+                .projection(projection);
 
-        svg.append("rect")
-            .attr("width", width)
-            .attr("height", height);
+            svg.append("rect")
+                .attr("width", width)
+                .attr("height", height);
 
-        var starList = createStars(2000);
+            var starList = createStars(2000);
 
-        var stars = svg.append("g")
-            .selectAll("g")
-            .data(starList)
-            .enter()
-            .append("path")
-            .attr("class", "pathStars")
-            .attr("d", function(d){
-                spacePath.pointRadius(d.properties.radius);
-                return spacePath(d);
-            });
-
-        var backgroundCircle = svg.append("svg:circle")
-            .attr('cx', width / 2)
-            .attr('cy', height / 2)
-            .attr('r', projection.scale() )
-            .attr('fill', '#009fe1');
-
-
-        var g = svg.append("g");
-        var tooltip = d3.select("body").append("div").attr("class","tooltip");        
-        var last=null;
-
-
-        d3.json("world-countries.json", function(collection) {
-            features=g.selectAll(".feature")
-                .data(collection.features)
+            var stars = svg.append("g")
+                .selectAll("g")
+                .data(starList)
                 .enter()
                 .append("path")
-                .attr("d", path)
-                .on("click", function(d,i) {
+                .attr("class", "pathStars")
+                .attr("d", function(d){
+                    spacePath.pointRadius(d.properties.radius);
+                    return spacePath(d);
+                });
 
-                    var mouse = d3.mouse(this);
-                    d3.select(last).style("fill", "white");
-                    last=this;
+            var backgroundCircle = svg.append("svg:circle")
+                .attr('cx', width / 2)
+                .attr('cy', height / 2)
+                .attr('r', projection.scale() )
+                .attr('fill', '#009fe1');
 
-                    if (randomCountries[0].properties.name_long == d.properties.name_long) {
-                        console.log('pogodia');
-                        d3.select(this).style("fill", "green");
-                        tooltip.style("display", "block")
-                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                            .html("CORRECT");
-                        var x = this;
-                        setTimeout(function(){
-                                    d3.select(x).style("fill", "white");
-                                    tooltip.style("display", "none");
-                                    }, 500);
 
-                        result.push('correct');
+            var g = svg.append("g");
+            var tooltip = d3.select("body").append("div").attr("class","tooltip");        
+            var last=null;
 
-                    } else {
-                        console.log('falia');
-                        d3.select(this).style("fill", "red");
-                        tooltip.style("display", "block")
-                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                            .html("WRONG");
-                        var x = this;
-                        setTimeout(function(){
-                                    d3.select(x).style("fill", "white");
-                                    tooltip.style("display", "none");
-                                    }, 500);
 
-                        result.push('wrong');
-                    }
+            d3.json("world-countries.json", function(collection) {
+                features=g.selectAll(".feature")
+                    .data(collection.features)
+                    .enter()
+                    .append("path")
+                    .attr("d", path)
+                    .on("click", function(d,i) {
 
-                    
-                    if (randomCountries.length > 1) {
-                        randomCountries.shift();
-                        console.log('trazis: ', randomCountries[0].properties.name_long);
-                    } else {
-                        var endTime = new Date().getTime();
-                        stop();
-                        time = d3.select('#time').html();
-                        d3.selectAll(".globe").remove();
-                        setTimeout(function(){
-                                    alert('gotovo! rezultat: ' + getResult(result) + ' Time: ' + time);
-                                    }, 500);
+                        var mouse = d3.mouse(this);
+                        d3.select(last).style("fill", "#49E20E");
+                        last=this;
+
+                        if (randomCountries[0].properties.name_long == d.properties.name_long) {
+                            console.log('pogodia');
+                            d3.select(this).style("fill", "green");
+                            tooltip.style("display", "block")
+                                .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+                                .html("CORRECT");
+                            var x = this;
+                            setTimeout(function(){
+                                        d3.select(x).style("fill", "#49E20E");
+                                        tooltip.style("display", "none");
+                                        }, 500);
+
+                            result.push('correct');
+
+                        } else {
+                            console.log('falia');
+                            d3.select(this).style("fill", "red");
+                            tooltip.style("display", "block")
+                                .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+                                .html("WRONG");
+                            var x = this;
+                            setTimeout(function(){
+                                d3.select(x).style("fill", "#49E20E");
+                                tooltip.style("display", "none");
+                            }, 500);
+
+                            result.push('wrong');
+                        }
+
+                        
+                        if (randomCountries.length > 1) {
+                            randomCountries.shift();
+                            console.log('trazis: ', randomCountries[0].properties.name_long);
+                            d3.select('.info').html('Select: ' + randomCountries[0].properties.name );
+                        } else {
+                            var endTime = new Date().getTime();
+                            stop();
+                            time = d3.select('#time').html();
+                            setTimeout(function(){
+                                alert('gotovo! rezultat: ' + getResult(result) + ' Time: ' + time);
+                                result = [];
+                                randomCountries = [];
+                                saveRandomCountries = [];
+                                vrstaIgre = '';
+                                d3.selectAll(".globe").remove();
+                                init();
+                            }, 1000);
+                            
+                            
+
+                        }
                         
 
-                    }
-                    
+                        
+                        
+                    })
 
-                    
-                    
+            });
+
+            svg.call(d3.behavior.zoom()
+                .scale( projection.scale() )
+                .scaleExtent([100, 800])
+                .on('zoom', function(){
+
+                    var _scale = d3.event.scale;
+
+                    projection.scale(_scale);
+                    backgroundCircle.attr('r', _scale);
+                    path.projection(projection);
+                    space.scale(_scale*3);
+
+                    stars.attr("d", function(d){
+                        spacePath.pointRadius(d.properties.radius);
+                        return spacePath(d);
+                    });
+
+                    features.attr('d', path);
+
+                }));
+
+            var sens=0.25;
+
+            svg.call(d3.behavior.drag()
+                .origin(function() {
+                    var currentRotation = projection.rotate();
+                    return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
                 })
+                .on("drag", function() {
+                    var rotate = projection.rotate();
+                    projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
+                    space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
+                    svg.selectAll("path").attr("d", path);
 
-        });
+                    stars.attr("d", function(d){
+                        spacePath.pointRadius(d.properties.radius);
+                        return spacePath(d);
+                    });
 
-        svg.call(d3.behavior.zoom()
-            .scale( projection.scale() )
-            .scaleExtent([100, 800])
-            .on('zoom', function(){
+                    path.projection(projection);
+                }));
+        } else if (vrstaIgre == 'continents') {
 
-                var _scale = d3.event.scale;
+            console.log('trazis: ', randomContinents[0]);
+            d3.select('.info').html('Select: ' + randomContinents[0] );
+            var width = $(document).width()*0.82;
+            var height = $(document).height()*0.9;
+            var features;
+            var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
+            show();
+            start();
 
-                projection.scale(_scale);
-                backgroundCircle.attr('r', _scale);
-                path.projection(projection);
-                space.scale(_scale*3);
+            var space = d3.geo.azimuthalEquidistant()
+                .translate([width / 2, height / 2]);
 
-                stars.attr("d", function(d){
+            space.scale(space.scale() * 3);
+
+            var spacePath = d3.geo.path()
+                .projection(space)
+                .pointRadius(1);
+
+            var projection = d3.geo.orthographic()
+                .scale(250) // scale the map
+                .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
+                .clipAngle(90);
+
+
+            var svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .classed("globe", true);
+
+            var path = d3.geo.path()
+                .projection(projection);
+
+            svg.append("rect")
+                .attr("width", width)
+                .attr("height", height);
+
+            var starList = createStars(2000);
+
+            var stars = svg.append("g")
+                .selectAll("g")
+                .data(starList)
+                .enter()
+                .append("path")
+                .attr("class", "pathStars")
+                .attr("d", function(d){
                     spacePath.pointRadius(d.properties.radius);
                     return spacePath(d);
                 });
 
-                features.attr('d', path);
+            var backgroundCircle = svg.append("svg:circle")
+                .attr('cx', width / 2)
+                .attr('cy', height / 2)
+                .attr('r', projection.scale() )
+                .attr('fill', '#009fe1');
 
-            }));
 
-        var sens=0.25;
+            var g = svg.append("g");
+            var tooltip = d3.select("body").append("div").attr("class","tooltip");        
+            var last=null;
 
-        svg.call(d3.behavior.drag()
-            .origin(function() {
-                var currentRotation = projection.rotate();
-                return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
-            })
-            .on("drag", function() {
-                var rotate = projection.rotate();
-                projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
-                space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
-                svg.selectAll("path").attr("d", path);
 
-                stars.attr("d", function(d){
-                    spacePath.pointRadius(d.properties.radius);
-                    return spacePath(d);
-                });
+            d3.json("world-countries.json", function(collection) {
+                features=g.selectAll(".feature")
+                    .data(collection.features)
+                    .enter()
+                    .append("path")
+                    .attr("d", path)
+                    .on("click", function(d,i) {
 
-                path.projection(projection);
-            }));
+                        var mouse = d3.mouse(this);
+                        d3.select(last).style("fill", "#49E20E");
+                        last=this;
+
+                        if (randomContinents[0] == d.properties.continent) {
+                            console.log('pogodia');
+                            d3.select(this).style("fill", "green");
+                            tooltip.style("display", "block")
+                                .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+                                .html("CORRECT");
+                            var x = this;
+                            setTimeout(function(){
+                                        d3.select(x).style("fill", "#49E20E");
+                                        tooltip.style("display", "none");
+                                        }, 500);
+
+                            result.push('correct');
+
+                        } else {
+                            console.log('falia');
+                            d3.select(this).style("fill", "red");
+                            tooltip.style("display", "block")
+                                .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+                                .html("WRONG");
+                            var x = this;
+                            setTimeout(function(){
+                                d3.select(x).style("fill", "#49E20E");
+                                tooltip.style("display", "none");
+                            }, 500);
+
+                            result.push('wrong');
+                        }
+
+                        
+                        if (randomContinents.length > 1) {
+                            randomContinents.shift();
+                            console.log('trazis: ', randomContinents[0]);
+                            d3.select('.info').html('Select: ' + randomContinents[0] );
+                        } else {
+                            var endTime = new Date().getTime();
+                            stop();
+                            time = d3.select('#time').html();
+                            setTimeout(function(){
+                                alert('gotovo! rezultat: ' + getResult(result) + ' Time: ' + time);
+                                result = [];
+                                randomContinents = [];
+                                saveRandomCountries = [];
+                                vrstaIgre = '';
+                                d3.selectAll(".globe").remove();
+                                init();
+                            }, 1000);
+                            
+                            
+
+                        }
+                        
+
+                        
+                        
+                    })
+
+            });
+
+            svg.call(d3.behavior.zoom()
+                .scale( projection.scale() )
+                .scaleExtent([100, 800])
+                .on('zoom', function(){
+
+                    var _scale = d3.event.scale;
+
+                    projection.scale(_scale);
+                    backgroundCircle.attr('r', _scale);
+                    path.projection(projection);
+                    space.scale(_scale*3);
+
+                    stars.attr("d", function(d){
+                        spacePath.pointRadius(d.properties.radius);
+                        return spacePath(d);
+                    });
+
+                    features.attr('d', path);
+
+                }));
+
+            var sens=0.25;
+
+            svg.call(d3.behavior.drag()
+                .origin(function() {
+                    var currentRotation = projection.rotate();
+                    return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
+                })
+                .on("drag", function() {
+                    var rotate = projection.rotate();
+                    projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
+                    space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
+                    svg.selectAll("path").attr("d", path);
+
+                    stars.attr("d", function(d){
+                        spacePath.pointRadius(d.properties.radius);
+                        return spacePath(d);
+                    });
+
+                    path.projection(projection);
+                }));
+        }
+        
+   
+
     }
 }
+
+
+
+
+
 function createStars(number){
     var data = [];
     for(var i = 0; i < number; i++){
