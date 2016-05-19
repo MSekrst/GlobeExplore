@@ -51,10 +51,13 @@ a:visited{
 }
 
 .blue-background {
-    background-color: #000033;
+    /*background-color: #000033;*/
     min-height: 100%;
     min-width: 100%;
     display: table;
+    background-image: url('../image/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
     /*padding: 100px;*/
 }
 
