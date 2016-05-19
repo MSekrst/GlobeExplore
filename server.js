@@ -41,6 +41,10 @@ app.get('/challange', function(req, res) {
   res.render('challange');
 });
 
+app.get('/login', function (req, res) {
+  res.render('login');
+});
+
 app.use(function(req, res) {
   res.type('text/html');
   res.status(404);
