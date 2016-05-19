@@ -1,24 +1,30 @@
 .podrucje{
     height:80px;
-    text-align: center;
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-left: 3%;
     margin-bottom: 20px;
-    font-weight: bold;
     border-radius: 15%;
+    max-width: 50% !important;
+    font-weight: 500;
+    font-size: large;
 }
-.izbori{
+
+@media (max-width: 800px) {
+    .podrucje{font-size: 9px;}
+}
+
+
+.izborWrap{
     position: absolute;
-    width: 15%;
-    top: 300px;
-    left: 40%;
+    left: 40% !important;
+    width: 50% !important;
+    top: 40% !important;
 }
 .slika{
     position: relative;
     background-image: url('../image/naslovna200.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 550px;
-    width: 72%;
     margin: auto;
     top: 0;
     left: -19px;
@@ -31,25 +37,37 @@
 
 a{
     text-decoration: none;
-    color: black;
+    color: #435565;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #435565;
+}
+
+a:visited{
+    text-decoration: none !important;
+    color:#435565;
 }
 
 .blue-background {
     background-color: #000033;
     min-height: 100%;
-    width: 100%;
+    min-width: 100%;
     display: table;
     /*padding: 100px;*/
 }
 
-.background-image {
-    /*background-image: url(../image/naslovna200.png);*/
-    /*height: 450px;*/
-    /*margin-left: 15%;*/
-}
-
 html, body {
     height: 100%;
+    width: 100%;
     margin: 0;
+    background-color: #000033;
+}
+
+.naslov{
+    position: relative;
+    left: 22%;
+    max-width: 55% !important;
 }
 

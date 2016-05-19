@@ -84,8 +84,25 @@ function init(){
                     $wikiDOM = $("<document>"+wikiHTML+"</document>");
                     infobox=$wikiDOM.find('.infobox').html();
                      $('.modal-body').html("");
-                     $('.modal-body').append(infobox);
-                     $('#myModal').modal('show');
+
+                    infobox=infobox.replace("<td colspan=\"2\" style=\"border-bottom: 1px solid #DDDDDD;\"></td>","");
+
+                    //console.log(infobox);
+                    var position;
+                    var index;
+
+                    if (infobox.indexOf('<b>Motto:&nbsp;</b>')!=-1) index=6;
+                    else  index=5;
+
+                    position=nthIndex(infobox,"</tr>",index);
+
+                    var s=infobox.substring(0,position);
+
+                    s+="</tbody></table></document>";
+                    s=s.replace("[1]","");
+                    s=s.replace("[2]","");
+                     $('.modal-body').append(s);
+                    $('#myModal').modal('show');
                 });
 
                 d3.select(this).style("fill", "#228B22");
@@ -160,6 +177,15 @@ function init(){
 
     function randomLonLat(){
         return [Math.random() * 360 - 180, Math.random() * 180 - 90];
+    }
+
+    function nthIndex(str, pat, n){
+        var L= str.length, i= -1;
+        while(n-- && i++<L){
+            i= str.indexOf(pat, i);
+            if (i < 0) break;
+        }
+        return i;
     }
 
 }
