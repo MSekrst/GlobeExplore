@@ -1,8 +1,9 @@
-var vrstaIgre;
+var vrstaIgre = 'states';
 var randomCountries = [];
 var saveRandomCountries = [];
 var randomContinents = [];
 var result = [];
+firstTime = true;
 
 var difficulty = '1';
 var numberOfQuestions = 5;
@@ -34,6 +35,23 @@ $(document).on('change', '#difficulty', function(event) {
 $(document).on('change', '#number_of_questions', function(event) {
     // console.log($(this).val());
     numberOfQuestions = $(this).val();
+});
+
+$(document).on('change', '#game_type', function(event) {
+    // console.log($(this).val());
+
+    if ($(this).val() == 'Continents') {
+        vrstaIgre = 'continents';
+        difficulty = 'nebitno'
+        numberOfQuestions = 7;
+
+        randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
+    } else if ($(this).val() == 'Continents') {
+        vrstaIgre = 'states';
+    } else if ($(this).val() == 'Capitals') {
+        console.log('capitals');
+        vrstaIgre = 'capitals';
+    }
 });
 
 function isMissingArguments() {
@@ -126,6 +144,11 @@ function getRandomCountries( callback ){
 $(document).on('click', '#btn-play', function(event) {
     console.log('start game');
 
+    $(".close").click();
+
+
+
+
     getRandomCountries( function() {
         console.log('callback');
         init();
@@ -134,37 +157,37 @@ $(document).on('click', '#btn-play', function(event) {
 });
 
 
+$(document).on('click', '#btn-play-start', function(event) {
+
+    $('#myModal').modal('show');
+    firstTime = false;
+});
+
+
+
+
 function init(){
-    console.log('init')
-    
+    console.log('init: ', vrstaIgre);
+
+    if (false) {
+        $('#myModal').modal('show');
+        firstTime = false;
+    }
+
     if (isMissingArguments()) {
 
-        d3.select(".nav__link__play__continents").on('click', function () {
-            vrstaIgre = 'continents';
-            difficulty = 'nebitno'
-            numberOfQuestions = 7;
-
-            randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
-            init();
-        });
-
-        d3.select(".nav__link__play__states").on('click', function () {
-            vrstaIgre = 'states';
-        });
-
-        d3.select(".nav__link__play__capitals").on('click', function () {
-            vrstaIgre = 'capitals';
-            init();
-        });
+        console.log('missing arguments')
 
 
 
     } else {
-        if (vrstaIgre == 'capitals') {
-            console.log('trazis glavni grad od blabla: ', randomCountries[0].properties.name_long);
-        } else if (vrstaIgre == 'states') {
+        if (vrstaIgre == 'states' || vrstaIgre == 'capitals') {
 
-            d3.select('.info').html('Select: ' + randomCountries[0].properties.name );
+            if (vrstaIgre == 'states') {
+                d3.select('.info').html('Select: ' + randomCountries[0].properties.name_long );
+            } else if (vrstaIgre == 'capitals') {
+                d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital );
+            }
             var width = $(document).width()*0.82;
             var height = $(document).height()*0.9;
             var features;
