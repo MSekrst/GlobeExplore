@@ -101,7 +101,7 @@ function init(){
                     s+="<tr><th>Languages</th><td>"+d.properties.languages+"</td><tr>";
                     s+="<tr><th>Area</th><td>"+d.properties.area+" km<sup>2</sup></td><tr>";
                     s+="<tr><th>Population</th><td>"+d.properties.population+"</td><tr>";
-                    
+
                     s+="</tbody></table><br\></document>";
                     s=s.replace(/\[.*\]/, '')
 
@@ -110,7 +110,7 @@ function init(){
                 });
 
                 d3.select(this).style("fill", "#228B22");
-                
+
                 // tooltip.style("display", "block")
                 //     .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
                 //     .html("<b>"+d.properties.name_long+"</b>");
