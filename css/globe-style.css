@@ -47,10 +47,7 @@ div.tooltip {
     top: 0;
     right: 0;
 }
-a{
-    pointer-events: none;
-    cursor: default;
-}
+
 a:link{
     color: black;
 }
