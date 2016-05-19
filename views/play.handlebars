@@ -1,6 +1,12 @@
 <script type="text/javascript" src="../globe/globe-script-play.js"></script>
 {{> navbarPlay}}
 <div class="info">
+    {{!-- Game type
+    <select name="game_type" id="game_type">
+        <option value="Countries">Countries</option>
+        <option value="Continents">Continents</option>
+        <option value="Capitals">Capitals</option>
+    </select>
     difficulty
     <select name="difficulty" id="difficulty">
         <option value="easy">easy</option>
@@ -22,14 +28,52 @@
         <option value="14">14</option>
         <option value="15">15</option>
     </select>
-    <div class="btn btn-primary" id="btn-play">PLAY</div>
+     --}}
 </div>
-<div class="instructions"></div>
+<div class="instructions">
+    <img src="../image/naslovna200.png" class="img-responsive img-play">
+    <div class="btn btn-primary" id="btn-play-start" class="btn-play-start">PLAY</div>
+</div>
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
-    <div class="modal-body"></div>
+    <div class="modal-body">
+        <div class="modal__init_div">
+            Game type
+            <select name="game_type" id="game_type">
+                <option value="Countries">Countries</option>
+                <option value="Continents">Continents</option>
+                <option value="Capitals">Capitals</option>
+            </select>
+        </div>
+        <div class="modal__init_div">
+            difficulty
+            <select name="difficulty" id="difficulty">
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+                <option value="extreme">extreme</option>
+            </select>
+        </div>
+        <div class="modal__init_div">
+            number of questions
+            <select name="number_of_questions" id="number_of_questions">
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+        </div>
+        <div class="btn btn-primary" id="btn-play">PLAY</div>
+    </div>
 </div>
 

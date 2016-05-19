@@ -2,11 +2,32 @@
 	margin-left: 18%;
 	height: 50px;
 	padding: 10px 30px;
+	color: white;
 }
 
 .instructions {
-	padding: 80px 0;
+	position: relative;
 	width: 700px;
 	height: 200px;
 	margin: auto;
 }
+
+.modal__init_div {
+	padding: 20px;
+	font-size: 18px;
+}
+
+.modal__init_div select {
+	font-size: 14px;
+	margin-left: 20px;
+}
+
+#btn-play-start {
+	
+}
+
+.img-play {
+	margin-left: 100px;
+}
+
+
