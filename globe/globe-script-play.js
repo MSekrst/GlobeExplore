@@ -7,7 +7,9 @@ var randomCountries = [];
 var saveRandomCountries = [];
 var randomContinents = [];
 var result = [];
-var startTime;
+
+var difficulty = '1';
+var numberOfQuestions = 5;
 
 var continents = {
     "Europe": [],
@@ -19,35 +21,134 @@ var continents = {
     "Oceania": []
 }
 
+$(document).on('change', '#difficulty', function(event) {
+    // console.log($(this).val());
+    if ($(this).val() == 'easy') {
+        difficulty = 1;
+    } else if ($(this).val() == 'medium') {
+        difficulty = 2;
+    } else if ($(this).val() == 'hard') {
+        difficulty = 3;
+    } else if ($(this).val() == 'extreme') {
+        difficulty = 4;
+    }
+    
+});
+
+$(document).on('change', '#number_of_questions', function(event) {
+    // console.log($(this).val());
+    numberOfQuestions = $(this).val();
+});
+
+function isMissingArguments() {
+    console.log('provjeravam')
+    if (vrstaIgre && numberOfQuestions && difficulty ) {
+        return false;
+    } else {
+        if (!vrstaIgre) {
+            console.log('fali ti vrstaIgre')
+        }
+        if (!numberOfQuestions) {
+            console.log('fali ti numberOfQuestions')
+        }
+        if (!difficulty) {
+            console.log('fali ti difficulty')
+        }
+        return true;
+    }
+}
+
+
+
+function getRandomCountries( callback ){
+    var randoms = [];
+    d3.json("world-countries.json", function(collection) {
+
+        if (difficulty == 1) {//easy
+            for (var i = 0; i < numberOfQuestions; i++) {
+                var random = Math.floor( Math.random()*176 );
+                if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != difficulty) {
+                    i--;
+                } else {
+                    randoms[i] = random;
+                    randomCountries[i] = collection.features[random];
+                }
+            }
+        } else if (difficulty == 2) {//medium
+            for (var i = 0; i < numberOfQuestions; i++) {
+                var random = Math.floor( Math.random()*176 );
+                if (numberOfQuestions%2==0) {//svako drugo pitanje lagano
+                    if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != (difficulty-1)) {
+                        i--;
+                    } else {
+                        randoms[i] = random;
+                        randomCountries[i] = collection.features[random];
+                    }
+                } else {
+                    if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != difficulty) {
+                        i--;
+                    } else {
+                        randoms[i] = random;
+                        randomCountries[i] = collection.features[random];
+                    }
+                }
+                
+            }
+            
+        } else if (difficulty == 3) {//hard
+            for (var i = 0; i < numberOfQuestions; i++) {
+                var random = Math.floor( Math.random()*176 );
+                if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != 2) {
+                    i--;
+                } else {
+                    randoms[i] = random;
+                    randomCountries[i] = collection.features[random];
+                }
+            }
+        } else if (difficulty == 4) {//extreme
+            for (var i = 0; i < numberOfQuestions; i++) {
+                var random = Math.floor( Math.random()*176 );
+                if (randoms.indexOf(random) > -1 || collection.features[random].properties.difficulty != 3) {
+                    i--;
+                } else {
+                    randoms[i] = random;
+                    randomCountries[i] = collection.features[random];
+                }
+            }
+        }
+
+        
+        saveRandomCountries = randomCountries;
+
+        callback();
+    });
+
+}
+
+$(document).on('click', '#btn-play', function(event) {
+    console.log('start game');
+
+    getRandomCountries( function() {
+        console.log('callback');
+        init();
+    })
+
+});
 
 
 function init(){
+    console.log('init')
+    
+    if (isMissingArguments()) {
+        
 
-    if (!vrstaIgre) {
-        var randoms = [];
-        console.log('odaberi vrstu igre');
-
-        $('.instructions').html("<h1>Choose type of game!</h1>");
+        $('.instructions').html("<h1>Choose type of game, difficulty and number of questions </h1>");
         $('.instructions').show();
 
         d3.select(".nav__link__play__continents").on('click', function () {
             vrstaIgre = 'continents';
-
-            d3.json("world-countries.json", function(collection) {
-                
-                for (var i = 0; i < collection.features.length; i++) {
-                    // console.log(collection.features[i].properties.continent)
-                    try {
-                        continents[collection.features[i].properties.continent].push(collection.features[i]);
-                    } catch(e) {
-                        // statements
-                        console.log(e, collection.features[i].properties.continent);
-                    }
-                    
-                    
-                }
-                
-            });
+            difficulty = 'nebitno'
+            numberOfQuestions = 7;
 
             randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
             init();
@@ -55,27 +156,6 @@ function init(){
 
         d3.select(".nav__link__play__states").on('click', function () {
             vrstaIgre = 'states';
-
-            d3.json("world-countries.json", function(collection) {
-
-            for (var i = 0; i < 5; i++) {
-                var random = Math.floor( Math.random()*176 );
-                if (randoms.indexOf(random) > -1) {
-                    i--;
-                } else {
-                    randoms[i] = random;
-                    randomCountries[i] = collection.features[random];
-                }
-             }
-
-            saveRandomCountries = randomCountries;
-
-            var sec = 0;
-            var min = 0;
-
-            startTime = new Date().getTime();
-            init();
-            }); 
         });
 
         d3.select(".nav__link__play__capitals").on('click', function () {
@@ -83,11 +163,13 @@ function init(){
             init();
         });
 
+
+
     } else {
         if (vrstaIgre == 'capitals') {
             console.log('trazis glavni grad od blabla: ', randomCountries[0].properties.name_long);
         } else if (vrstaIgre == 'states') {
-            console.log('trazis: ', randomCountries[0].properties.name);
+
             d3.select('.info').html('Select: ' + randomCountries[0].properties.name );
             var width = $(document).width()*0.82;
             var height = $(document).height()*0.9;
@@ -437,9 +519,15 @@ function init(){
                 }));
         }
         
+   
 
     }
 }
+
+
+
+
+
 function createStars(number){
     var data = [];
     for(var i = 0; i < number; i++){
