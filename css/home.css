@@ -55,7 +55,8 @@ a:visited{
     min-height: 100%;
     min-width: 100%;
     display: table;
-    /*padding: 100px;*/
+    background: url('../image/naslovna200.png') center 10% no-repeat;
+    background-size: 650px 340px;
 }
 
 html, body {
