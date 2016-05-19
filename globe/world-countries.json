@@ -1945,7 +1945,15 @@
         "long_len": 10,
         "abbrev_len": 4,
         "tiny": -99,
-        "homepart": 1
+        "homepart": 1,
+        "capital": "No cities",
+        "relevance": "0",
+        "population": 0,
+        "area": 14000000,
+        "translations": {
+        },
+        "languages": [
+        ]
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18083,7 +18091,15 @@
         "long_len": 15,
         "abbrev_len": 6,
         "tiny": -99,
-        "homepart": 1
+        "homepart": 1,
+        "capital": "North Nicosia",
+        "relevance": "0",
+        "population": 313626,
+        "area": 3355,
+        "translations": {
+        },
+        "languages": [
+        ]
       },
       "geometry": {
         "type": "Polygon",
@@ -21699,7 +21715,22 @@
         "long_len": 16,
         "abbrev_len": 8,
         "tiny": -99,
-        "homepart": -99
+        "homepart": -99,
+        "capital": "Stanley",
+        "relevance": "0",
+        "population": 3000,
+        "area": 12173,
+        "translations": {
+          "de": "Falklandinseln",
+          "es": "Islas Malvinas",
+          "fr": "Îles Malouines",
+          "ja": "フォークランド（マルビナス）諸島",
+          "it": "Isole Falkland o Isole Malvine"
+        },
+        "languages": [
+          "en"
+        ]
+
       },
       "geometry": {
         "type": "Polygon",
@@ -31619,7 +31650,22 @@
         "long_len": 6,
         "abbrev_len": 4,
         "tiny": -99,
-        "homepart": 1
+        "homepart": 1,
+        "capital": "Pristina",
+        "relevance": "0",
+        "population": 1733842,
+        "area": 10908,
+        "translations": {
+          "de": null,
+          "es": "Kosovo",
+          "fr": null,
+          "ja": null,
+          "it": null
+        },
+        "languages": [
+          "sq",
+          "sr"
+        ]
       },
       "geometry": {
         "type": "Polygon",
@@ -42176,7 +42222,21 @@
         "long_len": 16,
         "abbrev_len": 6,
         "tiny": -99,
-        "homepart": 1
+        "homepart": 1,
+        "capital": "Port Moresby",
+        "relevance": "0",
+        "population": 7398500,
+        "area": 462840,
+        "translations": {
+          "de": "Papua-Neuguinea",
+          "es": "Papúa Nueva Guinea",
+          "fr": "Papouasie-Nouvelle-Guinée",
+          "ja": "パプアニューギニア",
+          "it": "Papua Nuova Guinea"
+        },
+        "languages": [
+          "en"
+        ]
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43249,7 +43309,21 @@
         "long_len": 8,
         "abbrev_len": 5,
         "tiny": -99,
-        "homepart": 1
+        "homepart": 1,
+        "capital": "Lisbon",
+        "relevance": "1.5",
+        "population": 10374822,
+        "area": 92090,
+        "translations": {
+          "de": "Portugal",
+          "es": "Portugal",
+          "fr": "Portugal",
+          "ja": "ポルトガル",
+          "it": "Portogallo"
+        },
+        "languages": [
+          "pt"
+        ]
       },
       "geometry": {
         "type": "Polygon",
@@ -43680,7 +43754,21 @@
         "long_len": 9,
         "abbrev_len": 4,
         "tiny": -99,
-        "homepart": -99
+        "homepart": -99,
+        "capital": "Ramallah",
+        "relevance": "0",
+        "population": 4682467,
+        "area":  6020,
+        "translations": {
+          "de": "Palästina",
+          "es": "Palestina",
+          "fr": "Palestine",
+          "ja": "パレスチナ",
+          "it": "Palestina"
+        },
+        "languages": [
+          "ar"
+        ]
       },
       "geometry": {
         "type": "Polygon",
@@ -46860,7 +46948,21 @@
         "long_len": 14,
         "abbrev_len": 7,
         "tiny": -99,
-        "homepart": 1
+        "homepart": 1,
+        "capital": "El Aaiún",
+        "relevance": "0",
+        "population": 11262564,
+        "area": 266000,
+        "translations": {
+          "de": "Westsahara",
+          "es": "Sahara Occidental",
+          "fr": "Sahara Occidental",
+          "ja": "西サハラ",
+          "it": "Sahara Occidentale"
+        },
+        "languages": [
+          "es"
+        ]
       },
       "geometry": {
         "type": "Polygon",
@@ -47849,7 +47951,21 @@
         "long_len": 11,
         "abbrev_len": 7,
         "tiny": -99,
-        "homepart": 1
+        "homepart": 1,
+        "capital": "Juba",
+        "relevance": "0",
+        "population": 11892934,
+        "area": 619745,
+        "translations": {
+          "de": "Südsudan",
+          "es": "Sudán del Sur",
+          "fr": "Soudan du Sud",
+          "ja": "南スーダン",
+          "it": "Sudan del sud"
+        },
+        "languages": [
+          "en"
+        ]
       },
       "geometry": {
         "type": "Polygon",
@@ -49047,7 +49163,17 @@
         "long_len": 10,
         "abbrev_len": 6,
         "tiny": -99,
-        "homepart": 1
+        "homepart": 1,
+        "capital": "Hargeisa",
+        "relevance": "0",
+        "population": 3500000,
+        "area": 137600,
+        "translations": {
+        },
+        "languages": [
+          "so",
+          "ar"
+        ]
       },
       "geometry": {
         "type": "Polygon",
@@ -53120,7 +53246,21 @@
         "long_len": 6,
         "abbrev_len": 6,
         "tiny": -99,
-        "homepart": 1
+        "homepart": 1,
+        "capital": "Taipei",
+        "relevance": "0",
+        "population": 23461708,
+        "area": 36193,
+        "translations": {
+          "de": "Taiwan",
+          "es": "Taiwán",
+          "fr": "Taïwan",
+          "ja": "台湾（台湾省/中華民国）",
+          "it": "Taiwan"
+        },
+        "languages": [
+          "zh"
+        ]
       },
       "geometry": {
         "type": "Polygon",
