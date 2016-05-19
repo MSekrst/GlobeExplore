@@ -40,7 +40,7 @@ $(document).on('change', '#number_of_questions', function(event) {
 $(document).on('change', '#game_type', function(event) {
     // console.log($(this).val());
 
-    if ($(this).val() == 'Countries') {
+    if ($(this).val() == 'Continents') {
         vrstaIgre = 'continents';
         difficulty = 'nebitno'
         numberOfQuestions = 7;
