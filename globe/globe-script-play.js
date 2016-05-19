@@ -1,7 +1,3 @@
-/**
- * Created by Tea on 10.4.2016..
- */
-
 var vrstaIgre;
 var randomCountries = [];
 var saveRandomCountries = [];
@@ -41,12 +37,12 @@ $(document).on('change', '#number_of_questions', function(event) {
 });
 
 function isMissingArguments() {
-    console.log('provjeravam')
+    var message;
     if (vrstaIgre && numberOfQuestions && difficulty ) {
         return false;
     } else {
         if (!vrstaIgre) {
-            console.log('fali ti vrstaIgre')
+            message = "Please choose game type."
         }
         if (!numberOfQuestions) {
             console.log('fali ti numberOfQuestions')
@@ -54,6 +50,8 @@ function isMissingArguments() {
         if (!difficulty) {
             console.log('fali ti difficulty')
         }
+        $('.instructions').html("<h1>" + message + "</h1>");
+        $('.instructions').show();
         return true;
     }
 }
@@ -140,10 +138,6 @@ function init(){
     console.log('init')
     
     if (isMissingArguments()) {
-        
-
-        $('.instructions').html("<h1>Choose type of game, difficulty and number of questions </h1>");
-        $('.instructions').show();
 
         d3.select(".nav__link__play__continents").on('click', function () {
             vrstaIgre = 'continents';
@@ -236,7 +230,7 @@ function init(){
                     .enter()
                     .append("path")
                     .attr("d", path)
-                    .on("click", function(d,i) {
+                    .on("dblclick", function(d,i) {
 
                         var mouse = d3.mouse(this);
                         d3.select(last).style("fill", "#49E20E");
@@ -324,6 +318,7 @@ function init(){
 
             var sens=0.25;
 
+            svg.on("dblclick.zoom", null);
             svg.call(d3.behavior.drag()
                 .origin(function() {
                     var currentRotation = projection.rotate();
@@ -476,6 +471,7 @@ function init(){
 
             });
 
+            svg.on("dblclick.zoom", null);
             svg.call(d3.behavior.zoom()
                 .scale( projection.scale() )
                 .scaleExtent([100, 800])
