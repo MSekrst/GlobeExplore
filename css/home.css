@@ -1,0 +1,73 @@
+.podrucje{
+    height:80px;
+    padding-top: 20px;
+    padding-left: 3%;
+    margin-bottom: 20px;
+    border-radius: 15%;
+    max-width: 50% !important;
+    font-weight: 500;
+    font-size: large;
+}
+
+@media (max-width: 800px) {
+    .podrucje{font-size: 9px;}
+}
+
+
+.izborWrap{
+    position: absolute;
+    left: 40% !important;
+    width: 50% !important;
+    top: 40% !important;
+}
+.slika{
+    position: relative;
+    background-image: url('../image/naslovna200.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto;
+    top: 0;
+    left: -19px;
+}
+.home{
+    background-color: #000033;
+    width: 100%;
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: #435565;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #435565;
+}
+
+a:visited{
+    text-decoration: none !important;
+    color:#435565;
+}
+
+.blue-background {
+    background-color: #000033;
+    min-height: 100%;
+    min-width: 100%;
+    display: table;
+    /*padding: 100px;*/
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #000033;
+}
+
+.naslov{
+    position: relative;
+    left: 22%;
+    max-width: 55% !important;
+}
+

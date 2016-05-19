@@ -40,33 +40,6 @@ function init(){
             var min = 0;
 
             startTime = new Date().getTime();
-            // setInterval( function () {
-            //     var time = Math.floor(( new Date().getTime() - startTime)/100) - min*60;
-            //     var displayTime;
-                
-            //     if (min == 0 && time < 10) {
-            //         displayTime = '00:0' + time;
-            //     } else if (min == 0 && time < 60) {
-            //         displayTime = '00:' + time;
-            //     } else {
-            //         if( time == 60){
-            //             min++;
-            //         }
-            //         time -= 60;
-            //         if (min < 10 && time < 10) {
-            //             displayTime = '0' + min + ':0' + time;
-            //         } else if (min < 10 && time < 60) {
-            //             displayTime = '0' + min + ':' + time;
-            //         } else if (min >= 10 && time < 10) {
-            //             displayTime = min + ':0' + time;
-            //         } else if (min >= 10 && time >= 10) {
-            //             displayTime = min + ':' + time;
-            //         }   
-            //     }
-            //     console.log(time)
-            //     d3.select(".stopwatch").html( displayTime )
-
-            // }, 1000 );
             init();
             }); 
         });
@@ -81,6 +54,10 @@ function init(){
             console.log('trazis glavni grad od blabla: ', randomCountries[0].properties.name_long);
         } else if (vrstaIgre == 'states') {
             console.log('trazis: ', randomCountries[0].properties.name);
+            $('.modal-body').html('naslov: ');
+            $('.modal-body').html('trazis: ' + randomCountries[0].properties.name);
+            // $('.modal-body').append(infobox);
+            $('#myModal').modal('show');
         }
         
         var width = $(document).width()*0.82;

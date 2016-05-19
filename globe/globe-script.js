@@ -84,6 +84,7 @@ function init(){
                     $wikiDOM = $("<document>"+wikiHTML+"</document>");
                     infobox=$wikiDOM.find('.infobox').html();
                      $('.modal-body').html("");
+
                     infobox=infobox.replace("<td colspan=\"2\" style=\"border-bottom: 1px solid #DDDDDD;\"></td>","");
 
                     //console.log(infobox);
