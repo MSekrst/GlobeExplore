@@ -4,7 +4,7 @@
 
 function init(){
 
-    var width = $(document).width();
+    var width = $(document).width()*0.84;
     var height = $(document).height();
 
     var features;
@@ -63,7 +63,7 @@ function init(){
 
 
 
-    d3.json("world-countries.json", function(collection) {
+    d3.json("../globe/world-countries.json", function(collection) {
         features=g.selectAll(".feature")
             .data(collection.features)
             .enter()
@@ -86,7 +86,7 @@ function init(){
                      $('.modal-body').html("");
 
                     infobox=infobox.replace("<td colspan=\"2\" style=\"border-bottom: 1px solid #DDDDDD;\"></td>","");
-
+                    infobox=infobox.replace(/\[.*\]/g, '');
                     var position;
                     var index;
 
@@ -102,7 +102,7 @@ function init(){
                     s+="<tr><th>Area</th><td>"+d.properties.area+" km<sup>2</sup></td><tr>";
                     s+="<tr><th>Population</th><td>"+d.properties.population+"</td><tr>";
                     
-                    s+="</tbody></table></document>";
+                    s+="</tbody></table><br\></document>";
                     s=s.replace(/\[.*\]/, '')
 
                      $('.modal-body').append(s);

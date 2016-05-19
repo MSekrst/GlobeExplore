@@ -60,7 +60,7 @@ function isMissingArguments() {
 
 function getRandomCountries( callback ){
     var randoms = [];
-    d3.json("world-countries.json", function(collection) {
+    d3.json("../globe/world-countries.json", function(collection) {
 
         if (difficulty == 1) {//easy
             for (var i = 0; i < numberOfQuestions; i++) {
@@ -224,7 +224,7 @@ function init(){
             var last=null;
 
 
-            d3.json("world-countries.json", function(collection) {
+            d3.json("../globe/world-countries.json", function(collection) {
                 features=g.selectAll(".feature")
                     .data(collection.features)
                     .enter()
@@ -400,7 +400,7 @@ function init(){
             var last=null;
 
 
-            d3.json("world-countries.json", function(collection) {
+            d3.json("../globe/world-countries.json", function(collection) {
                 features=g.selectAll(".feature")
                     .data(collection.features)
                     .enter()

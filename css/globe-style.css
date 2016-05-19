@@ -46,6 +46,10 @@ div.tooltip {
     right: 0;
 }
 
+svg {
+    float: right;
+}
+
 table{
     margin:0 auto;
 }
