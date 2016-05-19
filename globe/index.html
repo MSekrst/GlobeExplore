@@ -3,20 +3,38 @@
 <head>
     <meta charset="utf-8">
     <title>D3 World Map</title>
-   <link rel="stylesheet" type="text/css" href="css/globe-style.css">
-    <link rel="stylesheet" type="text/css" href="css/navigation.css">
+   <link rel="stylesheet" type="text/css" href="../css/globe-style.css">
+    <link rel="stylesheet" type="text/css" href="../css/navigation.css">
     <script type="text/javascript" src="externalLibraries/http_d3js.org_d3.v3.js"></script>
     <script type="text/javascript" src="externalLibraries/http_code.jquery.com_jquery-1.9.1.js"></script>
     <script type="text/javascript" src="globe-script.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato:700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <style>
         .modal-body,.modal-header{
+            font-family:'Lato' ,"Comic Sans MS";
             margin:0 30%;
             background-color:white;
             width:40%;
             text-align:center;
         }
+        .modal-body a{
+            pointer-events: none;
+            cursor: default;
+        }
+        .modal-body a:link{
+            color: black;
+        }
+
+        .modal-body tbody {
+            border-collapse: collapse;
+            border: 1px solid black;
+            margin: 0 auto;
+        }
+
+
+
     </style>
 </head>
 
@@ -37,6 +55,6 @@
         </div>
         <div class="modal-body"></div>
     </div>
- 
+
 </body>
 </html>
