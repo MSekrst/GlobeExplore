@@ -45,13 +45,7 @@ div.tooltip {
     top: 50px;
     right: 0;
 }
-a{
-    pointer-events: none;
-    cursor: default;
-}
-a:link{
-    color: black;
-}
+
 table{
     margin:0 auto;
 }
