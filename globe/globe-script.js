@@ -85,7 +85,7 @@ function init(){
                     infobox=$wikiDOM.find('.infobox').html();
                      $('.modal-body').html("");
                      $('.modal-body').append(infobox);
-                    $('#myModal').modal('show');
+                     $('#myModal').modal('show');
                 });
 
                 d3.select(this).style("fill", "#228B22");

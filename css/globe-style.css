@@ -17,6 +17,8 @@ body {
     position: absolute;
     top: 0;
     right: 0;
+    color: white;
+    z-index: 1000;
 }
 rect{
     fill:#000033;

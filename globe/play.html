@@ -3,11 +3,24 @@
 <head>
     <meta charset="utf-8">
     <title>D3 World Map</title>
-   <link rel="stylesheet" type="text/css" href="css/globe-style.css">
-    <link rel="stylesheet" type="text/css" href="css/navigation.css">
+   <link rel="stylesheet" type="text/css" href="../css/globe-style.css">
+    <link rel="stylesheet" type="text/css" href="../css/navigation.css">
     <script type="text/javascript" src="externalLibraries/http_d3js.org_d3.v3.js"></script>
     <script type="text/javascript" src="externalLibraries/http_code.jquery.com_jquery-1.9.1.js"></script>
     <script type="text/javascript" src="globe-script-play.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+        .modal-body,.modal-header{
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color:white;
+            width:25%;
+            height: 100%;
+            text-align:center;
+        }
+    </style>
 </head>
 
 <body onload="init()">
@@ -17,6 +30,13 @@
         <div class="nav__link nav__link__play__states">States</div>
         <div class="nav__link nav__link__play__capitals">Capitals</div>
         <div class="nav__link nav__link__back"><--</div>
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body"></div>
     </div>
 
 </body>
