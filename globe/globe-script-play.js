@@ -292,7 +292,7 @@ var clsStopwatch = function() {
         var lapTime = 0;    // Time on the clock when last stopped in milliseconds
 
         var now = function() {
-                return (new Date()).getTime(); 
+                return (new Date()).getTime();
             }; 
  
         // Public methods
