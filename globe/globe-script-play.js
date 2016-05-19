@@ -2,11 +2,21 @@ var vrstaIgre = 'states';
 var randomCountries = [];
 var saveRandomCountries = [];
 var randomContinents = [];
+var saveRandomContinents = [];
 var result = [];
-firstTime = true;
 
 var difficulty = '1';
 var numberOfQuestions = 5;
+
+saveRandomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
+randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
+
+var difficulties = {
+    'easy' : 1,
+    'medium' : 2,
+    'hard' : 3,
+    'extreme' : 4
+}
 
 var continents = {
     "Europe": [],
@@ -19,21 +29,11 @@ var continents = {
 }
 
 $(document).on('change', '#difficulty', function(event) {
-    // console.log($(this).val());
-    if ($(this).val() == 'easy') {
-        difficulty = 1;
-    } else if ($(this).val() == 'medium') {
-        difficulty = 2;
-    } else if ($(this).val() == 'hard') {
-        difficulty = 3;
-    } else if ($(this).val() == 'extreme') {
-        difficulty = 4;
-    }
-    
+    difficulty = difficulties[$(this).val()]
+
 });
 
 $(document).on('change', '#number_of_questions', function(event) {
-    // console.log($(this).val());
     numberOfQuestions = $(this).val();
 });
 
@@ -45,38 +45,29 @@ $(document).on('change', '#game_type', function(event) {
         difficulty = 'nebitno'
         numberOfQuestions = 7;
 
-        randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
-    } else if ($(this).val() == 'Continents') {
+        d3.select('.modal__init_div_nb').style("display", 'none');
+        d3.select('.modal__init_div_diff').style("display", 'none');
+    } else if ($(this).val() == 'Countries') {
         vrstaIgre = 'states';
+        difficulty = $('#difficulty').val();
+        difficulty = difficulties[difficulty]
+        numberOfQuestions = $('#number_of_questions').val();
+        d3.select('.modal__init_div_nb').style("display", 'block');
+        d3.select('.modal__init_div_diff').style("display", 'block');
     } else if ($(this).val() == 'Capitals') {
-        console.log('capitals');
+        vrstaIgre = 'states';
+        difficulty = $('#difficulty').val();
+        difficulty = difficulties[difficulty]
+        numberOfQuestions = $('#number_of_questions').val();
+        d3.select('.modal__init_div_nb').style("display", 'block');
+        d3.select('.modal__init_div_diff').style("display", 'block');
         vrstaIgre = 'capitals';
     }
 });
 
-function isMissingArguments() {
-    var message;
-    if (vrstaIgre && numberOfQuestions && difficulty ) {
-        return false;
-    } else {
-        if (!vrstaIgre) {
-            message = "Please choose game type."
-        }
-        if (!numberOfQuestions) {
-            console.log('fali ti numberOfQuestions')
-        }
-        if (!difficulty) {
-            console.log('fali ti difficulty')
-        }
-        $('.instructions').html("<h1>" + message + "</h1>");
-        $('.instructions').show();
-        return true;
-    }
-}
-
-
 
 function getRandomCountries( callback ){
+    console.log('getting random c')
     var randoms = [];
     d3.json("../globe/world-countries.json", function(collection) {
 
@@ -132,25 +123,16 @@ function getRandomCountries( callback ){
                 }
             }
         }
-
-        
-        saveRandomCountries = randomCountries;
-
+        console.log('made: ', randomCountries )
         callback();
     });
 
 }
 
 $(document).on('click', '#btn-play', function(event) {
-    console.log('start game');
-
     $(".close").click();
 
-
-
-
     getRandomCountries( function() {
-        console.log('callback');
         init();
     })
 
@@ -160,391 +142,380 @@ $(document).on('click', '#btn-play', function(event) {
 $(document).on('click', '#btn-play-start', function(event) {
 
     $('#myModal').modal('show');
-    firstTime = false;
 });
 
 
 
 
 function init(){
-    console.log('init: ', vrstaIgre);
 
-    if (false) {
-        $('#myModal').modal('show');
-        firstTime = false;
-    }
+    if (vrstaIgre == 'states' || vrstaIgre == 'capitals') {
 
-    if (isMissingArguments()) {
-
-        console.log('missing arguments')
-
-
-
-    } else {
-        if (vrstaIgre == 'states' || vrstaIgre == 'capitals') {
-
-            if (vrstaIgre == 'states') {
-                d3.select('.info').html('Select: ' + randomCountries[0].properties.name_long );
-            } else if (vrstaIgre == 'capitals') {
-                d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital );
-            }
-            var width = $(document).width()*0.82;
-            var height = $(document).height()*0.9;
-            var features;
-            var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
-            show();
-            start();
-
-            var space = d3.geo.azimuthalEquidistant()
-                .translate([width / 2, height / 2]);
-
-            space.scale(space.scale() * 3);
-
-            var spacePath = d3.geo.path()
-                .projection(space)
-                .pointRadius(1);
-
-            var projection = d3.geo.orthographic()
-                .scale(250) // scale the map
-                .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
-                .clipAngle(90);
-
-
-            var svg = d3.select("body").append("svg")
-                .attr("width", width)
-                .attr("height", height)
-                .classed("globe", true);
-
-            var path = d3.geo.path()
-                .projection(projection);
-
-            svg.append("rect")
-                .attr("width", width)
-                .attr("height", height);
-
-            var starList = createStars(2000);
-
-            var stars = svg.append("g")
-                .selectAll("g")
-                .data(starList)
-                .enter()
-                .append("path")
-                .attr("class", "pathStars")
-                .attr("d", function(d){
-                    spacePath.pointRadius(d.properties.radius);
-                    return spacePath(d);
-                });
-
-            var backgroundCircle = svg.append("svg:circle")
-                .attr('cx', width / 2)
-                .attr('cy', height / 2)
-                .attr('r', projection.scale() )
-                .attr('fill', '#009fe1');
-
-
-            var g = svg.append("g");
-            var tooltip = d3.select("body").append("div").attr("class","tooltip");        
-            var last=null;
-
-
-            d3.json("../globe/world-countries.json", function(collection) {
-                features=g.selectAll(".feature")
-                    .data(collection.features)
-                    .enter()
-                    .append("path")
-                    .attr("d", path)
-                    .on("dblclick", function(d,i) {
-
-                        var mouse = d3.mouse(this);
-                        d3.select(last).style("fill", "#49E20E");
-                        last=this;
-
-                        if (randomCountries[0].properties.name_long == d.properties.name_long) {
-                            console.log('pogodia');
-                            d3.select(this).style("fill", "green");
-                            tooltip.style("display", "block")
-                                .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                                .html("CORRECT");
-                            var x = this;
-                            setTimeout(function(){
-                                        d3.select(x).style("fill", "#49E20E");
-                                        tooltip.style("display", "none");
-                                        }, 500);
-
-                            result.push('correct');
-
-                        } else {
-                            console.log('falia');
-                            d3.select(this).style("fill", "red");
-                            tooltip.style("display", "block")
-                                .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                                .html("WRONG");
-                            var x = this;
-                            setTimeout(function(){
-                                d3.select(x).style("fill", "#49E20E");
-                                tooltip.style("display", "none");
-                            }, 500);
-
-                            result.push('wrong');
-                        }
-
-                        
-                        if (randomCountries.length > 1) {
-                            randomCountries.shift();
-                            console.log('trazis: ', randomCountries[0].properties.name_long);
-                            if (vrstaIgre == 'states') {
-                                d3.select('.info').html('Select: ' + randomCountries[0].properties.name_long );
-                            } else if (vrstaIgre == 'capitals') {
-                                d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital );
-                            }
-                        } else {
-                            var endTime = new Date().getTime();
-                            stop();
-                            time = d3.select('#time').html();
-                            setTimeout(function(){
-                                alert('gotovo! rezultat: ' + getResult(result) + ' Time: ' + time);
-                                window.location = '/play';
-                                result = [];
-                                randomCountries = [];
-                                saveRandomCountries = [];
-                                vrstaIgre = '';
-                                d3.selectAll(".globe").remove();
-                                init();
-                            }, 1000);
-                            
-                            
-
-                        }
-                        
-
-                        
-                        
-                    })
-
-            });
-
-            svg.call(d3.behavior.zoom()
-                .scale( projection.scale() )
-                .scaleExtent([100, 800])
-                .on('zoom', function(){
-
-                    var _scale = d3.event.scale;
-
-                    projection.scale(_scale);
-                    backgroundCircle.attr('r', _scale);
-                    path.projection(projection);
-                    space.scale(_scale*3);
-
-                    stars.attr("d", function(d){
-                        spacePath.pointRadius(d.properties.radius);
-                        return spacePath(d);
-                    });
-
-                    features.attr('d', path);
-
-                }));
-
-            var sens=0.25;
-
-            svg.on("dblclick.zoom", null);
-            svg.call(d3.behavior.drag()
-                .origin(function() {
-                    var currentRotation = projection.rotate();
-                    return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
-                })
-                .on("drag", function() {
-                    var rotate = projection.rotate();
-                    projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
-                    space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
-                    svg.selectAll("path").attr("d", path);
-
-                    stars.attr("d", function(d){
-                        spacePath.pointRadius(d.properties.radius);
-                        return spacePath(d);
-                    });
-
-                    path.projection(projection);
-                }));
-        } else if (vrstaIgre == 'continents') {
-
-            console.log('trazis: ', randomContinents[0]);
-            d3.select('.info').html('Select: ' + randomContinents[0] );
-            var width = $(document).width()*0.82;
-            var height = $(document).height()*0.9;
-            var features;
-            var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
-            show();
-            start();
-
-            var space = d3.geo.azimuthalEquidistant()
-                .translate([width / 2, height / 2]);
-
-            space.scale(space.scale() * 3);
-
-            var spacePath = d3.geo.path()
-                .projection(space)
-                .pointRadius(1);
-
-            var projection = d3.geo.orthographic()
-                .scale(250) // scale the map
-                .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
-                .clipAngle(90);
-
-
-            var svg = d3.select("body").append("svg")
-                .attr("width", width)
-                .attr("height", height)
-                .classed("globe", true);
-
-            var path = d3.geo.path()
-                .projection(projection);
-
-            svg.append("rect")
-                .attr("width", width)
-                .attr("height", height);
-
-            var starList = createStars(2000);
-
-            var stars = svg.append("g")
-                .selectAll("g")
-                .data(starList)
-                .enter()
-                .append("path")
-                .attr("class", "pathStars")
-                .attr("d", function(d){
-                    spacePath.pointRadius(d.properties.radius);
-                    return spacePath(d);
-                });
-
-            var backgroundCircle = svg.append("svg:circle")
-                .attr('cx', width / 2)
-                .attr('cy', height / 2)
-                .attr('r', projection.scale() )
-                .attr('fill', '#009fe1');
-
-
-            var g = svg.append("g");
-            var tooltip = d3.select("body").append("div").attr("class","tooltip");        
-            var last=null;
-
-
-            d3.json("../globe/world-countries.json", function(collection) {
-                features=g.selectAll(".feature")
-                    .data(collection.features)
-                    .enter()
-                    .append("path")
-                    .attr("d", path)
-                    .on("click", function(d,i) {
-
-                        var mouse = d3.mouse(this);
-                        d3.select(last).style("fill", "#49E20E");
-                        last=this;
-
-                        if (randomContinents[0] == d.properties.continent) {
-                            console.log('pogodia');
-                            d3.select(this).style("fill", "green");
-                            tooltip.style("display", "block")
-                                .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                                .html("CORRECT");
-                            var x = this;
-                            setTimeout(function(){
-                                        d3.select(x).style("fill", "#49E20E");
-                                        tooltip.style("display", "none");
-                                        }, 500);
-
-                            result.push('correct');
-
-                        } else {
-                            console.log('falia');
-                            d3.select(this).style("fill", "red");
-                            tooltip.style("display", "block")
-                                .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                                .html("WRONG");
-                            var x = this;
-                            setTimeout(function(){
-                                d3.select(x).style("fill", "#49E20E");
-                                tooltip.style("display", "none");
-                            }, 500);
-
-                            result.push('wrong');
-                        }
-
-                        
-                        if (randomContinents.length > 1) {
-                            randomContinents.shift();
-                            console.log('trazis: ', randomContinents[0]);
-                            d3.select('.info').html('Select: ' + randomContinents[0] );
-                        } else {
-                            var endTime = new Date().getTime();
-                            stop();
-                            time = d3.select('#time').html();
-                            setTimeout(function(){
-                                alert('gotovo! rezultat: ' + getResult(result) + ' Time: ' + time);
-                                result = [];
-                                randomContinents = [];
-                                saveRandomCountries = [];
-                                vrstaIgre = '';
-                                d3.selectAll(".globe").remove();
-                                init();
-                            }, 1000);
-                            
-                            
-
-                        }
-                        
-
-                        
-                        
-                    })
-
-            });
-
-            svg.on("dblclick.zoom", null);
-            svg.call(d3.behavior.zoom()
-                .scale( projection.scale() )
-                .scaleExtent([100, 800])
-                .on('zoom', function(){
-
-                    var _scale = d3.event.scale;
-
-                    projection.scale(_scale);
-                    backgroundCircle.attr('r', _scale);
-                    path.projection(projection);
-                    space.scale(_scale*3);
-
-                    stars.attr("d", function(d){
-                        spacePath.pointRadius(d.properties.radius);
-                        return spacePath(d);
-                    });
-
-                    features.attr('d', path);
-
-                }));
-
-            var sens=0.25;
-
-            svg.call(d3.behavior.drag()
-                .origin(function() {
-                    var currentRotation = projection.rotate();
-                    return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
-                })
-                .on("drag", function() {
-                    var rotate = projection.rotate();
-                    projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
-                    space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
-                    svg.selectAll("path").attr("d", path);
-
-                    stars.attr("d", function(d){
-                        spacePath.pointRadius(d.properties.radius);
-                        return spacePath(d);
-                    });
-
-                    path.projection(projection);
-                }));
+        if (vrstaIgre == 'states') {
+            d3.select('.info').html('Select: ' + randomCountries[0].properties.name_long );
+        } else if (vrstaIgre == 'capitals') {
+            d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital );
         }
-        
-   
+        var width = $(document).width()*0.82;
+        var height = $(document).height()*0.9;
+        var features;
+        var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
+        show();
+        start();
 
+        var space = d3.geo.azimuthalEquidistant()
+            .translate([width / 2, height / 2]);
+
+        space.scale(space.scale() * 3);
+
+        var spacePath = d3.geo.path()
+            .projection(space)
+            .pointRadius(1);
+
+        var projection = d3.geo.orthographic()
+            .scale(250) // scale the map
+            .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
+            .clipAngle(90);
+
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .classed("globe", true);
+
+        var path = d3.geo.path()
+            .projection(projection);
+
+        svg.append("rect")
+            .attr("width", width)
+            .attr("height", height);
+
+        var starList = createStars(2000);
+
+        var stars = svg.append("g")
+            .selectAll("g")
+            .data(starList)
+            .enter()
+            .append("path")
+            .attr("class", "pathStars")
+            .attr("d", function(d){
+                spacePath.pointRadius(d.properties.radius);
+                return spacePath(d);
+            });
+
+        var backgroundCircle = svg.append("svg:circle")
+            .attr('cx', width / 2)
+            .attr('cy', height / 2)
+            .attr('r', projection.scale() )
+            .attr('fill', '#009fe1');
+
+
+        var g = svg.append("g");
+        var tooltip = d3.select("body").append("div").attr("class","tooltip");        
+        var last=null;
+
+
+        d3.json("../globe/world-countries.json", function(collection) {
+            features=g.selectAll(".feature")
+                .data(collection.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .on("dblclick", function(d,i) {
+
+                    var mouse = d3.mouse(this);
+                    d3.select(last).style("fill", "#49E20E");
+                    last=this;
+
+                    if (randomCountries[0].properties.name_long == d.properties.name_long) {
+                        // console.log('pogodia');
+                        d3.select(this).style("fill", "green");
+                        tooltip.style("display", "block")
+                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+                            .html("CORRECT");
+                        var x = this;
+                        setTimeout(function(){
+                                    d3.select(x).style("fill", "#49E20E");
+                                    tooltip.style("display", "none");
+                                    }, 500);
+
+                        result.push('correct');
+
+                    } else {
+                        // console.log('falia');
+                        d3.select(this).style("fill", "red");
+                        tooltip.style("display", "block")
+                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+                            .html("WRONG");
+                        var x = this;
+                        setTimeout(function(){
+                            d3.select(x).style("fill", "#49E20E");
+                            tooltip.style("display", "none");
+                        }, 500);
+
+                        result.push('wrong');
+                    }
+
+                    
+                    if (randomCountries.length > 1) {
+                        saveRandomCountries.push(randomCountries.shift()); 
+                        // console.log('trazis: ', randomCountries[0].properties.name_long);
+                        if (vrstaIgre == 'states') {
+                            d3.select('.info').html('Select: ' + randomCountries[0].properties.name_long );
+                        } else if (vrstaIgre == 'capitals') {
+                            d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital );
+                        }
+                    } else {
+                        saveRandomCountries.push(randomCountries.shift()); 
+                        var endTime = new Date().getTime();
+                        stop();
+                        time = d3.select('#time').html();
+                        setTimeout(function(){
+                            $('.modal-header').append('Result: '+getResult(result, vrstaIgre)[0]);
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + time + '</div>');
+                            $('#myModal').modal('show');
+
+                            $('#myModal').on('hidden.bs.modal', function () {
+                                window.location = '/play';
+                            })
+                           
+                            result = [];
+                            randomCountries = [];
+                            saveRandomCountries = [];
+                            vrstaIgre = '';
+                            d3.selectAll(".globe").remove();
+                            init();
+                        }, 1000);
+                        
+                        
+
+                    }
+                    
+
+                    
+                    
+                })
+
+        });
+
+        svg.call(d3.behavior.zoom()
+            .scale( projection.scale() )
+            .scaleExtent([100, 800])
+            .on('zoom', function(){
+
+                var _scale = d3.event.scale;
+
+                projection.scale(_scale);
+                backgroundCircle.attr('r', _scale);
+                path.projection(projection);
+                space.scale(_scale*3);
+
+                stars.attr("d", function(d){
+                    spacePath.pointRadius(d.properties.radius);
+                    return spacePath(d);
+                });
+
+                features.attr('d', path);
+
+            }));
+
+        var sens=0.25;
+
+        svg.on("dblclick.zoom", null);
+        svg.call(d3.behavior.drag()
+            .origin(function() {
+                var currentRotation = projection.rotate();
+                return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
+            })
+            .on("drag", function() {
+                var rotate = projection.rotate();
+                projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
+                space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
+                svg.selectAll("path").attr("d", path);
+
+                stars.attr("d", function(d){
+                    spacePath.pointRadius(d.properties.radius);
+                    return spacePath(d);
+                });
+
+                path.projection(projection);
+            }));
+    } else if (vrstaIgre == 'continents') {
+
+        d3.select('.info').html('Select: ' + randomContinents[0] );
+        var width = $(document).width()*0.82;
+        var height = $(document).height()*0.9;
+        var features;
+        var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
+        show();
+        start();
+
+        var space = d3.geo.azimuthalEquidistant()
+            .translate([width / 2, height / 2]);
+
+        space.scale(space.scale() * 3);
+
+        var spacePath = d3.geo.path()
+            .projection(space)
+            .pointRadius(1);
+
+        var projection = d3.geo.orthographic()
+            .scale(250) // scale the map
+            .translate([width / 2, height / 2]) // set the center of the map to be the center of the canvas
+            .clipAngle(90);
+
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .classed("globe", true);
+
+        var path = d3.geo.path()
+            .projection(projection);
+
+        svg.append("rect")
+            .attr("width", width)
+            .attr("height", height);
+
+        var starList = createStars(2000);
+
+        var stars = svg.append("g")
+            .selectAll("g")
+            .data(starList)
+            .enter()
+            .append("path")
+            .attr("class", "pathStars")
+            .attr("d", function(d){
+                spacePath.pointRadius(d.properties.radius);
+                return spacePath(d);
+            });
+
+        var backgroundCircle = svg.append("svg:circle")
+            .attr('cx', width / 2)
+            .attr('cy', height / 2)
+            .attr('r', projection.scale() )
+            .attr('fill', '#009fe1');
+
+
+        var g = svg.append("g");
+        var tooltip = d3.select("body").append("div").attr("class","tooltip");        
+        var last=null;
+
+
+        d3.json("../globe/world-countries.json", function(collection) {
+            features=g.selectAll(".feature")
+                .data(collection.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .on("click", function(d,i) {
+
+                    var mouse = d3.mouse(this);
+                    d3.select(last).style("fill", "#49E20E");
+                    last=this;
+
+                    if (randomContinents[0] == d.properties.continent) {
+                        // console.log('pogodia');
+                        d3.select(this).style("fill", "green");
+                        tooltip.style("display", "block")
+                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+                            .html("CORRECT");
+                        var x = this;
+                        setTimeout(function(){
+                                    d3.select(x).style("fill", "#49E20E");
+                                    tooltip.style("display", "none");
+                                    }, 500);
+
+                        result.push('correct');
+
+                    } else {
+                        // console.log('falia');
+                        d3.select(this).style("fill", "red");
+                        tooltip.style("display", "block")
+                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+                            .html("WRONG");
+                        var x = this;
+                        setTimeout(function(){
+                            d3.select(x).style("fill", "#49E20E");
+                            tooltip.style("display", "none");
+                        }, 500);
+
+                        result.push('wrong');
+                    }
+
+                    
+                    if (randomContinents.length > 1) {
+                        randomContinents.shift();
+                        // console.log('trazis: ', randomContinents[0]);
+                        d3.select('.info').html('Select: ' + randomContinents[0] );
+                    } else {
+                        var endTime = new Date().getTime();
+                        stop();
+                        time = d3.select('#time').html();
+                        setTimeout(function(){
+                            $('.modal-header').append('Result: ' + getResult(result, vrstaIgre)[0]);
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + time + '</div>');
+                            $('#myModal').modal('show');
+
+                            $('#myModal').on('hidden.bs.modal', function () {
+                                window.location = '/play';
+                            })
+
+                        }, 1000);
+                        
+                        
+
+                    }
+                    
+
+                    
+                    
+                })
+
+        });
+
+        svg.on("dblclick.zoom", null);
+        svg.call(d3.behavior.zoom()
+            .scale( projection.scale() )
+            .scaleExtent([100, 800])
+            .on('zoom', function(){
+
+                var _scale = d3.event.scale;
+
+                projection.scale(_scale);
+                backgroundCircle.attr('r', _scale);
+                path.projection(projection);
+                space.scale(_scale*3);
+
+                stars.attr("d", function(d){
+                    spacePath.pointRadius(d.properties.radius);
+                    return spacePath(d);
+                });
+
+                features.attr('d', path);
+
+            }));
+
+        var sens=0.25;
+
+        svg.call(d3.behavior.drag()
+            .origin(function() {
+                var currentRotation = projection.rotate();
+                return {x: currentRotation[0] / sens, y: -currentRotation[1] / sens};
+            })
+            .on("drag", function() {
+                var rotate = projection.rotate();
+                projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
+                space.rotate([-d3.event.x * sens, d3.event.y * sens, rotate[2]]);
+                svg.selectAll("path").attr("d", path);
+
+                stars.attr("d", function(d){
+                    spacePath.pointRadius(d.properties.radius);
+                    return spacePath(d);
+                });
+
+                path.projection(projection);
+            }));
     }
 }
 
@@ -573,16 +544,39 @@ function randomLonLat(){
     return [Math.random() * 360 - 180, Math.random() * 180 - 90];
 }
 
-function getResult(result){
+function getResult(result, vrstaIgre){
     var correct = 0;
+    res = [];
     var sum = result.length;
+    res1 = '<div>';
 
+    console.log('save: ', saveRandomCountries);
+    if (vrstaIgre == 'continents') {
+        saveRandomContinents.forEach( function(element, index) {
+            res1 += '<div class='+ result[index] +'>' + element + ' : ' + result[index] + '</div>'
+        });
+    } else {
+        saveRandomCountries.forEach( function(element, index) {
+            if (vrstaIgre == 'states') {
+                res1 += '<div class='+result[index]+'>' + element.properties.name_long + ' : ' + result[index] + '</div>'
+            } else if (vrstaIgre == 'capitals') {
+                res1 += '<div class='+result[index]+'>' + element.properties.capital + ' : ' + result[index] + '</div>'
+            }
+        });
+    }
+
+    res1 += '</div>';
     result.forEach( function(element, index) {
         if (element == 'correct') {
             correct++;
         }
     });
-    return correct + '/' + sum;
+    res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty] + ')';
+    if (correct < sum) {
+        res1 += '<div class="get_better">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
+    }
+    res.push(res0, res1)
+    return res;
 }
 
 

@@ -32,4 +32,24 @@
 	margin-left: 100px;
 }
 
+.correct {
+	color: green;
+}
+
+.wrong {
+	color: red;
+}
+
+.get_better {
+	margin: 10px;
+	color: #FFCC00;
+}
+
+.get_better a {
+	pointer-events: auto;
+	cursor: pointer;
+	text-decoration: underline; 
+}
+
+
 
