@@ -159,8 +159,8 @@ function init(){
     }
 
     //inicijalizacija
-    var width = $(document).width()*0.841;
-    var height = $(document).height()*0.943;
+    var width = $(document).width()*0.84;
+    var height = $(document).height()*0.92;
     var features;
     var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
     show();
