@@ -1,0 +1,23 @@
+<div class="container blue-background">
+  <div class="registration col-lg-8 col-xs-12 col-centered">
+    <div class="title-login">
+      <a href="/"><img src="../image/logo.png" width="100px"/></a>
+      <h2 class="margin-0">Registration</h2>
+    </div>
+    <form method="post" action="/register">
+      <div class="login-area">
+        <input style="margin-bottom: 10px" class="input-login" type="text" name="username" placeholder="Username">
+        <input class="input-login" type="password" name="password" placeholder="Password">
+      </div>
+      <div class="button-group">
+        <a href="/login"><div class="btn btn-danger btn-padding">Back</div></a>
+        <button style="margin-left: 38px" type="submit" class="btn btn-success btn-padding">Register</button>
+      </div>
+      {{#if noRegistration}}
+        <div class="login-failed">
+          {{message}}
+        </div>
+      {{/if}}
+    </form>
+  </div>
+</div>

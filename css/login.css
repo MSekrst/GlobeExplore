@@ -3,7 +3,7 @@
   float: none;
   margin: 0 auto;
   margin-top: 100px;
-  height: 365px;
+  height: 370px;
   width: 350px;
   padding: 10px;
   text-align: center;
@@ -46,10 +46,24 @@
 
 .registration-link {
   font-size: 20px;
-  color: #E0315A;
+  color: #E0315A !important;
 }
 
 .registration-link:hover {
-  color: #A933DF;
+  color: #A933DF !important;
 }
 
+/*class for /registration*/
+
+.registration {
+  background-color: whitesmoke;
+  float: none;
+  margin: 0 auto;
+  margin-top: 100px;
+  height: 330px;
+  width: 350px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: #000033 2px 2px;
+  color: #0B0882;
+}

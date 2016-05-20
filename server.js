@@ -55,6 +55,27 @@ mongo.connectToServer(function (err) { //  Initialize database connection
     });
   });
 
+  app.get('/registration', function (req, res) {
+    res.render('registration');
+  });
+
+  app.post('/register', function (req, res) {
+    if (!req.body.username || !req.body.password) {
+      res.render('registration', {noRegistration: true, message: "Enter username and password!"});
+    } else {
+      mongo.getDb(function (db) {
+        db.collection('users').find({username: req.body.username}).toArray(function (err, data) {
+          if (data.length === 0) {
+            db.collection('users').insertOne(req.body);
+            res.render('challange');
+          } else {
+            res.render('registration', {noRegistration: true, message: "Username already taken!"});
+          }
+        });
+      })
+    }
+  });
+
   app.use(function (req, res) {
     res.type('text/html');
     res.status(404);
