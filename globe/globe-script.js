@@ -1,7 +1,6 @@
 /**
  * Created by Tea on 10.4.2016..
  */
-
 function init(){
 
     var width = $(document).width()*0.84;
@@ -70,7 +69,6 @@ function init(){
             .append("path")
             .attr("d", path)
             .on("click", function(d,i) {
-                var mouse = d3.mouse(this);
                 d3.select(last).style("fill", "#49E20E");
                 last=this;
 

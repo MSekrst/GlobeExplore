@@ -9,8 +9,8 @@ calledFromHandleBars = true;
 var difficulty = '1';
 var numberOfQuestions = 5;
 
-saveRandomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
-randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
+saveRandomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Australia");
+randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Australia");
 
 var difficulties = {
     'easy' : 1,
@@ -26,7 +26,7 @@ var continents = {
     "South America": [],
     "North America": [],
     "Antarctica": [],
-    "Oceania": []
+    "Australia": []
 }
 
 $(document).on('change', '#difficulty', function(event) {
@@ -132,6 +132,8 @@ function getRandomCountries( callback ){
 
 $(document).on('click', '#btn-play', function(event) {
     $(".close").click();
+    $(".info").css("visibility", "visible");
+    $(".instructions").css("visibility","hidden");
 
     getRandomCountries( function() {
         init();
@@ -157,8 +159,8 @@ function init(){
     }
 
     //inicijalizacija
-    var width = $(document).width()*0.82;
-    var height = $(document).height()*0.9;
+    var width = $(document).width()*0.84;
+    var height = $(document).height();
     var features;
     var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
     show();
@@ -182,6 +184,7 @@ function init(){
     var svg = d3.select("body").append("svg")
         .attr("width", width)
         .attr("height", height)
+        .attr("overflow","hidden")
         .classed("globe", true);
 
     var path = d3.geo.path()
@@ -480,9 +483,10 @@ function getResult(result, vrstaIgre){
             correct++;
         }
     });
-    res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty] + ')';
+    if ( vrstaIgre == 'continents') res0 = ' ' + correct + ' / ' + sum;
+        else res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty] + ')';
     if (correct < sum) {
-        res1 += '<div class="get_better">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
+        res1 += '<div class="get_better" style=" font-size: larger">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
     }
     res.push(res0, res1)
     return res;
