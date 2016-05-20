@@ -159,8 +159,10 @@ function init(){
     }
 
     //inicijalizacija
-    var width = $(document).width()*0.84;
-    var height = $(document).height();
+    var width = $(window).width()*0.84;
+    var height = $(window).height();
+    console.log(width);
+    console.log(height);
     var features;
     var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
     show();
@@ -184,7 +186,6 @@ function init(){
     var svg = d3.select("body").append("svg")
         .attr("width", width)
         .attr("height", height)
-        .attr("overflow","hidden")
         .classed("globe", true);
 
     var path = d3.geo.path()
