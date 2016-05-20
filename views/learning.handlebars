@@ -4,16 +4,9 @@
 
 <div id="modalLearning" class="modal fade" role="dialog">
     <div class="modal-header">
-        <button type="button" class="close" style="color:red; opacity: .8;" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body">
     </div>
 </div>
 
-<script>
-
-    $('#modalLearning').on('hidden.bs.modal', function () {
-        var audioPlayer = document.getElementsByTagName('audio')[0];
-        audioPlayer.pause();
-    });
-</script>

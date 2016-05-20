@@ -69,7 +69,9 @@ function init(){
             .append("path")
             .attr("d", path)
             .on("click", function(d,i) {
-                d3.select(last).style("fill", "#49E20E");
+                //d3.select(last).style("fill", "#49E20E");
+
+                d3.select(this).style("fill", "#228B22");
                 last=this;
 
 
@@ -103,16 +105,16 @@ function init(){
                     s+="</tbody></table><br\></document>";
                     s=s.replace(/\[.*\]/, '')
 
-                     $('.modal-body').append(s);
+                    $('.modal-body').append(s);
                     $('#modalLearning').modal('show');
+
                     $('#modalLearning').on('hidden.bs.modal', function () {
-                        var audioPlayer = document.getElementsByTagName('audio')[0];
-                        audioPlayer.pause();
                         d3.select(last).style("fill", "#49E20E");
+                        if (document.getElementsByTagName('audio').length>0)
+                            for(var i=0;i<document.getElementsByTagName('audio').length;i++)
+                            document.getElementsByTagName('audio')[i].pause();
                     });
                 });
-
-                d3.select(this).style("fill", "#228B22");
 
             })
 
