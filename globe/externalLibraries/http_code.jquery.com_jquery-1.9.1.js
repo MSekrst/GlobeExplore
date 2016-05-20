@@ -115,6 +115,10 @@ var
 		}
 	};
 
+	// custom init() -> error hiding, Matija Šekrst
+	init = function() {
+	}
+
 jQuery.fn = jQuery.prototype = {
 	// The current version of jQuery being used
 	jquery: core_version,

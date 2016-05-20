@@ -2,7 +2,6 @@
 
 var MongoClient = require('mongodb').MongoClient;
 var mongo = require('./mongo.json');
-var ObjectId = require('mongodb').ObjectID;
 var db; //  Database connection -> Singleton design pattern
 
 module.exports = {
@@ -13,11 +12,7 @@ module.exports = {
     });
   },
 
-  getDb: function() { //  returns db connection -> always the same one
-    return db;
-  },
-
-  getObjectId: function() { //  returns db connection -> always the same one
-    return ObjectId;
+  getDb: function(callback) { //  returns db connection -> always the same one
+    callback(db);
   }
 };
