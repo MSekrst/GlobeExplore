@@ -10,7 +10,10 @@
 }
 
 @media (max-width: 800px) {
-    .podrucje{font-size: 9px;}
+    .podrucje{width: 80px;}
+    .text{
+        display: none;
+    }
 }
 
 
