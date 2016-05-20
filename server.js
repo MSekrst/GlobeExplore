@@ -7,11 +7,11 @@ const cors = require('cors');
 const exphbs = require('express-handlebars');
 const mongo = require('./backend/resources');
 
-mongo.connectToServer(function (err) { //  Initialize database connection
-  if (err) {
-    console.log('Database connection failed!', err);
-    throw err;
-  }
+// mongo.connectToServer(function (err) { //  Initialize database connection
+//   if (err) {
+//     console.log('Database connection failed!', err);
+//     throw err;
+//   }
 
   app.disable('x-powerd-by'); //  block headers from giving away server data
 
@@ -70,4 +70,4 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   app.listen(app.get('port'), function () {
     console.log('Server is up and running\nURL: http://localhost:' + app.get('port') + '\nTo quit press Ctrl-C');
   });
-});
+// });
