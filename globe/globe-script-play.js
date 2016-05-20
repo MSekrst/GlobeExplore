@@ -266,7 +266,7 @@ function init(){
     if (vrstaIgre == 'states' || vrstaIgre == 'capitals') {
 
         if (vrstaIgre == 'states') {
-            d3.select('.info').html('Select: ' + randomCountries[0].properties.name_long );
+            d3.select('.info').html('Select:  ' + randomCountries[0].properties.name_long );
         } else if (vrstaIgre == 'capitals') {
             d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital );
         }
@@ -314,7 +314,7 @@ function init(){
                         saveRandomCountries.push(randomCountries.shift()); 
                         // console.log('trazis: ', randomCountries[0].properties.name_long);
                         if (vrstaIgre == 'states') {
-                            d3.select('.info').html('Select: ' + randomCountries[0].properties.name_long );
+                            d3.select('.info').html('Select:  ' + randomCountries[0].properties.name_long );
                         } else if (vrstaIgre == 'capitals') {
                             d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital );
                         }
@@ -324,9 +324,10 @@ function init(){
                         stop();
                         time = d3.select('#time').html();
                         setTimeout(function(){
-                            $('.modal-header').append('Result: '+getResult(result, vrstaIgre)[0]);
+                            $('.modal-header').html("");
+                            $('.modal-header').append('<p style="text-align: center">Result: '+getResult(result, vrstaIgre)[0]+'</p>');
                             var t=time.toString().substr(3);
-                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1]+ '<div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
                             $('#myModal').on('hidden.bs.modal', function () {
@@ -356,7 +357,7 @@ function init(){
         
     } else if (vrstaIgre == 'continents') {
 
-        d3.select('.info').html('Select: ' + randomContinents[0] );
+        d3.select('.info').html('Select:  ' + randomContinents[0] );
         
         d3.json("../globe/world-countries.json", function(collection) {
 
@@ -414,20 +415,17 @@ function init(){
                     
                     if (randomContinents.length > 1) {
                         randomContinents.shift();
-                        d3.select('.info').html('Select: ' + randomContinents[0] );
+                        d3.select('.info').html('Select:  ' + randomContinents[0] );
                     } else {
                         var endTime = new Date().getTime();
 
                         stop();
                         time = d3.select('#time').html();
                         setTimeout(function(){
-
-                            $('.modal-header').append('Result: '+getResult(result, vrstaIgre)[0]);
-
+                            $('.modal-header').html("");
+                            $('.modal-header').append('<p style="text-align: center">Result: '+getResult(result, vrstaIgre)[0]+'</p>');
                             var t=time.toString().substr(3);
-
-                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
-
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1]+ '<div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
                             $('#myModal').on('hidden.bs.modal', function () {
@@ -440,7 +438,7 @@ function init(){
                             saveRandomCountries = [];
                             vrstaIgre = '';
                             // d3.selectAll(".globe").remove();
-                            init();
+                            //init();
 
                         }, 1000);
                         
@@ -484,7 +482,7 @@ function getResult(result, vrstaIgre){
     var correct = 0;
     res = [];
     var sum = result.length;
-    res1 = '<div>';
+    res1 = '<div style=" font-size: large">Your answers:</div><div>';
 
     console.log('save: ', saveRandomCountries);
     if (vrstaIgre == 'continents') {
@@ -510,7 +508,7 @@ function getResult(result, vrstaIgre){
     if ( vrstaIgre == 'continents') res0 = ' ' + correct + ' / ' + sum;
         else res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty-1] + ')';
     if (correct < sum) {
-        res1 += '<div class="get_better" style=" font-size: large">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
+        res1 += '<br\><div class="get_better" style=" font-size: large">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div><br\>'
     }
     res.push(res0, res1)
     return res;
