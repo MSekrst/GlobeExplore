@@ -16,6 +16,12 @@
     }
 }
 
+@media (max-height: 800px) {
+    .podrucje{
+        padding-left: 0;
+    }
+}
+
 
 .izborWrap{
     position: absolute;
