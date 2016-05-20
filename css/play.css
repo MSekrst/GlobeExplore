@@ -41,20 +41,28 @@
 
 .correct {
 	color: #228B22;
+	margin-top: 2%;
 }
+
 
 .wrong {
 	color: #af1c1c;
+	margin-top: 2%;
 }
 
 .get_better {
-	margin: 10px;
-	color: #070438 !important;
+	margin-top:2%;
+	margin-bottom: 3%;
+	color: #0A0550 !important;
+	margin-left: 2%;
+	margin-right: 2%;
 }
 
 .get_better a {
 	pointer-events: auto;
 	cursor: pointer;
+	color: #009FE1;
+	margin-bottom: 3%;
 	text-decoration: underline; 
 }
 

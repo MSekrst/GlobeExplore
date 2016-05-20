@@ -46,10 +46,17 @@ ul{
 {
     position: fixed;
     top: 10%;
+    left:15%;
 }
 table{
     width:80%;
 }
 .mediaContainer{
     margin: 15px auto;
+    width: 100%;
+
+}
+
+audio{
+    width: 80%;
 }
