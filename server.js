@@ -70,4 +70,4 @@ const mongo = require('./backend/resources');
   app.listen(app.get('port'), function () {
     console.log('Server is up and running\nURL: http://localhost:' + app.get('port') + '\nTo quit press Ctrl-C');
   });
-// });  
+// });

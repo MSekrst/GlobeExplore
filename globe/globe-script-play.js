@@ -510,7 +510,7 @@ function getResult(result, vrstaIgre){
     if ( vrstaIgre == 'continents') res0 = ' ' + correct + ' / ' + sum;
         else res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty-1] + ')';
     if (correct < sum) {
-        res1 += '<div class="get_better" style=" font-size: larger">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
+        res1 += '<div class="get_better" style=" font-size: large">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
     }
     res.push(res0, res1)
     return res;
