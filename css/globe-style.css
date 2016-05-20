@@ -7,6 +7,7 @@ html {
 
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 .tooltip {
@@ -17,6 +18,8 @@ body {
     position: absolute;
     top: 10px;
     right: 20px;
+    color: white;
+    font-weight: 500;
 }
 rect{
     fill:#000033;

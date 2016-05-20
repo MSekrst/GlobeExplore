@@ -1,0 +1,55 @@
+.login {
+  background-color: whitesmoke;
+  float: none;
+  margin: 0 auto;
+  margin-top: 100px;
+  height: 365px;
+  width: 350px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: #000033 2px 2px;
+  color: #0B0882;
+}
+
+.title-login {
+  padding: 20px 10px 10px 10px;
+  margin: 0;
+}
+
+.margin-0 {
+  margin: 0;
+}
+
+.login-area {
+  padding: 10px 0 20px;
+}
+
+.input-login {
+  width: 250px;
+  height: 30px;
+}
+
+.btn-padding {
+  padding: 5px 30px 5px 30px;
+}
+
+.login-failed {
+  padding-top: 10px;
+  font-size: 22px;
+  color: #AF1C1C;
+}
+
+.registration-login {
+  font-size: larger;
+  padding-top: 16px;
+}
+
+.registration-link {
+  font-size: 20px;
+  color: #E0315A;
+}
+
+.registration-link:hover {
+  color: #A933DF;
+}
+

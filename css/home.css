@@ -1,3 +1,7 @@
+* {
+    font-family: 'Lato', Verdana;
+}
+
 .podrucje{
     height:80px;
     padding-top: 20px;
@@ -16,6 +20,11 @@
     }
 }
 
+@media (max-height: 800px) {
+    .podrucje{
+        padding-left: 0;
+    }
+}
 
 .izborWrap{
     position: absolute;
