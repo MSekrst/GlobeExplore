@@ -74,7 +74,7 @@ function init(){
 
 
 
-                 var searchTerm=d.properties.formal_en;
+                 var searchTerm=d.properties.name_long;
                 var infobox;
                 var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
                 $.getJSON(url,function(data){
@@ -104,14 +104,15 @@ function init(){
                     s=s.replace(/\[.*\]/, '')
 
                      $('.modal-body').append(s);
-                    $('#myModal').modal('show');
+                    $('#modalLearning').modal('show');
+                    $('#modalLearning').on('hidden.bs.modal', function () {
+                        var audioPlayer = document.getElementsByTagName('audio')[0];
+                        audioPlayer.pause();
+                        d3.select(last).style("fill", "#49E20E");
+                    });
                 });
 
                 d3.select(this).style("fill", "#228B22");
-
-                // tooltip.style("display", "block")
-                //     .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                //     .html("<b>"+d.properties.name_long+"</b>");
 
             })
 
@@ -138,7 +139,7 @@ function init(){
 
         }));
   
-    var sens=0.25;
+    var sens=0.8;
 
     svg.call(d3.behavior.drag()
         .origin(function() {

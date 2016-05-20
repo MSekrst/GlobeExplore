@@ -236,9 +236,10 @@ function init(){
 
         }));
 
-    var sens=0.25;
+    var sens=0.8;
 
     svg.on("dblclick.zoom", null);
+
     svg.call(d3.behavior.drag()
         .origin(function() {
             var currentRotation = projection.rotate();
@@ -281,9 +282,7 @@ function init(){
                     if (randomCountries[0].properties.name_long == d.properties.name_long) {
                         // console.log('pogodia');
                         d3.select(this).style("fill", "green");
-                        tooltip.style("display", "block")
-                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                            .html("CORRECT");
+
                         var x = this;
                         setTimeout(function(){
                                     d3.select(x).style("fill", "#49E20E");
@@ -293,11 +292,8 @@ function init(){
                         result.push('correct');
 
                     } else {
-                        // console.log('falia');
                         d3.select(this).style("fill", "red");
-                        tooltip.style("display", "block")
-                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                            .html("WRONG");
+
                         var x = this;
                         setTimeout(function(){
                             d3.select(x).style("fill", "#49E20E");
@@ -323,19 +319,21 @@ function init(){
                         time = d3.select('#time').html();
                         setTimeout(function(){
                             $('.modal-header').append('Result: '+getResult(result, vrstaIgre)[0]);
-                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + time + '</div>');
+                            var t=time.toString().substr(3);
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
                             $('#myModal').on('hidden.bs.modal', function () {
                                 window.location = '/play';
                             })
+
                            
                             result = [];
                             randomCountries = [];
                             saveRandomCountries = [];
                             vrstaIgre = '';
-                            d3.selectAll(".globe").remove();
-                            init();
+                           // d3.selectAll(".globe").remove();
+                           // init();
                         }, 1000);
                         
                         
@@ -355,6 +353,7 @@ function init(){
         d3.select('.info').html('Select: ' + randomContinents[0] );
         
         d3.json("../globe/world-countries.json", function(collection) {
+
             features=g.selectAll(".feature")
                 .data(collection.features)
                 .enter()
@@ -363,55 +362,79 @@ function init(){
                 .on("dblclick", function(d,i) {
 
                     var mouse = d3.mouse(this);
-                    d3.select(last).style("fill", "#49E20E");
-                    last=this;
 
                     if (randomContinents[0] == d.properties.continent) {
-                        // console.log('pogodia');
-                        d3.select(this).style("fill", "green");
-                        tooltip.style("display", "block")
-                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                            .html("CORRECT");
+
+                        var putanje =g.selectAll("path");
+
+                        for(var i=0;i<177;i++){
+                             if(putanje[0][i].__data__.properties.continent== d.properties.continent){
+                                d3.select(putanje[0][i]).style("fill", "green");
+                             }
+                        }
+
                         var x = this;
                         setTimeout(function(){
-                                    d3.select(x).style("fill", "#49E20E");
-                                    tooltip.style("display", "none");
+                            var putanje =g.selectAll("path");
+
+                            for(var i=0;i<177;i++){
+                                d3.select(putanje[0][i]).style("fill", "#49E20E");
+                                }
+                            
                                     }, 500);
 
                         result.push('correct');
 
                     } else {
-                        // console.log('falia');
-                        d3.select(this).style("fill", "red");
-                        tooltip.style("display", "block")
-                            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-                            .html("WRONG");
-                        var x = this;
+                        var putanje =g.selectAll("path");
+
+                        for(var i=0;i<177;i++){
+                            if(putanje[0][i].__data__.properties.continent== d.properties.continent){
+                                d3.select(putanje[0][i]).style("fill", "red");
+                            }
+                        }
+
                         setTimeout(function(){
-                            d3.select(x).style("fill", "#49E20E");
-                            tooltip.style("display", "none");
+                            var putanje =g.selectAll("path");
+
+                            for(var i=0;i<177;i++){
+                                    d3.select(putanje[0][i]).style("fill", "#49E20E");
+
+                            }
                         }, 500);
 
                         result.push('wrong');
                     }
-
                     
                     if (randomContinents.length > 1) {
                         randomContinents.shift();
-                        // console.log('trazis: ', randomContinents[0]);
                         d3.select('.info').html('Select: ' + randomContinents[0] );
                     } else {
                         var endTime = new Date().getTime();
+
                         stop();
                         time = d3.select('#time').html();
                         setTimeout(function(){
-                            $('.modal-header').append('Result: ' + getResult(result, vrstaIgre)[0]);
-                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + time + '</div>');
+
+                            $('.modal-header').append('Result: '+getResult(result, vrstaIgre)[0]);
+
+                            var t=time.toString().substr(3);
+
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
+
                             $('#myModal').modal('show');
 
                             $('#myModal').on('hidden.bs.modal', function () {
                                 window.location = '/play';
-                            })
+                            });
+
+
+                            result = [];
+                            randomCountries = [];
+                            saveRandomCountries = [];
+                            vrstaIgre = '';
+                            // d3.selectAll(".globe").remove();
+                            init();
 
                         }, 1000);
                         
@@ -479,7 +502,7 @@ function getResult(result, vrstaIgre){
         }
     });
     if ( vrstaIgre == 'continents') res0 = ' ' + correct + ' / ' + sum;
-        else res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty] + ')';
+        else res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty-1] + ')';
     if (correct < sum) {
         res1 += '<div class="get_better" style="color:#f47d4a; font-size: larger">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
     }
