@@ -9,8 +9,8 @@ calledFromHandleBars = true;
 var difficulty = '1';
 var numberOfQuestions = 5;
 
-saveRandomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
-randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Oceania");
+saveRandomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Australia");
+randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica",  "Australia");
 
 var difficulties = {
     'easy' : 1,
@@ -26,7 +26,7 @@ var continents = {
     "South America": [],
     "North America": [],
     "Antarctica": [],
-    "Oceania": []
+    "Australia": []
 }
 
 $(document).on('change', '#difficulty', function(event) {
@@ -478,9 +478,10 @@ function getResult(result, vrstaIgre){
             correct++;
         }
     });
-    res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty] + ')';
+    if ( vrstaIgre == 'continents') res0 = ' ' + correct + ' / ' + sum;
+        else res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty] + ')';
     if (correct < sum) {
-        res1 += '<div class="get_better">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
+        res1 += '<div class="get_better" style="color:#f47d4a; font-size: larger">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
     }
     res.push(res0, res1)
     return res;
