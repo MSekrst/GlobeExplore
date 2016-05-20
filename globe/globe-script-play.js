@@ -278,6 +278,8 @@ function init(){
                     d3.select(last).style("fill", "#49E20E");
                     last=this;
 
+                    console.log(this)
+
                     if (randomCountries[0].properties.name_long == d.properties.name_long) {
                         // console.log('pogodia');
                         d3.select(this).style("fill", "green");
