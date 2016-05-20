@@ -1,14 +1,19 @@
 .info {
-	margin-left: 18%;
-	height: 50px;
-	padding: 10px 30px;
+	margin-left: 14%;
+	height: 80px;
+	padding: 10px 100px;
 	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	visibility: hidden;
+	background: rgba(34, 34, 152,0.5);
+	margin-right: -14px;
 }
 
 .instructions {
 	position: relative;
-	width: 700px;
-	height: 200px;
+	width: 1000px;
+	height: 300px;
 	margin: auto;
 }
 
@@ -24,25 +29,27 @@
 
 #btn-play-start {
 	position: absolute;
-	top: 200px;
-	left: 56%;
+	top: 300px;
+	left: 47%;
+	width: 200px;
 }
 
 .img-play {
 	margin-left: 100px;
+	width: 100%;
 }
 
 .correct {
-	color: green;
+	color: #228B22;
 }
 
 .wrong {
-	color: red;
+	color: #af1c1c;
 }
 
 .get_better {
 	margin: 10px;
-	color: #FFCC00;
+	color: #070438 !important;
 }
 
 .get_better a {

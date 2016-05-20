@@ -132,6 +132,8 @@ function getRandomCountries( callback ){
 
 $(document).on('click', '#btn-play', function(event) {
     $(".close").click();
+    $(".info").css("visibility", "visible");
+    $(".instructions").css("visibility","hidden");
 
     getRandomCountries( function() {
         init();
@@ -157,8 +159,8 @@ function init(){
     }
 
     //inicijalizacija
-    var width = $(document).width()*0.82;
-    var height = $(document).height()*0.9;
+    var width = $(document).width()*0.841;
+    var height = $(document).height()*0.943;
     var features;
     var time = d3.select("body").append("div").attr("id","time").attr("class","stopwatch");
     show();
@@ -481,7 +483,7 @@ function getResult(result, vrstaIgre){
     if ( vrstaIgre == 'continents') res0 = ' ' + correct + ' / ' + sum;
         else res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty] + ')';
     if (correct < sum) {
-        res1 += '<div class="get_better" style="color:#f47d4a; font-size: larger">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
+        res1 += '<div class="get_better" style=" font-size: larger">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div>'
     }
     res.push(res0, res1)
     return res;
