@@ -7,11 +7,13 @@ const cors = require('cors');
 const exphbs = require('express-handlebars');
 const mongo = require('./backend/resources');
 
-// mongo.connectToServer(function (err) { //  Initialize database connection
-//   if (err) {
-//     console.log('Database connection failed!', err);
-//     throw err;
-//   }
+var dbConnection = true;
+
+mongo.connectToServer(function (err) { //  Initialize database connection
+  if (err) {
+    console.log('Database connection failed!', err);
+    dbConnection = false;
+  }
 
   app.disable('x-powerd-by'); //  block headers from giving away server data
 
@@ -30,8 +32,31 @@ const mongo = require('./backend/resources');
     res.render('home');
   });
 
+  app.get('/home', function (req, res) {
+    res.render('home');
+  });
+
   app.get('/learning', function (req, res) {
     res.render('learning');
+  });
+
+  app.post('/state', function (req, res) {
+    mongo.getDb(function (db) {
+      db.collection('states').find({state: req.body.state}).toArray(function (err, data) {
+        if (data.length === 0) {  //  database doesn't contain selected state -> use wiki API
+          res.json(null);
+        } else {  //  return html for given state -> avoid wiki API
+          res.json(data[0].html);
+        }
+      });
+    });
+  });
+  
+  app.post('/newState', function (req, res) {
+    mongo.getDb(function(db) {
+      db.collection('states').insertOne({state: req.body.state, html: req.body.html});
+    });
+    res.status(200);
   });
 
   app.get('/play', function (req, res) {
@@ -39,7 +64,11 @@ const mongo = require('./backend/resources');
   });
 
   app.get('/login', function (req, res) {
-    res.render('login');
+    if (dbConnection) {
+      res.render('login');
+    } else {
+      res.render('home',  {noMultiplayer: true});
+    }
   });
 
   app.post('/challange', function (req, res) {
@@ -91,4 +120,4 @@ const mongo = require('./backend/resources');
   app.listen(app.get('port'), function () {
     console.log('Server is up and running\nURL: http://localhost:' + app.get('port') + '\nTo quit press Ctrl-C');
   });
-// });
+});

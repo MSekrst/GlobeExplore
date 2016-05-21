@@ -1,5 +1,32 @@
+.challange-container {
+  margin-left: 16%;
+  /*width: 100%;*/
+  /*height: 100%;*/
+}
+
 .challange-friend {
-  float: none;
+  float:none;
   margin: 0 auto;
-  margin-top: 100px;
+  top: 25px;
+  height: 45px;
+  width: 300px;
+  box-shadow: #000033 2px 2px;
+}
+
+.button-challange-friend {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px;
+  border: 1px transparent;
+  font-weight: 400;
+  margin-bottom: 0;
+  font-size: 18px;
+  color: #FFF;
+  background-color: #337AB7;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button-challange-friend:hover {
+  background-color: #286090;
 }
