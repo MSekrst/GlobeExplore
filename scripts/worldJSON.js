@@ -60,4 +60,4 @@ for (var state in file.features) {
   delete file.features[state].properties.translations;
 }
 
-fs.writeFileSync(fileName, JSON.stringify(file, null, 2));
+fs.writeFileSync(fileName, JSON.stringify(file));

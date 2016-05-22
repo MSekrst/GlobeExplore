@@ -41,22 +41,24 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   });
 
   app.post('/state', function (req, res) {
+    console.log(req.body.state);
     mongo.getDb(function (db) {
       db.collection('states').find({state: req.body.state}).toArray(function (err, data) {
         if (data.length === 0) {  //  database doesn't contain selected state -> use wiki API
-          res.json(null);
+          res.status(201).json(null);
         } else {  //  return html for given state -> avoid wiki API
-          res.json(data[0].html);
+          res.status(200).json(data[0].html);
         }
       });
     });
   });
   
   app.post('/newState', function (req, res) {
+    console.log(req.body.state);
     mongo.getDb(function(db) {
       db.collection('states').insertOne({state: req.body.state, html: req.body.html});
     });
-    res.status(200);
+    res.status(200).json('State added!');
   });
 
   app.get('/play', function (req, res) {
