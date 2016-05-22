@@ -369,7 +369,7 @@ function init() {
 
             var putanje = g.selectAll("path");
 
-            for (var i = 0; i < 177; i++) {
+            for (var i = 0; i < 178; i++) {
               if (putanje[0][i].__data__.properties.continent == d.properties.continent) {
                 d3.select(putanje[0][i]).style("fill", "green");
               }
@@ -379,7 +379,7 @@ function init() {
             setTimeout(function () {
               var putanje = g.selectAll("path");
 
-              for (var i = 0; i < 177; i++) {
+              for (var i = 0; i < 178; i++) {
                 d3.select(putanje[0][i]).style("fill", "#49E20E");
               }
 
@@ -390,7 +390,7 @@ function init() {
           } else {
             var putanje = g.selectAll("path");
 
-            for (var i = 0; i < 177; i++) {
+            for (var i = 0; i < 178; i++) {
               if (putanje[0][i].__data__.properties.continent == d.properties.continent) {
                 d3.select(putanje[0][i]).style("fill", "red");
               }
@@ -399,7 +399,7 @@ function init() {
             setTimeout(function () {
               var putanje = g.selectAll("path");
 
-              for (var i = 0; i < 177; i++) {
+              for (var i = 0; i < 178; i++) {
                 d3.select(putanje[0][i]).style("fill", "#49E20E");
 
               }
