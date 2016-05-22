@@ -153,7 +153,7 @@ function init() {
         },
         type: 'Feature',
         properties: {
-          radius: Math.random() * 3.5
+          radius: (Math.random() + 0.2) * 3
         }
       });
     }

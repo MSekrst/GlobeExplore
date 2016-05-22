@@ -9,8 +9,8 @@ calledFromHandleBars = true;
 var difficulty = '1';
 var numberOfQuestions = 5;
 
-saveRandomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica", "Australia");
-randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica", "Australia");
+randomContinents = shuffle(["Europe", "Africa", "Asia", "South America", "North America", "Antarctica", "Australia"]);
+saveRandomContinents = randomContinents;
 
 var difficulties = {
   'easy': 1,
@@ -193,7 +193,7 @@ function init() {
     .attr("width", width)
     .attr("height", height);
 
-  var starList = createStars(2000);
+  var starList = createStars(200);
 
   var stars = svg.append("g")
     .selectAll("g")
@@ -238,7 +238,7 @@ function init() {
 
     }));
 
-  var sens = 0.8;
+  var sens = 0.5;
 
   svg.on("dblclick.zoom", null);
 
@@ -280,8 +280,6 @@ function init() {
           var mouse = d3.mouse(this);
           d3.select(last).style("fill", "#49E20E");
           last = this;
-
-          console.log(this)
 
           if (randomCountries[0].properties.name_long == d.properties.name_long) {
             // console.log('pogodia');
@@ -330,8 +328,7 @@ function init() {
 
               $('#myModal').on('hidden.bs.modal', function () {
                 window.location = '/play';
-              })
-
+              });
 
               result = [];
               randomCountries = [];
@@ -369,7 +366,7 @@ function init() {
 
             var putanje = g.selectAll("path");
 
-            for (var i = 0; i < 177; i++) {
+            for (var i = 0; i < 178; i++) {
               if (putanje[0][i].__data__.properties.continent == d.properties.continent) {
                 d3.select(putanje[0][i]).style("fill", "green");
               }
@@ -379,7 +376,7 @@ function init() {
             setTimeout(function () {
               var putanje = g.selectAll("path");
 
-              for (var i = 0; i < 177; i++) {
+              for (var i = 0; i < 178; i++) {
                 d3.select(putanje[0][i]).style("fill", "#49E20E");
               }
 
@@ -390,7 +387,7 @@ function init() {
           } else {
             var putanje = g.selectAll("path");
 
-            for (var i = 0; i < 177; i++) {
+            for (var i = 0; i < 178; i++) {
               if (putanje[0][i].__data__.properties.continent == d.properties.continent) {
                 d3.select(putanje[0][i]).style("fill", "red");
               }
@@ -399,7 +396,7 @@ function init() {
             setTimeout(function () {
               var putanje = g.selectAll("path");
 
-              for (var i = 0; i < 177; i++) {
+              for (var i = 0; i < 178; i++) {
                 d3.select(putanje[0][i]).style("fill", "#49E20E");
 
               }
@@ -458,7 +455,7 @@ function createStars(number) {
       },
       type: 'Feature',
       properties: {
-        radius: Math.random() * 1.5
+        radius: (Math.random() + 0.2) * 3
       }
     });
   }
@@ -504,7 +501,6 @@ function getResult(result, vrstaIgre) {
   res.push(res0, res1)
   return res;
 }
-
 
 //STOPWATCH
 var clsStopwatch = function () {
@@ -590,11 +586,14 @@ function reset() {
   update();
 }
 
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length; i; i -= 1) {
+    j = Math.floor(Math.random() * i);
+    x = a[i - 1];
+    a[i - 1] = a[j];
+    a[j] = x;
+  }
 
-
-
-
-
-
-
-
+  return a;
+}
