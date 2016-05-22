@@ -17,7 +17,7 @@ var difficulties = {
   'medium': 2,
   'hard': 3,
   'extreme': 4
-}
+};
 
 var continents = {
   "Europe": [],
@@ -27,11 +27,10 @@ var continents = {
   "North America": [],
   "Antarctica": [],
   "Australia": []
-}
+};
 
 $(document).on('change', '#difficulty', function (event) {
   difficulty = difficulties[$(this).val()]
-
 });
 
 $(document).on('change', '#number_of_questions', function (event) {

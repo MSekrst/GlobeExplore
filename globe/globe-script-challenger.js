@@ -13,8 +13,10 @@ var difficulty = '1';
 var numberOfQuestions = 5;
 var challanged="";
 
+
+
 saveRandomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica", "Australia");
-randomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica", "Australia");
+saveRandomContinents = randomContinents = shuffle(saveRandomContinents);
 
 var difficulties = {
     'easy': 1,
@@ -95,7 +97,7 @@ $(document).on('change', '#game_type', function (event) {
 
     if ($(this).val() == 'Continents') {
         vrstaIgre = 'continents';
-        difficulty = 'nebitno'
+        difficulty = 'nebitno';
         numberOfQuestions = 7;
 
         d3.select('.modal__init_div_nb').style("display", 'none');
@@ -103,14 +105,14 @@ $(document).on('change', '#game_type', function (event) {
     } else if ($(this).val() == 'Countries') {
         vrstaIgre = 'states';
         difficulty = $('#difficulty').val();
-        difficulty = difficulties[difficulty]
+        difficulty = difficulties[difficulty];
         numberOfQuestions = $('#number_of_questions').val();
         d3.select('.modal__init_div_nb').style("display", 'block');
         d3.select('.modal__init_div_diff').style("display", 'block');
     } else if ($(this).val() == 'Capitals') {
         vrstaIgre = 'states';
         difficulty = $('#difficulty').val();
-        difficulty = difficulties[difficulty]
+        difficulty = difficulties[difficulty];
         numberOfQuestions = $('#number_of_questions').val();
         d3.select('.modal__init_div_nb').style("display", 'block');
         d3.select('.modal__init_div_diff').style("display", 'block');
@@ -120,7 +122,7 @@ $(document).on('change', '#game_type', function (event) {
 
 
 function getRandomCountries(callback) {
-    console.log('getting random c')
+    console.log('getting random c');
     var randoms = [];
     d3.json("../globe/world-countries.json", function (collection) {
 
@@ -228,7 +230,7 @@ function init() {
         .attr("width", width)
         .attr("height", height);
 
-    var starList = createStars(2000);
+    var starList = createStars(200);
 
     var stars = svg.append("g")
         .selectAll("g")
@@ -273,7 +275,7 @@ function init() {
 
         }));
 
-    var sens = 0.8;
+    var sens = 0.5;
 
     svg.on("dblclick.zoom", null);
 
@@ -363,12 +365,16 @@ function init() {
                             $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
-
                             $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length, difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
 
                             $('#myModal').on('hidden.bs.modal', function () {
-                                $.post('/challangeReturn',{username:document.getElementById("username").innerHTML});
-                            })
+                              var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
+                              console.log(route);
+                              $(location).attr('href', route);
+                                // $.post('/challangeReturn',{username:document.getElementById("username").innerHTML}, function (data) {
+                                //   window.location.replace("/challange", {username:document.getElementById("username").innerHTML});
+                                // });
+                            });
 
                             result = [];
                             randomCountries = [];
@@ -497,7 +503,7 @@ function createStars(number) {
             },
             type: 'Feature',
             properties: {
-                radius: Math.random() * 1.5
+                radius: (Math.random() + 0.2) * 3
             }
         });
     }
@@ -633,11 +639,14 @@ function reset() {
     update();
 }
 
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length; i; i -= 1) {
+    j = Math.floor(Math.random() * i);
+    x = a[i - 1];
+    a[i - 1] = a[j];
+    a[j] = x;
+  }
 
-
-
-
-
-
-
-
+  return a;
+}

@@ -51,7 +51,7 @@ mongo.connectToServer(function (err) { //  Initialize database connection
       });
     });
   });
-  
+
   app.post('/newState', function (req, res) {
     mongo.getDb(function(db) {
       db.collection('states').insertOne({state: req.body.state, html: req.body.html});
@@ -73,7 +73,10 @@ mongo.connectToServer(function (err) { //  Initialize database connection
 
   app.post('/challange', function (req, res) {
     mongo.getDb(function (db) {
-      db.collection('users').find({username: req.body.username, password: req.body.password}).toArray(function(err, data) {
+      db.collection('users').find({
+        username: req.body.username,
+        password: req.body.password
+      }).toArray(function (err, data) {
         if (data.length !== 0) {
           res.render('challange', {username: req.body.username});
         } else {  //  duplicated username
@@ -84,17 +87,18 @@ mongo.connectToServer(function (err) { //  Initialize database connection
     });
   });
 
-  app.post('/challangeReturn', function (req, res) {
-   res.render('challange', {username: req.body.username});
-    res.status(200);
+  app.get('/challangeReturn/:username', function (req, res) {
+    if (req.headers.referer) {
+      res.render('challange', {username: req.params.username});
+    } else {
+      res.render('404');
+    }
   });
 
   app.get('/getPlayers', function (req, res) {
     mongo.getDb(function (db) {
-      db.collection('users').find({}).toArray(function(err, data) {
-
-          res.status(200).json(data);
-
+      db.collection('users').find({}).toArray(function (err, data) {
+        res.status(200).json(data);
       });
     });
   });
