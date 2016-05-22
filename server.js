@@ -84,6 +84,21 @@ mongo.connectToServer(function (err) { //  Initialize database connection
     });
   });
 
+  app.post('/challangeReturn', function (req, res) {
+   res.render('challange', {username: req.body.username});
+    res.status(200);
+  });
+
+  app.get('/getPlayers', function (req, res) {
+    mongo.getDb(function (db) {
+      db.collection('users').find({}).toArray(function(err, data) {
+
+          res.status(200).json(data);
+
+      });
+    });
+  });
+
   app.get('/registration', function (req, res) {
     res.render('registration');
   });
@@ -103,6 +118,13 @@ mongo.connectToServer(function (err) { //  Initialize database connection
         });
       })
     }
+  });
+
+  app.post('/saveChallange', function (req, res) {
+    mongo.getDb(function(db) {
+      db.collection('pending').insertOne(req.body);
+    });
+    res.status(200);
   });
 
   app.use(function (req, res) {
