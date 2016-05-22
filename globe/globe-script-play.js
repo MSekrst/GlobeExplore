@@ -293,7 +293,7 @@ function init() {
             result.push('correct');
 
           } else {
-            d3.select(this).style("fill", "red");
+            d3.select(this).style("fill", "#af1c1c");
 
             var x = this;
             setTimeout(function () {
@@ -322,7 +322,7 @@ function init() {
               $('.modal-header').html("");
               $('.modal-header').append('<p style="text-align: center">Result: ' + getResult(result, vrstaIgre)[0] + '</p>');
               var t = time.toString().substr(3);
-              $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
+              $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div style="margin-top: 15px"> Time: ' + t + '</div>');
               $('#myModal').modal('show');
 
               $('#myModal').on('hidden.bs.modal', function () {
@@ -388,7 +388,7 @@ function init() {
 
             for (var i = 0; i < 178; i++) {
               if (putanje[0][i].__data__.properties.continent == d.properties.continent) {
-                d3.select(putanje[0][i]).style("fill", "red");
+                d3.select(putanje[0][i]).style("fill", "#af1c1c");
               }
             }
 
@@ -416,7 +416,7 @@ function init() {
               $('.modal-header').html("");
               $('.modal-header').append('<p style="text-align: center">Result: ' + getResult(result, vrstaIgre)[0] + '</p>');
               var t = time.toString().substr(3);
-              $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
+              $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div style="margin-top: 15px"> Time: ' + t + '</div>');
               $('#myModal').modal('show');
 
               $('#myModal').on('hidden.bs.modal', function () {
