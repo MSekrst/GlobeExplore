@@ -10,7 +10,8 @@ var difficulty = '1';
 var numberOfQuestions = 5;
 
 randomContinents = shuffle(["Europe", "Africa", "Asia", "South America", "North America", "Antarctica", "Australia"]);
-saveRandomContinents = randomContinents;
+saveRandomContinents=jQuery.extend(true, [], randomContinents);
+    //randomContinents;
 
 var difficulties = {
   'easy': 1,
