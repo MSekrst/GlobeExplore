@@ -14,9 +14,8 @@ var numberOfQuestions = 5;
 var challanged="";
 
 
-
-saveRandomContinents.push("Europe", "Africa", "Asia", "South America", "North America", "Antarctica", "Australia");
-saveRandomContinents = randomContinents = shuffle(saveRandomContinents);
+randomContinents = shuffle(["Europe", "Africa", "Asia", "South America", "North America", "Antarctica", "Australia"]);
+saveRandomContinents=jQuery.extend(true, [], randomContinents);
 
 var difficulties = {
     'easy': 1,
@@ -470,7 +469,9 @@ function init() {
                             $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
 
                             $('#myModal').on('hidden.bs.modal', function () {
-                                $.post('/challangeReturn',{username:document.getElementById("username").innerHTML});
+                                var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
+                                console.log(route);
+                                $(location).attr('href', route);
                             })
 
                             result = [];
