@@ -264,9 +264,9 @@ function init() {
   if (vrstaIgre == 'states' || vrstaIgre == 'capitals') {
 
     if (vrstaIgre == 'states') {
-      d3.select('.info').html('Select:  ' + randomCountries[0].properties.name_long);
+      d3.select('.info').html('Use double click to select:  ' + randomCountries[0].properties.name_long);
     } else if (vrstaIgre == 'capitals') {
-      d3.select('.info').html('Select country with capital: ' + randomCountries[0].properties.capital);
+      d3.select('.info').html('Use double click to select country with capital: ' + randomCountries[0].properties.capital);
     }
 
     d3.json("../globe/world-countries.json", function (collection) {

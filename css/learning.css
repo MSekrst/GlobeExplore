@@ -1,62 +1,78 @@
-.modal-body,.modal-header{
-    font-family:'Lato' ,"Comic Sans MS";
-    margin:0 30%;
-    background-color:white;
-    width:40%;
-    text-align:center;
+.modal-body {
+  margin: 0 30%;
+  background-color: white;
+  width: 40%;
+  text-align: center;
 }
-.modal-body a{
-    pointer-events: none;
-    cursor: default;
+
+.modal-header {
+  margin: 0 30%;
+  background-color: white;
+  width: 40%;
+  text-align: center;
+  padding-bottom: 20px;
 }
-.modal-body a:link{
-    color: black;
+
+.modal-body a {
+  pointer-events: none;
+  cursor: default;
+}
+
+.modal-body a:link {
+  color: black;
 }
 
 .modal-body tbody {
-    border-collapse: collapse;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    margin: 0 auto;
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
 }
+
 .modal-body tbody th, .modal-body tbody td {
-    text-align:center;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.modal-body tbody tr td table tr td,.modal-body tbody tr td table tbody{
-    border: 0px solid black;
+.modal-body tbody tr td table tr td, .modal-body tbody tr td table tbody {
+  border: 0 solid black;
 }
-.modal-body .thumbborder{
-    border: 1px solid gray;
+
+.modal-body .thumbborder {
+  border: 1px solid gray;
 }
-.modal-body .NavHead{
-    padding-left:0 !important;
-    text-align:center !important;
-    font-size:150% !important;
+
+.modal-body .NavHead {
+  padding-left: 0 !important;
+  text-align: center !important;
+  font-size: 150% !important;
 }
-.modal-body .NavContent{
-    padding:0 !important;
-    font-size:90% !important;
-    text-align:center !important;
+
+.modal-body .NavContent {
+  padding: 0 !important;
+  font-size: 90% !important;
+  text-align: center !important;
 }
-ul{
-    padding:0;
+
+ul {
+  padding: 0;
 }
-.modal
-{
-    position: fixed;
-    top: 10%;
-    left:15%;
+
+.modal {
+  position: fixed;
+  top: 10%;
+  left: 15%;
 }
-table{
-    width:80%;
+
+table {
+  width: 80%;
 }
-.mediaContainer{
-    margin: 15px auto;
-    width: 100%;
+
+.mediaContainer {
+  margin: 15px auto;
+  width: 100%;
 
 }
 
-audio{
-    width: 80%;
+audio {
+  width: 80%;
 }

@@ -51,7 +51,6 @@ function init() {
 
       $.post('/state', {state: searchTerm}, function (data) {
         if (data) { //  HTML came from server
-          console.log('state', searchTerm);
           $('.modal-body').html("");
           $('.modal-body').append(data);
           $('#modalLearning').modal('show');
@@ -65,7 +64,6 @@ function init() {
         } else {  //  fetch data from API and save it in database for later use.
           var infobox;
           var url = "http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm + "&redirects&prop=text&callback=?";
-          console.log(url);
           $.getJSON(url, function (data) {
             var wikiHTML = data.parse.text["*"];
             var wikiDOM = $("<document>" + wikiHTML + "</document>");

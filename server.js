@@ -41,7 +41,6 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   });
 
   app.post('/state', function (req, res) {
-    console.log(req.body.state);
     mongo.getDb(function (db) {
       db.collection('states').find({state: req.body.state}).toArray(function (err, data) {
         if (data.length === 0) {  //  database doesn't contain selected state -> use wiki API
@@ -54,7 +53,6 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   });
   
   app.post('/newState', function (req, res) {
-    console.log(req.body.state);
     mongo.getDb(function(db) {
       db.collection('states').insertOne({state: req.body.state, html: req.body.html});
     });
@@ -76,8 +74,8 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   app.post('/challange', function (req, res) {
     mongo.getDb(function (db) {
       db.collection('users').find({username: req.body.username, password: req.body.password}).toArray(function(err, data) {
-        if (data.length !== 0) {  //  unique username
-          res.render('challange');
+        if (data.length !== 0) {
+          res.render('challange', {username: req.body.username});
         } else {  //  duplicated username
           res.status(403);
           res.render('login', {noLogin: true});
