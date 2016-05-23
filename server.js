@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const exphbs = require('express-handlebars');
 const mongo = require('./backend/resources');
+var ObjectID = require('mongodb').ObjectID;
 
 var dbConnection = true;
 
@@ -114,6 +115,14 @@ mongo.connectToServer(function (err) { //  Initialize database connection
           
           res.status(200).json(data);
         });
+      });
+    });
+  });
+
+  app.post('/getChallenge', function (req, res) {
+    mongo.getDb(function (db) {
+      db.collection('pending').find({_id:ObjectID(req.body.id)}).toArray(function (err, data) {
+        res.status(200).json(data[0]);
       });
     });
   });

@@ -8,6 +8,7 @@ var randomContinents = [];
 var saveRandomContinents = [];
 var result = [];
 calledFromHandleBars = true;
+var challanged=false;
 
 var difficulty = '1';
 var numberOfQuestions = 5;
@@ -82,6 +83,22 @@ $( document ).ready(function() {
 $(document).on('click', '.btn-igraj-chal', function (event) {
     var id = $(this).data('id');
     console.log(id);
+    challanged=true;
+    $.post('/getChallenge',{id:id},function(data){
+        console.log(data);
+        difficulty = difficulties[data.difficulty];
+        vrstaIgre=data.gameMode;
+        numberOfQuestions=data.number;
+        if(vrstaIgre=="states" || vrstaIgre=="capitals"){
+            randomCountries=data.questions;
+            
+        }
+        else{
+            randomContinents=data.questions;
+            saveRandomContinents=jQuery.extend(true, [], randomContinents);
+        }
+        init();
+    });
 });
 
 $(document).on('click', '#btn-play', function (event) {
@@ -396,7 +413,7 @@ function init() {
                             $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
-                            $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length, difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+                            if (!challanged) $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length, difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
 
                             $('#myModal').on('hidden.bs.modal', function () {
                               var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
@@ -498,7 +515,7 @@ function init() {
                             $('#myModal').modal('show');
 
 
-                            $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+                            if (!challanged) $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
 
                             $('#myModal').on('hidden.bs.modal', function () {
                                 var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
@@ -564,10 +581,10 @@ function getResult(result, vrstaIgre) {
         saveRandomCountries.forEach(function (element, index) {
             if (vrstaIgre == 'states') {
                 res1 += '<div class=' + result[index] + '>' + element.properties.name_long + ' : ' + result[index] + '</div>'
-                questions.push(element.properties.name_long);
+                questions.push(element);
             } else if (vrstaIgre == 'capitals') {
                 res1 += '<div class=' + result[index] + '>' + element.properties.capital + ' : ' + result[index] + '</div>'
-                questions.push(element.properties.capital);
+                questions.push(element);
             }
         });
     }
