@@ -8,6 +8,7 @@ var randomContinents = [];
 var saveRandomContinents = [];
 var result = [];
 calledFromHandleBars = true;
+var challangedZastavica=false;
 
 var difficulty = '1';
 var numberOfQuestions = 5;
@@ -57,58 +58,39 @@ $( document ).ready(function() {
   var username = document.getElementById("username").innerHTML;
 
   $.post('/getChallanges', {username: username}, function (data) {
-    for (var challange in data) {
+    for (var c in data) {
+      console.log('game', data[c]);
       var chal = '<div class="col-sm-6 col-md-4"><div class="thumbnail"><div class="status';
-      if (data[challange].challangedScore) {  //  game over
-        if (data[challange].challanged === username) {  //  i played
-          if (data[challange].challengerScore > data[challange].challengedScore) {
-            chal += ' challange-win';
-          } else if(data[challange].challengerScore < data[challange].challengedScore) {
-            chal += ' challange-lose';
-          } else if (data[challange].challengerTime > data[challange].challengedTime) {
-            chal += ' challange-lose';
-          } else {
-            chal += ' challange-win';
-          }
-        } else {  //  user played
-          if (data[challange].challengerScore > data[challange].challengedScore) {
-            chal += ' challange-lose';
-          } else if(data[challange].challengerScore < data[challange].challengedScore) {
-            chal += ' challange-win';
-          } else if (data[challange].challengerTime > data[challange].challengedTime) {
-            chal += ' challange-win';
-          } else {
-            chal += ' challange-lose';
-          }
-        }
+
+      if (data[c].challengedScore) {  //  game over
+       if (data[c].winner === username) {
+         chal += ' challenge-won">';
+       } else {
+         chal += ' challenge-lose">';
+       }
       } else {  //  game to play
-        if (data[challange].challanged === username) {  //  i play
-
+        if (data[c].challanged === username) {
+          chal += ' challenge-play">';
         } else {
-          //  user played
+          chal += '">';
         }
       }
 
-      chal += '"></div><div class="caption"><p>';
-      if (data[challange].challanged === username) {  //  user can play
-        // console.log('user igra', data[challange]);
-      } else {  //  user is challanger
-        // console.log('user ne igra', data[challange]);
-      }
-      // var chal = '<div class="challanges__body__challange"><span class="challanges__body__challange__challanger">';
-      //
-      // // console.log(data[challange].challenger);
-      // chal += data[challange].challenger + '</span><span class="challanges__body__challange__challanged">'
-      //
-      // // console.log(data[challange].challanged);
-      // chal += data[challange].challanged + '</span><span class="challanges__body__challange__status">'
-      //
-      // if (data[challange].challangedScore) {
-      //     chal += 'gotovo</span></div></div>'
-      // } else {
-      //     chal += '<div class="btn btn-success btn-igraj-chal" data-id="' + data[challange]._id + '">igraj</div></span></div></div>'
-      // }
+      chal += '</div><div class="caption">';
 
+
+
+      chal += '<p>';
+
+      chal += 'Game mode: &nbsp;' + data[c].gameMode + '<br />';
+      if (data[c].difficulty) {
+        chal += 'Difficulty: &nbsp;' + data[c].difficulty + '<br />';
+      }
+      chal += 'Questions: &nbsp;' + data[c].number + '<br />';
+
+      if (data[c].challanged === username && !data[c].challengedScore) {
+        chal += '<div class="btn button-challange-friend button-play">PLAY</div>';
+      }
 
       chal += '</p></div></div></div>';
 
@@ -120,6 +102,22 @@ $( document ).ready(function() {
 $(document).on('click', '.btn-igraj-chal', function (event) {
     var id = $(this).data('id');
     console.log(id);
+    challangedZastavica=true;
+    $.post('/getChallenge',{id:id},function(data){
+        console.log(data);
+        difficulty = difficulties[data.difficulty];
+        vrstaIgre=data.gameMode;
+        numberOfQuestions=data.number;
+        if(vrstaIgre=="states" || vrstaIgre=="capitals"){
+            randomCountries=data.questions;
+            
+        }
+        else{
+            randomContinents=data.questions;
+            saveRandomContinents=jQuery.extend(true, [], randomContinents);
+        }
+        init();
+    });
 });
 
 $(document).on('click', '#btn-play', function (event) {
@@ -260,6 +258,10 @@ function init() {
     if (calledFromHandleBars) {
         calledFromHandleBars = false;
         return false;
+    }
+
+    if (challangedZastavica) {
+        $(".info").css("visibility", "visible");
     }
 
     //inicijalizacija
@@ -431,18 +433,24 @@ function init() {
                             $('.modal-header').html("");
                             $('.modal-header').append('<p style="text-align: center">Result: ' + getResult(result, vrstaIgre)[0] + '</p>');
                             var t = time.toString().substr(3);
-                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<br\><div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
-                            $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length, difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+
+                            if (!challangedZastavica) {
+                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+                            } else {
+                                $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
+                                    if (data.challengerScore<=data.challengedScore && data.challengedTime<data.challengerTime )  $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>")
+                                    else $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:red !important;\">You lost!</div>");
+                                });
+
+                            }
 
                             $('#myModal').on('hidden.bs.modal', function () {
                               var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
                               console.log(route);
                               $(location).attr('href', route);
-                                // $.post('/challangeReturn',{username:document.getElementById("username").innerHTML}, function (data) {
-                                //   window.location.replace("/challange", {username:document.getElementById("username").innerHTML});
-                                // });
                             });
 
                             result = [];
@@ -532,11 +540,20 @@ function init() {
                             $('.modal-header').html("");
                             $('.modal-header').append('<p style="text-align: center">Result: ' + getResult(result, vrstaIgre)[0] + '</p>');
                             var t = time.toString().substr(3);
-                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<br\><div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
 
-                            $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+
+                            if (!challangedZastavica) {
+                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});   
+                            } else {
+                                $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
+                                    if (data.challengerScore<=data.challengedScore && data.challengedTime<data.challengerTime )  $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>")
+                                    else $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:red !important;\">You lost!</div>");
+                                });
+
+                            }
 
                             $('#myModal').on('hidden.bs.modal', function () {
                                 var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
@@ -602,10 +619,10 @@ function getResult(result, vrstaIgre) {
         saveRandomCountries.forEach(function (element, index) {
             if (vrstaIgre == 'states') {
                 res1 += '<div class=' + result[index] + '>' + element.properties.name_long + ' : ' + result[index] + '</div>'
-                questions.push(element.properties.name_long);
+                questions.push(element);
             } else if (vrstaIgre == 'capitals') {
                 res1 += '<div class=' + result[index] + '>' + element.properties.capital + ' : ' + result[index] + '</div>'
-                questions.push(element.properties.capital);
+                questions.push(element);
             }
         });
     }
@@ -618,8 +635,8 @@ function getResult(result, vrstaIgre) {
     });
     if (vrstaIgre == 'continents') res0 = ' ' + correct + ' / ' + sum;
     else res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty - 1] + ')';
-    if (correct < sum) {
-        res1 += '<br\><div class="get_better" style=" font-size: large">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div><br\>'
+    if (!challangedZastavica) {
+        res1 += '<br\><div class="get_better" style=" font-size: large">You will see the result when your friend finishes the game!</div>';
     }
     res.push(res0, res1,correct,questions)
     return res;
@@ -721,3 +738,25 @@ function shuffle(a) {
 
   return a;
 }
+
+function getChallangeResult(challange, me) {
+    console.log('from getChallangeResult: ', challange, me);
+
+    //I'm challanger
+    
+
+    //I'm challanged
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

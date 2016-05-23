@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const exphbs = require('express-handlebars');
 const mongo = require('./backend/resources');
+var ObjectID = require('mongodb').ObjectID;
 
 var dbConnection = true;
 
@@ -53,7 +54,7 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   });
 
   app.post('/newState', function (req, res) {
-    mongo.getDb(function(db) {
+    mongo.getDb(function (db) {
       db.collection('states').insertOne({state: req.body.state, html: req.body.html});
     });
     res.status(200).json('State added!');
@@ -67,7 +68,7 @@ mongo.connectToServer(function (err) { //  Initialize database connection
     if (dbConnection) {
       res.render('login');
     } else {
-      res.render('home',  {noMultiplayer: true});
+      res.render('home', {noMultiplayer: true});
     }
   });
 
@@ -107,15 +108,34 @@ mongo.connectToServer(function (err) { //  Initialize database connection
 
   app.post('/getChallanges', function (req, res) {
     mongo.getDb(function (db) {
-      db.collection('pending').find({challenger:req.body.username}).toArray(function (err, data) {
+      db.collection('pending').find({challenger: req.body.username}).toArray(function (err, data) {
         console.log(data);
-        db.collection('pending').find({challanged:req.body.username}).toArray(function (err, data2) {
+        db.collection('pending').find({challanged: req.body.username}).toArray(function (err, data2) {
 
-          for(var i=0;i<data2.length;i++)
-          data.push(data2[i]);
-          
+          for (var i = 0; i < data2.length; i++)
+            data.push(data2[i]);
+
           res.status(200).json(data);
         });
+      });
+    });
+  });
+
+  app.post('/getChallenge', function (req, res) {
+    mongo.getDb(function (db) {
+      db.collection('pending').find({_id: ObjectID(req.body.id)}).toArray(function (err, data) {
+        res.status(200).json(data[0]);
+      });
+    });
+  });
+
+  app.post('/updateChallange', function (req, res) {
+    mongo.getDb(function (db) {
+      db.collection('pending').find({_id: ObjectID(req.body._id)}).toArray(function (err, data) {
+        data[0].challengedTime=req.body.challengedTime;
+        data[0].challengedScore=req.body.challengedScore;
+        db.collection('pending').updateOne({ _id: data[0]._id },data[0]);
+        res.status(200).json(data[0]);
       });
     });
   });
@@ -142,7 +162,7 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   });
 
   app.post('/saveChallange', function (req, res) {
-    mongo.getDb(function(db) {
+    mongo.getDb(function (db) {
       db.collection('pending').insertOne(req.body);
     });
     res.status(200);
