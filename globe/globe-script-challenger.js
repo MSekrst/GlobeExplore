@@ -43,15 +43,29 @@ $(document).on('click', '#btn-challange', function (event) {
         document.getElementById("modal-body").removeChild(document.getElementById("invalid username"));
 });
 
-$.get('/getPlayers', function (data) {
-    for (var player in data) {
-        if (data[player].username != document.getElementById("username").innerHTML) {
-            var option = document.createElement('option');
-            option.value = data[player].username;
-            document.getElementById("select-friend").appendChild(option);
+$( document ).ready(function() {
+    $.get('/getPlayers', function (data) {
+        for (var player in data) {
+            if (data[player].username != document.getElementById("username").innerHTML) {
+                var option = document.createElement('option');
+                option.value = data[player].username;
+                document.getElementById("select-friend").appendChild(option);
+            }
         }
-    }
+    });
+
+    console.log(document.getElementById("username").innerHTML);
+    $.post('/getChallanges', {username: document.getElementById("username").innerHTML}, function (data) {
+       console.log(data);
+        for (var challange in data) {
+            // var div = document.createElement('div');
+            // div.innerHTML=data[challange].challenger;
+            // document.getElementById("tijelo").appendChild(div);
+            //console.log(data[challange].challenger);
+        }
+    });
 });
+
 $(document).on('click', '#btn-play', function (event) {
     var val = $("#friend").val();
     var obj = $("#select-friend").find("option[value='" + val + "']");

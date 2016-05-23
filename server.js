@@ -103,6 +103,21 @@ mongo.connectToServer(function (err) { //  Initialize database connection
     });
   });
 
+  app.post('/getChallanges', function (req, res) {
+    mongo.getDb(function (db) {
+      db.collection('pending').find({challenger:req.body.username}).toArray(function (err, data) {
+        console.log(data);
+        db.collection('pending').find({challanged:req.body.username}).toArray(function (err, data2) {
+
+          for(var i=0;i<data2.length;i++)
+          data.push(data2[i]);
+          
+          res.status(200).json(data);
+        });
+      });
+    });
+  });
+
   app.get('/registration', function (req, res) {
     res.render('registration');
   });
