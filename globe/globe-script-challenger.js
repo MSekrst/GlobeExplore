@@ -13,6 +13,7 @@ var challangedZastavica=false;
 var difficulty = '1';
 var numberOfQuestions = 5;
 var challanged="";
+var id="";
 
 
 randomContinents = shuffle(["Europe", "Africa", "Asia", "South America", "North America", "Antarctica", "Australia"]);
@@ -103,8 +104,7 @@ $( document ).ready(function() {
 });
 
 $(document).on('click', '.btn-igraj-chal', function (event) {
-    var id = $(this).data('id');
-    console.log(id);
+   id = $(this).data('id');
     challangedZastavica=true;
     $.post('/getChallenge',{id:id},function(data){
         console.log(data);
@@ -449,7 +449,7 @@ function init() {
                                     $(location).attr('href', route);
                                 });
                             } else {
-                                $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
+                                $.post('/updateChallange',{_id: id ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
                                   console.log(data);
                                     if ((data.challengerScore<data.challengedScore) ||  (data.challengerScore==data.challengedScore && data.challengedTime<data.challengerTime) ) {
                                         $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>");
@@ -578,7 +578,7 @@ function init() {
                                     $(location).attr('href', route);
                                 });
                             } else {
-                                $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
+                                $.post('/updateChallange',{_id: id,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
                                   if ((parseInt(data.challengerScore) < parseInt(data.challengedScore)) || (data.challengerScore == data.challengedScore && data.challengedTime < data.challengerTime)) {
                                         $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>");
                                         $.post('/saveWinner',{_id: data._id,winner:data.challanged}, function () {
