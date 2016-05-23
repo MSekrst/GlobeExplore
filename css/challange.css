@@ -49,7 +49,7 @@
 .challanges__body {
   padding: 20px;
   overflow: auto;
-  /*height: 60%;*/
+  max-height: 700px;
 }
 
 .status {
@@ -80,17 +80,23 @@
   padding: 5px !important;
   float: none;
   margin:0 auto;
-  }
+}
 
-@media (max-height: 700px) {
+@media (min-height: 720px) {
   .challanges__body {
-    height: 520px;
+    height: 300px;
   }
 }
 
-@media (max-height: 850px) {
+@media (min-height: 872px) {
   .challanges__body {
-    height: 650px;
+    height: 550px;
+  }
+}
+
+@media (min-height: 900px) {
+  .challanges__body {
+    height: 750px;
   }
 }
 
