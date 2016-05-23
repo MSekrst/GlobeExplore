@@ -81,16 +81,21 @@
   float: none;
   margin:0 auto;
 }
+@media (min-height: 480px) {
+  .challanges__body {
+    height: 400px;
+  }
+}
 
 @media (min-height: 720px) {
   .challanges__body {
-    height: 300px;
+    height: 550px;
   }
 }
 
 @media (min-height: 872px) {
   .challanges__body {
-    height: 550px;
+    height: 650px;
   }
 }
 
