@@ -140,6 +140,16 @@ mongo.connectToServer(function (err) { //  Initialize database connection
     });
   });
 
+  app.post('/saveWinner', function (req, res) {
+    mongo.getDb(function (db) {
+      db.collection('pending').find({_id: ObjectID(req.body._id)}).toArray(function (err, data) {
+        data[0].winner=req.body.winner;
+        db.collection('pending').updateOne({ _id: data[0]._id },data[0]);
+        res.status(200).json(data[0]);
+      });
+    });
+  });
+
   app.get('/registration', function (req, res) {
     res.render('registration');
   });

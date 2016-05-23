@@ -135,7 +135,7 @@ $(document).on('click', '#btn-play', function (event) {
         });
     }
     else {
-        document.getElementById("friend").style.borderColor = "red";
+        document.getElementById("friend").style.borderColor = "#af1c1c";
         if (document.getElementById("invalid username") == null) {
             var div = document.createElement('div');
             div.id = "invalid username";
@@ -404,7 +404,7 @@ function init() {
                         result.push('correct');
 
                     } else {
-                        d3.select(this).style("fill", "red");
+                        d3.select(this).style("fill", "#af1c1c");
 
                         var x = this;
                         setTimeout(function () {
@@ -441,8 +441,14 @@ function init() {
                                 $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
                             } else {
                                 $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
-                                    if (data.challengerScore<=data.challengedScore && data.challengedTime<data.challengerTime )  $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>")
-                                    else $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:red !important;\">You lost!</div>");
+                                    if ((data.challengerScore<data.challengedScore) ||  (data.challengerScore==data.challengedScore && data.challengedTime<data.challengerTime) ) {
+                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>");
+                                        $.post('/saveWinner',{_id: data._id,winner:data.challanged});
+                                    }
+                                    else {
+                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:\"#af1c1c\" !important;\">You lost!</div>");
+                                        $.post('/saveWinner',{_id: data._id,winner:data.challenger});
+                                    }
                                 });
 
                             }
@@ -459,7 +465,7 @@ function init() {
                             vrstaIgre = '';
                             // d3.selectAll(".globe").remove();
                             // init();
-                        }, 1000);
+                        }, 200);
 
 
                     }
@@ -512,7 +518,7 @@ function init() {
 
                         for (var i = 0; i < 178; i++) {
                             if (putanje[0][i].__data__.properties.continent == d.properties.continent) {
-                                d3.select(putanje[0][i]).style("fill", "red");
+                                d3.select(putanje[0][i]).style("fill", "#af1c1c");
                             }
                         }
 
@@ -549,9 +555,15 @@ function init() {
                                 $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});   
                             } else {
                                 $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
-                                    if (data.challengerScore<=data.challengedScore && data.challengedTime<data.challengerTime )  $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>")
-                                    else $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:red !important;\">You lost!</div>");
-                                });
+                                    if ((data.challengerScore<data.challengedScore) ||  (data.challengerScore==data.challengedScore && data.challengedTime<data.challengerTime) ) {
+                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>")
+                                        $.post('/saveWinner',{_id: data._id,winner:data.challanged});
+                                    }
+                                        else {
+                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:\"#af1c1c\" !important;\">You lost!</div>");
+                                        $.post('/saveWinner',{_id: data._id,winner:data.challenger});
+                                    }
+                                    });
 
                             }
 
@@ -568,7 +580,7 @@ function init() {
                             // d3.selectAll(".globe").remove();
                             //init();
 
-                        }, 1000);
+                        }, 200);
 
 
                     }

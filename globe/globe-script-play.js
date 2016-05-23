@@ -336,7 +336,7 @@ function init() {
               vrstaIgre = '';
               // d3.selectAll(".globe").remove();
               // init();
-            }, 1000);
+            }, 200);
 
 
           }
@@ -432,7 +432,7 @@ function init() {
               // d3.selectAll(".globe").remove();
               //init();
 
-            }, 1000);
+            }, 200);
 
 
           }
