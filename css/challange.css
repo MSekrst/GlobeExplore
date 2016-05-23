@@ -30,3 +30,42 @@
 .button-challange-friend:hover {
   background-color: #286090;
 }
+
+.challanges {
+  margin: 50px 20%;
+  background: white;
+  border-radius: 4px;
+}
+
+.challanges__header {
+  font-size: 20px;
+  padding: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+.challanges__body {
+  padding: 20px;
+}
+
+.challanges__body__challange__head {
+  padding: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.3); 
+}
+
+.challanges__body__challange {
+  padding: 20px 0;
+}
+
+.challanges__body__challange span {
+  padding: 0 20px;
+}
+
+
+
+
+
+
+
+
+
+

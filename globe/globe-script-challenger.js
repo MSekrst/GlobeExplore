@@ -56,14 +56,32 @@ $( document ).ready(function() {
 
     console.log(document.getElementById("username").innerHTML);
     $.post('/getChallanges', {username: document.getElementById("username").innerHTML}, function (data) {
-       console.log(data);
         for (var challange in data) {
-            // var div = document.createElement('div');
-            // div.innerHTML=data[challange].challenger;
-            // document.getElementById("tijelo").appendChild(div);
-            //console.log(data[challange].challenger);
+            var chal = '<div class="challanges__body__challange"><span class="challanges__body__challange__challanger">';
+            
+            // console.log(data[challange].challenger);
+            chal += data[challange].challenger + '</span><span class="challanges__body__challange__challanged">'
+            
+            // console.log(data[challange].challanged);
+            chal += data[challange].challanged + '</span><span class="challanges__body__challange__status">'
+
+
+
+            
+            if (data[challange].challangedScore) {
+                chal += 'gotovo</span></div></div>'
+            } else {
+                chal += '<div class="btn btn-success btn-igraj-chal" data-id="' + data[challange]._id + '">igraj</div></span></div></div>'
+            }
+
+            $('.challanges__body').append(chal)
         }
     });
+});
+
+$(document).on('click', '.btn-igraj-chal', function (event) {
+    var id = $(this).data('id');
+    console.log(id);
 });
 
 $(document).on('click', '#btn-play', function (event) {

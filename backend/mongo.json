@@ -2,5 +2,5 @@
   "mongoUsername": "globeExplore",
   "mongoPassword": "globeexplore2016",
   "mongoURL": "mongodb://globeExplore:globeexplore2016@ds013310.mlab.com:13310/globe_explore",
-  "mongoURL2": "mongodb://localhost:27017/globeExplore"
+  "mongoURL2": "mongodb://globeExplore:globeexplore2016@ds013310.mlab.com:13310/globe_explore"
 }
