@@ -64,13 +64,20 @@ $( document ).ready(function() {
             chal += data[challange].challenger + '</span><span class="challanges__body__challange__challanged">'
             
             // console.log(data[challange].challanged);
-            chal += data[challange].challanged + '</span><span class="challanges__body__challange__status">'
+            chal += data[challange].challanged + '</span><span class="challanges__body__challange__type">'
+
+            var x = data[challange].gameMode;
+            if(x == 'states'){
+                x = 'countries'
+            }
+
+            chal += x + '</span><span class="challanges__body__challange__status">'
 
 
 
             
-            if (data[challange].challangedScore) {
-                chal += 'gotovo</span></div></div>'
+            if (data[challange].challengedScore) {
+                chal += getChallangeResult(data[challange], document.getElementById("username").innerHTML ) + '</span></div></div>'
             } else {
                 chal += '<div class="btn btn-success btn-igraj-chal" data-id="' + data[challange]._id + '">igraj</div></span></div></div>'
             }
@@ -710,3 +717,25 @@ function shuffle(a) {
 
   return a;
 }
+
+function getChallangeResult(challange, me) {
+    console.log('from getChallangeResult: ', challange, me);
+
+    //I'm challanger
+    
+
+    //I'm challanged
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
