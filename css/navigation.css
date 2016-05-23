@@ -68,6 +68,9 @@
     width: 70px;
     height: 70px;
   }
+  .logo{
+    display: none !important;
+  }
 }
 .navtxt{
   line-height: 80px;
