@@ -73,7 +73,6 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   });
 
   app.post('/challange', function (req, res) {
-    console.log(req.body.username, req.body.password);
     mongo.getDb(function (db) {
       db.collection('users').find({
         username: req.body.username,
