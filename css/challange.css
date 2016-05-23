@@ -35,6 +35,7 @@
   margin: 0 20%;
   background: white;
   border-radius: 4px;
+  overflow: auto;
 }
 
 .challanges__header {
@@ -48,7 +49,7 @@
 .challanges__body {
   padding: 20px;
   overflow: auto;
-  height: 80%;
+  /*height: 60%;*/
 }
 
 .status {
@@ -81,8 +82,27 @@
   margin:0 auto;
   }
 
-@media (max-height: 800px) {
+@media (max-height: 700px) {
   .challanges__body {
-    height: 50%;
+    height: 520px;
   }
+}
+
+@media (max-height: 850px) {
+  .challanges__body {
+    height: 650px;
+  }
+}
+
+.description {
+  text-align: left;
+  display: block;
+  float: left;
+}
+
+.deleteX {
+  display: block;
+  float: right;
+  vertical-align: middle;
+  font-size: 14px;
 }

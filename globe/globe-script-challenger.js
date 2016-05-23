@@ -64,15 +64,15 @@ $( document ).ready(function() {
 
       if (data[c].challengedScore) {  //  game over
        if (data[c].winner === username) {
-         chal += ' challenge-won">WON';
+         chal += ' challenge-won"><span class="description">WON</span><span class="deleteX">X</span>';
        } else {
-         chal += ' challenge-lose">LOST';
+         chal += ' challenge-lose"><span class="description">LOST</span><span class="deleteX">X</span>';
        }
       } else {  //  game to play
         if (data[c].challanged === username) {
-          chal += ' challenge-play">PLAY';
+          chal += ' challenge-play"><span class="description">PLAY</span><span class="deleteX">X</span>';
         } else {
-          chal += '">WAITING';
+          chal += '"><span class="description">WAITING</span><span class="deleteX">X</span>';
         }
       }
 
