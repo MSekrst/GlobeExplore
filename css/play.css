@@ -61,7 +61,7 @@
 .get_better a {
 	pointer-events: auto;
 	cursor: pointer;
-	color: #009FE1;
+	color: #009FE1 !important;
 	margin-bottom: 3%;
 	text-decoration: underline; 
 }
