@@ -45,6 +45,8 @@
 
 .challanges__body {
   padding: 20px;
+  overflow: auto;
+  height: 500px;
 }
 
 .challanges__body__challange__head {
@@ -60,12 +62,16 @@
   padding: 0 20px;
 }
 
+.status {
+  width: 100%;
+  height: 10px;
+  background-color: yellow;
+}
 
+.challange-win {
+  background-color: green;
+}
 
-
-
-
-
-
-
-
+.challange-lose {
+  background-color: red;
+}

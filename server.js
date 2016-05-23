@@ -72,6 +72,7 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   });
 
   app.post('/challange', function (req, res) {
+    console.log(req.body.username, req.body.password);
     mongo.getDb(function (db) {
       db.collection('users').find({
         username: req.body.username,
@@ -79,7 +80,8 @@ mongo.connectToServer(function (err) { //  Initialize database connection
       }).toArray(function (err, data) {
         if (data.length !== 0) {
           res.render('challange', {username: req.body.username});
-        } else {  //  duplicated username
+        } else {  //  duplicated
+          console.log(data);
           res.status(403);
           res.render('login', {noLogin: true});
         }

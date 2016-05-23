@@ -54,29 +54,67 @@ $( document ).ready(function() {
         }
     });
 
-    console.log(document.getElementById("username").innerHTML);
-    $.post('/getChallanges', {username: document.getElementById("username").innerHTML}, function (data) {
-        for (var challange in data) {
-            var chal = '<div class="challanges__body__challange"><span class="challanges__body__challange__challanger">';
-            
-            // console.log(data[challange].challenger);
-            chal += data[challange].challenger + '</span><span class="challanges__body__challange__challanged">'
-            
-            // console.log(data[challange].challanged);
-            chal += data[challange].challanged + '</span><span class="challanges__body__challange__status">'
+  var username = document.getElementById("username").innerHTML;
 
-
-
-            
-            if (data[challange].challangedScore) {
-                chal += 'gotovo</span></div></div>'
-            } else {
-                chal += '<div class="btn btn-success btn-igraj-chal" data-id="' + data[challange]._id + '">igraj</div></span></div></div>'
-            }
-
-            $('.challanges__body').append(chal)
+  $.post('/getChallanges', {username: username}, function (data) {
+    for (var challange in data) {
+      var chal = '<div class="col-sm-6 col-md-4"><div class="thumbnail"><div class="status';
+      if (data[challange].challangedScore) {  //  game over
+        if (data[challange].challanged === username) {  //  i played
+          if (data[challange].challengerScore > data[challange].challengedScore) {
+            chal += ' challange-win';
+          } else if(data[challange].challengerScore < data[challange].challengedScore) {
+            chal += ' challange-lose';
+          } else if (data[challange].challengerTime > data[challange].challengedTime) {
+            chal += ' challange-lose';
+          } else {
+            chal += ' challange-win';
+          }
+        } else {  //  user played
+          if (data[challange].challengerScore > data[challange].challengedScore) {
+            chal += ' challange-lose';
+          } else if(data[challange].challengerScore < data[challange].challengedScore) {
+            chal += ' challange-win';
+          } else if (data[challange].challengerTime > data[challange].challengedTime) {
+            chal += ' challange-win';
+          } else {
+            chal += ' challange-lose';
+          }
         }
-    });
+      } else {  //  game to play
+        if (data[challange].challanged === username) {  //  i play
+
+        } else {
+          //  user played
+        }
+      }
+
+      chal += '"></div><div class="caption"><p>';
+      if (data[challange].challanged === username) {  //  user can play
+        // console.log('user igra', data[challange]);
+      } else {  //  user is challanger
+        // console.log('user ne igra', data[challange]);
+      }
+      // var chal = '<div class="challanges__body__challange"><span class="challanges__body__challange__challanger">';
+      //
+      // // console.log(data[challange].challenger);
+      // chal += data[challange].challenger + '</span><span class="challanges__body__challange__challanged">'
+      //
+      // // console.log(data[challange].challanged);
+      // chal += data[challange].challanged + '</span><span class="challanges__body__challange__status">'
+      //
+      // if (data[challange].challangedScore) {
+      //     chal += 'gotovo</span></div></div>'
+      // } else {
+      //     chal += '<div class="btn btn-success btn-igraj-chal" data-id="' + data[challange]._id + '">igraj</div></span></div></div>'
+      // }
+
+
+      chal += '</p></div></div></div>';
+
+      $('.challanges__body').append(chal)
+    }
+  });
 });
 
 $(document).on('click', '.btn-igraj-chal', function (event) {
