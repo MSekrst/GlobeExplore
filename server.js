@@ -107,7 +107,7 @@ mongo.connectToServer(function (err) { //  Initialize database connection
   app.post('/getChallanges', function (req, res) {
     mongo.getDb(function (db) {
       db.collection('pending').find({challenger: req.body.username}).toArray(function (err, data) {
-        console.log(data);
+        // console.log(data);
         db.collection('pending').find({challanged: req.body.username}).toArray(function (err, data2) {
 
           for (var i = 0; i < data2.length; i++)
@@ -132,8 +132,9 @@ mongo.connectToServer(function (err) { //  Initialize database connection
       db.collection('pending').find({_id: ObjectID(req.body._id)}).toArray(function (err, data) {
         data[0].challengedTime=req.body.challengedTime;
         data[0].challengedScore=req.body.challengedScore;
-        db.collection('pending').updateOne({ _id: data[0]._id },data[0]);
-        res.status(200).json(data[0]);
+        db.collection('pending').updateOne({ _id: data[0]._id },data[0],function(){
+          res.status(200).json(data[0]);
+        });
       });
     });
   });

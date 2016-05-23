@@ -426,26 +426,40 @@ function init() {
 
 
                             if (!challangedZastavica) {
-                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+
+                                $('#myModal').on('hidden.bs.modal', function () {
+                                    var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
+                                    console.log(route);
+                                    $(location).attr('href', route);
+                                });
                             } else {
                                 $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
                                     if ((data.challengerScore<data.challengedScore) ||  (data.challengerScore==data.challengedScore && data.challengedTime<data.challengerTime) ) {
                                         $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>");
-                                        $.post('/saveWinner',{_id: data._id,winner:data.challanged});
+                                        $.post('/saveWinner',{_id: data._id,winner:data.challanged}, function () {
+                                            $('#myModal').on('hidden.bs.modal', function () {
+                                                var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
+                                                console.log(route);
+                                                $(location).attr('href', route);
+                                            });
+                                        });
                                     }
                                     else {
                                         $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:\"#af1c1c\" !important;\">You lost!</div>");
-                                        $.post('/saveWinner',{_id: data._id,winner:data.challenger});
+                                        $.post('/saveWinner',{_id: data._id,winner:data.challenger}, function () {
+                                            $('#myModal').on('hidden.bs.modal', function () {
+                                                var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
+                                                console.log(route);
+                                                $(location).attr('href', route);
+                                            });
+                                        });
                                     }
                                 });
 
                             }
 
-                            $('#myModal').on('hidden.bs.modal', function () {
-                              var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
-                              console.log(route);
-                              $(location).attr('href', route);
-                            });
+
 
                             result = [];
                             randomCountries = [];
@@ -453,7 +467,7 @@ function init() {
                             vrstaIgre = '';
                             // d3.selectAll(".globe").remove();
                             // init();
-                        }, 200);
+                        }, 1000);
 
 
                     }
@@ -540,18 +554,36 @@ function init() {
 
 
                             if (!challangedZastavica) {
-                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});   
+                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+
+                                $('#myModal').on('hidden.bs.modal', function () {
+                                    var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
+                                    console.log(route);
+                                    $(location).attr('href', route);
+                                });
                             } else {
                                 $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
                                     if ((data.challengerScore<data.challengedScore) ||  (data.challengerScore==data.challengedScore && data.challengedTime<data.challengerTime) ) {
-                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>")
-                                        $.post('/saveWinner',{_id: data._id,winner:data.challanged});
+                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>");
+                                        $.post('/saveWinner',{_id: data._id,winner:data.challanged}, function () {
+                                            $('#myModal').on('hidden.bs.modal', function () {
+                                                var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
+                                                console.log(route);
+                                                $(location).attr('href', route);
+                                            });
+                                        });
                                     }
-                                        else {
+                                    else {
                                         $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:\"#af1c1c\" !important;\">You lost!</div>");
-                                        $.post('/saveWinner',{_id: data._id,winner:data.challenger});
+                                        $.post('/saveWinner',{_id: data._id,winner:data.challenger}, function () {
+                                            $('#myModal').on('hidden.bs.modal', function () {
+                                                var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
+                                                console.log(route);
+                                                $(location).attr('href', route);
+                                            });
+                                        });
                                     }
-                                    });
+                                });
 
                             }
 
@@ -568,7 +600,7 @@ function init() {
                             // d3.selectAll(".globe").remove();
                             //init();
 
-                        }, 200);
+                        }, 1000);
 
 
                     }
@@ -619,9 +651,11 @@ function getResult(result, vrstaIgre) {
         saveRandomCountries.forEach(function (element, index) {
             if (vrstaIgre == 'states') {
                 res1 += '<div class=' + result[index] + '>' + element.properties.name_long + ' : ' + result[index] + '</div>'
+                delete element['geometry'];
                 questions.push(element);
             } else if (vrstaIgre == 'capitals') {
                 res1 += '<div class=' + result[index] + '>' + element.properties.capital + ' : ' + result[index] + '</div>'
+                delete element['geometry'];
                 questions.push(element);
             }
         });
