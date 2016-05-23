@@ -14,6 +14,37 @@
     min-width: 266.67px;
     display: block;
 }
+#podrucje1{
+    background: linear-gradient(to left, #e1315b 50%, #F5C2CE 50%) !important;
+    background-size: 210% 100% !important;
+    background-position:right bottom !important;
+    transition: background-position 0.5s ease-out !important;
+
+}
+#podrucje2{
+    background: linear-gradient(to left, #f47d4a 50%, #FFC284 50%) !important;
+    background-size: 210% 100% !important;
+    background-position:right bottom !important;
+    transition: background-position 0.5s ease-out !important;
+}
+#podrucje3{
+    background: linear-gradient(to left, #ffec5c 50%, #FFF7B6 50%) !important;
+    background-size: 210% 100% !important;
+    background-position:right bottom !important;
+    transition: background-position 0.5s ease-out !important;
+}
+#podrucje1:hover{
+    background-position:left bottom !important;
+    transition:background-position 0.5s ease !important;
+}
+#podrucje2:hover{
+    background-position:left bottom !important;
+    transition:background-position 0.5s ease !important;
+}
+#podrucje3:hover{
+    background-position:left bottom !important;
+    transition:background-position 0.5s ease !important;
+}
 
 .podrucjeimg {
     line-height: 80px;
