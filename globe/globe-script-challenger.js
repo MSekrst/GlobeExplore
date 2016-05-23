@@ -8,7 +8,7 @@ var randomContinents = [];
 var saveRandomContinents = [];
 var result = [];
 calledFromHandleBars = true;
-var challanged=false;
+var challangedZastavica=false;
 
 var difficulty = '1';
 var numberOfQuestions = 5;
@@ -83,7 +83,7 @@ $( document ).ready(function() {
 $(document).on('click', '.btn-igraj-chal', function (event) {
     var id = $(this).data('id');
     console.log(id);
-    challanged=true;
+    challangedZastavica=true;
     $.post('/getChallenge',{id:id},function(data){
         console.log(data);
         difficulty = difficulties[data.difficulty];
@@ -239,6 +239,10 @@ function init() {
     if (calledFromHandleBars) {
         calledFromHandleBars = false;
         return false;
+    }
+
+    if (challangedZastavica) {
+        $(".info").css("visibility", "visible");
     }
 
     //inicijalizacija
@@ -413,7 +417,9 @@ function init() {
                             $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
-                            if (!challanged) $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length, difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+                            if (!challangedZastavica) {
+                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length, difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+                            } 
 
                             $('#myModal').on('hidden.bs.modal', function () {
                               var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
@@ -515,7 +521,11 @@ function init() {
                             $('#myModal').modal('show');
 
 
-                            if (!challanged) $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+                            if (!challangedZastavica) {
+                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});   
+                            } else {
+                                $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]});   
+                            }
 
                             $('#myModal').on('hidden.bs.modal', function () {
                                 var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
