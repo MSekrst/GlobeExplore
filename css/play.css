@@ -12,9 +12,9 @@
 
 .instructions {
 	position: relative;
-	width: 60%;
 	height: 300px;
 	margin: auto;
+	width:60%;
 }
 
 .modal__init_div {
