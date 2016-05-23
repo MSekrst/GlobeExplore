@@ -461,7 +461,7 @@ function init() {
                                         });
                                     }
                                     else {
-                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:\"#af1c1c\" !important;\">You lost!</div>");
+                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:#af1c1c !important;\">You lost!</div>");
                                         $.post('/saveWinner',{_id: data._id,winner:data.challenger}, function () {
                                             $('#myModal').on('hidden.bs.modal', function () {
                                                 var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
@@ -589,7 +589,7 @@ function init() {
                                         });
                                     }
                                     else {
-                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:\"#af1c1c\" !important;\">You lost!</div>");
+                                        $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:#af1c1c !important;\">You lost!</div>");
                                         $.post('/saveWinner',{_id: data._id,winner:data.challenger}, function () {
                                             $('#myModal').on('hidden.bs.modal', function () {
                                                 var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
