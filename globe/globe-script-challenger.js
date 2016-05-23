@@ -241,6 +241,10 @@ function init() {
         return false;
     }
 
+    if (challangedZastavica) {
+        $(".info").css("visibility", "visible");
+    }
+
     //inicijalizacija
     var width = $(window).width() * 0.84;
     var height = $(window).height();
@@ -413,7 +417,10 @@ function init() {
                             $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
-                            if (!challangedZastavica) $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length, difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+
+                            if (!challangedZastavica) {
+                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length, difficulty:Object.keys(difficulties)[difficulty - 1],questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+                            } 
 
                             $('#myModal').on('hidden.bs.modal', function () {
                               var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
@@ -515,8 +522,12 @@ function init() {
                             $('#myModal').modal('show');
 
 
-                            console.log(challangedZastavica);
-                            if (!challangedZastavica) $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
+
+                            if (!challangedZastavica) {
+                                $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});   
+                            } else {
+                                $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]});   
+                            }
 
                             $('#myModal').on('hidden.bs.modal', function () {
                                 var route = '/challangeReturn/' + document.getElementById("username").innerHTML;
