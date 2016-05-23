@@ -32,7 +32,7 @@
 }
 
 .challanges {
-  margin: 50px 20%;
+  margin: 0 20%;
   background: white;
   border-radius: 4px;
 }
@@ -80,3 +80,9 @@
   float: none;
   margin:0 auto;
   }
+
+@media (max-height: 800px) {
+  .challanges__body {
+    height: 50%;
+  }
+}
