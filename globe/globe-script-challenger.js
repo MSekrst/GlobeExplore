@@ -450,8 +450,7 @@ function init() {
                                 });
                             } else {
                                 $.post('/updateChallange',{_id: id ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
-                                  console.log(data);
-                                    if ((data.challengerScore<data.challengedScore) ||  (data.challengerScore==data.challengedScore && data.challengedTime<data.challengerTime) ) {
+                                    if ((parseInt(data.challengerScore,10)<parseInt(data.challengedScore,10)) ||  (data.challengerScore==data.challengedScore && data.challengedTime<data.challengerTime) ) {
                                         $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>");
                                         $.post('/saveWinner',{_id: data._id,winner:data.challanged}, function () {
                                             $('#myModal').on('hidden.bs.modal', function () {
@@ -579,7 +578,7 @@ function init() {
                                 });
                             } else {
                                 $.post('/updateChallange',{_id: id,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
-                                  if ((parseInt(data.challengerScore) < parseInt(data.challengedScore)) || (data.challengerScore == data.challengedScore && data.challengedTime < data.challengerTime)) {
+                                  if ((parseInt(data.challengerScore,10) < parseInt(data.challengedScore,10)) || (data.challengerScore == data.challengedScore && data.challengedTime < data.challengerTime)) {
                                         $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>");
                                         $.post('/saveWinner',{_id: data._id,winner:data.challanged}, function () {
                                             $('#myModal').on('hidden.bs.modal', function () {
