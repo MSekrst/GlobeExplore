@@ -421,7 +421,7 @@ function init() {
                             $('.modal-header').html("");
                             $('.modal-header').append('<p style="text-align: center">Result: ' + getResult(result, vrstaIgre)[0] + '</p>');
                             var t = time.toString().substr(3);
-                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<br\><div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
 
@@ -528,7 +528,7 @@ function init() {
                             $('.modal-header').html("");
                             $('.modal-header').append('<p style="text-align: center">Result: ' + getResult(result, vrstaIgre)[0] + '</p>');
                             var t = time.toString().substr(3);
-                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<div> Time: ' + t + '</div>');
+                            $('.modal-body').html(getResult(result, vrstaIgre)[1] + '<br\><div> Time: ' + t + '</div>');
                             $('#myModal').modal('show');
 
 
@@ -623,8 +623,8 @@ function getResult(result, vrstaIgre) {
     });
     if (vrstaIgre == 'continents') res0 = ' ' + correct + ' / ' + sum;
     else res0 = ' ' + correct + ' / ' + sum + ' (difficulty: ' + Object.keys(difficulties)[difficulty - 1] + ')';
-    if (correct < sum) {
-        res1 += '<br\><div class="get_better" style=" font-size: large">Hi there, I see you didn\'t get the perfect score, but don\'t worry, you can improve your knowledge at our <a href="/learning">learning page</a>.</div><br\>'
+    if (!challangedZastavica) {
+        res1 += '<br\><div class="get_better" style=" font-size: large">You will see the result when your friend finishes the game!</div>';
     }
     res.push(res0, res1,correct,questions)
     return res;
