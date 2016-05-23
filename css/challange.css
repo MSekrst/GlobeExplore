@@ -72,8 +72,11 @@
   background-color: #337AB7;
 }
 
-.button-play {
-  float: right;
+.btn-igraj-chal {
+  width: 60px;
+  height: 25px;
+  font-size: 12px;
   padding: 5px !important;
-  font-size: smaller;
-}
+  float: none;
+  margin:0 auto;
+  }

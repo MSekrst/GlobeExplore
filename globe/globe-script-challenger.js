@@ -92,7 +92,7 @@ $( document ).ready(function() {
       chal += 'Questions: &nbsp;' + data[c].number + '<br /></p>';
 
       if (data[c].challanged === username && !data[c].challengedScore) {
-        chal += '<div class="btn button-challange-friend button-play btn-igraj-chal" data-id="' + data[c]._id + '">PLAY</div>';
+        chal += '<div class="button-challange-friend btn-igraj-chal" data-id="' + data[c]._id + '">PLAY</div>';
       }
 
       chal += '</div></div></div>';
@@ -444,6 +444,7 @@ function init() {
                                 $.post('/saveChallange',{challenger:document.getElementById("username").innerHTML, challanged:challanged, gameMode:vrstaIgre, number:result.length,questions:getResult(result, vrstaIgre)[3],challengerTime:t,challengerScore: getResult(result, vrstaIgre)[2]});
                             } else {
                                 $.post('/updateChallange',{_id: $('.btn-igraj-chal').data('id') ,challengedTime:t,challengedScore: getResult(result, vrstaIgre)[2]},function(data){
+                                  console.log(data);
                                     if ((data.challengerScore<data.challengedScore) ||  (data.challengerScore==data.challengedScore && data.challengedTime<data.challengerTime) ) {
                                         $('.modal-body').append("<div class=\"get_better\" style=\" font-size: large; color:green !important;\">You won!</div>");
                                         $.post('/saveWinner',{_id: data._id,winner:data.challanged});
