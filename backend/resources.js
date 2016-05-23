@@ -13,6 +13,8 @@ module.exports = {
   },
 
   getDb: function(callback) { //  returns db connection -> always the same one
-    callback(db);
+    MongoClient.connect(mongo.mongoURL, function (err, dbConnection) {
+      callback(dbConnection);
+    })
   }
 };

@@ -59,7 +59,7 @@ $( document ).ready(function() {
 
   $.post('/getChallanges', {username: username}, function (data) {
     for (var c in data) {
-      var chal = '<div class="col-sm-6 col-md-4"><div class="thumbnail"><div class="status';
+      var chal = '<div class="col-sm-6 col-md-4"><div class="thumbnail" style="height: 180px"><div class="status';
 
       if (data[c].challengedScore) {  //  game over
        if (data[c].winner === username) {

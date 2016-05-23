@@ -48,7 +48,7 @@
 .challanges__body {
   padding: 20px;
   overflow: auto;
-  height: 500px;
+  height: 80%;
 }
 
 .status {
