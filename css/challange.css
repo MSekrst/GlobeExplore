@@ -53,16 +53,19 @@
 
 .status {
   width: 100%;
-  height: 10px;
-  background-color: yellow;
+  height: 20px;
+  background-color: #ffec5c;
+  font-size: 12px;
+  text-align: left;
+  font-weight: bold;
 }
 
 .challenge-won {
-  background-color: green;
+  background-color: #4cae4c;
 }
 
 .challenge-lose {
-  background-color: red;
+  background-color: #d43f3a;
 }
 
 .challenge-play {

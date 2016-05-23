@@ -59,26 +59,29 @@ $( document ).ready(function() {
 
   $.post('/getChallanges', {username: username}, function (data) {
     for (var c in data) {
-      console.log('game', data[c]);
       var chal = '<div class="col-sm-6 col-md-4"><div class="thumbnail"><div class="status';
 
       if (data[c].challengedScore) {  //  game over
        if (data[c].winner === username) {
-         chal += ' challenge-won">';
+         chal += ' challenge-won">WON';
        } else {
-         chal += ' challenge-lose">';
+         chal += ' challenge-lose">LOST';
        }
       } else {  //  game to play
         if (data[c].challanged === username) {
-          chal += ' challenge-play">';
+          chal += ' challenge-play">PLAY';
         } else {
-          chal += '">';
+          chal += '">WAITING';
         }
       }
 
       chal += '</div><div class="caption">';
 
-
+      if (data[c].challanged === username) {
+        chal += '<h4 style="text-align: center">Opponent: &nbsp;' + data[c].challenger + '</h4>' ;
+      } else {
+        chal += '<h4 style="text-align: center">Opponent: &nbsp;' + data[c].challanged + '</h4>';
+      }
 
       chal += '<p>';
 
@@ -86,13 +89,13 @@ $( document ).ready(function() {
       if (data[c].difficulty) {
         chal += 'Difficulty: &nbsp;' + data[c].difficulty + '<br />';
       }
-      chal += 'Questions: &nbsp;' + data[c].number + '<br />';
+      chal += 'Questions: &nbsp;' + data[c].number + '<br /></p>';
 
       if (data[c].challanged === username && !data[c].challengedScore) {
-        chal += '<div class="btn button-challange-friend button-play">PLAY</div>';
+        chal += '<div class="btn button-challange-friend button-play btn-igraj-chal" data-id="' + data[c]._id + '">PLAY</div>';
       }
 
-      chal += '</p></div></div></div>';
+      chal += '</div></div></div>';
 
       $('.challanges__body').append(chal)
     }
