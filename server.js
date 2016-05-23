@@ -150,6 +150,13 @@ mongo.connectToServer(function (err) { //  Initialize database connection
     });
   });
 
+  app.post('/deleteChallange',function(req,res){
+    mongo.getDb(function (db) {
+      db.collection('pending').removeOne({_id: ObjectID(req.body._id)});
+      res.status(200);
+    });
+  });
+
   app.get('/registration', function (req, res) {
     res.render('registration');
   });

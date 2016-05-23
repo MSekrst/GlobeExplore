@@ -60,19 +60,19 @@ $( document ).ready(function() {
 
   $.post('/getChallanges', {username: username}, function (data) {
     for (var c in data) {
-      var chal = '<div class="col-sm-6 col-md-4"><div class="thumbnail" style="height: 180px"><div class="status';
+      var chal = '<div class="col-sm-6 col-md-4" id='+data[c]._id+'><div class="thumbnail" style="height: 180px"><div class="status';
 
       if (data[c].challengedScore) {  //  game over
        if (data[c].winner === username) {
-         chal += ' challenge-won"><span class="description">WON</span><span class="deleteX">X</span>';
+         chal += ' challenge-won"><span class="description">WON</span><div class="deleteX" data-id='+data[c]._id+'>X</div>';
        } else {
-         chal += ' challenge-lose"><span class="description">LOST</span><span class="deleteX">X</span>';
+         chal += ' challenge-lose"><span class="description">LOST</span><div class="deleteX" data-id='+data[c]._id+'>X</div>';
        }
       } else {  //  game to play
         if (data[c].challanged === username) {
-          chal += ' challenge-play"><span class="description">PLAY</span><span class="deleteX">X</span>';
+          chal += ' challenge-play"><span class="description">PLAY</span><div class="deleteX" data-id='+data[c]._id+'>X</div>';
         } else {
-          chal += '"><span class="description">WAITING</span><span class="deleteX">X</span>';
+          chal += '"><span class="description">WAITING</span><div class="deleteX" data-id='+data[c]._id+'>X</div>';
         }
       }
 
@@ -101,6 +101,11 @@ $( document ).ready(function() {
       $('.challanges__body').append(chal)
     }
   });
+});
+
+$(document).on('click', '.deleteX', function (event) {
+ $.post('/deleteChallange',{_id:$(this).data('id')});
+    document.getElementById('tijelo').removeChild(document.getElementById($(this).data('id')));
 });
 
 $(document).on('click', '.btn-igraj-chal', function (event) {
