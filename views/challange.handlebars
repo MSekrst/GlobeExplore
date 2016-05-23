@@ -1,85 +1,65 @@
 <script type="text/javascript" src="../globe/globe-script-challenger.js"></script>
 
 <div class="blue-background" id="tijelo">
-    <div class="info"></div>
-    <p id="username" style="display:none">{{username}}</p>
-    <div class="challange-container">
-        <div class="col-lg-8 col-xs-12 challange-friend button-challange-friend" id="btn-challange">CHALLANGE A FRIEND
-        </div>
-
-        <div class="challanges">
-            <div class="challanges__header">zahtjevi</div>
-            <div class="challanges__body__challange__head">
-                <span class="">challanger</span>
-                <span class="">challanged</span>
-                <span class="">status</span>
-            </div>
-            <div class="challanges__body">
-                
-            </div>
-        </div>
+  <div class="info"></div>
+  <p id="username" style="display:none">{{username}}</p>
+  <div class="challange-container">
+    <div class="challanges">
+      <div class="challanges__header">All challenges</div>
+      <div class="challanges__body">
+      </div>
+      <div class="col-lg-8 col-xs-12 challange-friend button-challange-friend" id="btn-challange">CHALLANGE A FRIEND</div>
     </div>
-    <div class="challange-container">
-
-    </div>
-    {{> navbarChallenge}}
+  </div>
+  <div class="challange-container"></div>
+  {{> navbarChallenge}}
 </div>
 
 <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-header" style="text-align:left">
-        Game settings
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <div class="modal-header" style="text-align:left">
+    Game settings
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <div class="modal__init_div modal__init_div_type">
+      Game type:
+      <select name="game_type" id="game_type">
+        <option value="Countries" selected="selected">Countries</option>
+        <option value="Continents">Continents</option>
+        <option value="Capitals">Capitals</option>
+      </select>
     </div>
-    <div class="modal-body" id="modal-body">
-        <div class="modal__init_div modal__init_div_type">
-            Game type:
-            <select name="game_type" id="game_type">
-                <option value="Countries" selected="selected">Countries</option>
-                <option value="Continents">Continents</option>
-                <option value="Capitals">Capitals</option>
-            </select>
-        </div>
-        <div class="modal__init_div modal__init_div_diff">
-            Difficulty:
-            <select name="difficulty" id="difficulty">
-                <option value="easy" selected="selected">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-                <option value="extreme">Extreme</option>
-            </select>
-        </div>
-        <div class="modal__init_div modal__init_div_nb">
-            Number of questions:
-            <select name="number_of_questions" id="number_of_questions">
-                <option value="5" selected="selected">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-            </select>
-        </div>
-        <div class="modal__init_div modal__init_div_type">
-            Select friend:
-            <input type="text" list="select-friend" id="friend">
-            <datalist id="select-friend" size="45">
-            </datalist>
-        </div>
-        <div class="btn btn-primary" id="btn-play">PLAY</div>
+    <div class="modal__init_div modal__init_div_diff">
+      Difficulty:
+      <select name="difficulty" id="difficulty">
+        <option value="easy" selected="selected">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+        <option value="extreme">Extreme</option>
+      </select>
     </div>
-
+    <div class="modal__init_div modal__init_div_nb">
+      Number of questions:
+      <select name="number_of_questions" id="number_of_questions">
+        <option value="5" selected="selected">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+      </select>
+    </div>
+    <div class="modal__init_div modal__init_div_type">
+      Select friend:
+      <input type="text" list="select-friend" id="friend">
+      <datalist id="select-friend" size="45">
+      </datalist>
+    </div>
+    <div class="btn btn-primary" id="btn-play">PLAY</div>
+  </div>
 </div>
-</div>
-
-<script>
-
-
-
-</script>
-
-

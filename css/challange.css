@@ -7,10 +7,9 @@
 .challange-friend {
   float:none;
   margin: 0 auto;
-  top: 25px;
+  bottom: 10px;
   height: 45px;
-  width: 300px;
-  box-shadow: #000033 2px 2px;
+  width: 250px;
 }
 
 .button-challange-friend {
@@ -29,6 +28,7 @@
 
 .button-challange-friend:hover {
   background-color: #286090;
+  color: #FFF;
 }
 
 .challanges {
@@ -41,31 +41,39 @@
   font-size: 20px;
   padding: 20px;
   border-bottom: 1px solid rgba(0,0,0,0.3);
+  text-align: center;
+  color: #0B0882;
 }
 
 .challanges__body {
   padding: 20px;
+  overflow: auto;
+  height: 500px;
 }
 
-.challanges__body__challange__head {
-  padding: 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.3); 
+.status {
+  width: 100%;
+  height: 20px;
+  background-color: #ffec5c;
+  font-size: 12px;
+  text-align: left;
+  font-weight: bold;
 }
 
-.challanges__body__challange {
-  padding: 20px 0;
+.challenge-won {
+  background-color: #4cae4c;
 }
 
-.challanges__body__challange span {
-  padding: 0 20px;
+.challenge-lose {
+  background-color: #d43f3a;
 }
 
+.challenge-play {
+  background-color: #337AB7;
+}
 
-
-
-
-
-
-
-
-
+.button-play {
+  float: right;
+  padding: 5px !important;
+  font-size: smaller;
+}

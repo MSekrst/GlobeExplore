@@ -55,36 +55,51 @@ $( document ).ready(function() {
         }
     });
 
-    console.log(document.getElementById("username").innerHTML);
-    $.post('/getChallanges', {username: document.getElementById("username").innerHTML}, function (data) {
-        for (var challange in data) {
-            var chal = '<div class="challanges__body__challange"><span class="challanges__body__challange__challanger">';
-            
-            // console.log(data[challange].challenger);
-            chal += data[challange].challenger + '</span><span class="challanges__body__challange__challanged">'
-            
-            // console.log(data[challange].challanged);
-            chal += data[challange].challanged + '</span><span class="challanges__body__challange__type">'
+  var username = document.getElementById("username").innerHTML;
 
-            var x = data[challange].gameMode;
-            if(x == 'states'){
-                x = 'countries'
-            }
+  $.post('/getChallanges', {username: username}, function (data) {
+    for (var c in data) {
+      var chal = '<div class="col-sm-6 col-md-4"><div class="thumbnail"><div class="status';
 
-            chal += x + '</span><span class="challanges__body__challange__status">'
-
-
-
-            
-            if (data[challange].challengedScore) {
-                chal += getChallangeResult(data[challange], document.getElementById("username").innerHTML ) + '</span></div></div>'
-            } else {
-                chal += '<div class="btn btn-success btn-igraj-chal" data-id="' + data[challange]._id + '">igraj</div></span></div></div>'
-            }
-
-            $('.challanges__body').append(chal)
+      if (data[c].challengedScore) {  //  game over
+       if (data[c].winner === username) {
+         chal += ' challenge-won">WON';
+       } else {
+         chal += ' challenge-lose">LOST';
+       }
+      } else {  //  game to play
+        if (data[c].challanged === username) {
+          chal += ' challenge-play">PLAY';
+        } else {
+          chal += '">WAITING';
         }
-    });
+      }
+
+      chal += '</div><div class="caption">';
+
+      if (data[c].challanged === username) {
+        chal += '<h4 style="text-align: center">Opponent: &nbsp;' + data[c].challenger + '</h4>' ;
+      } else {
+        chal += '<h4 style="text-align: center">Opponent: &nbsp;' + data[c].challanged + '</h4>';
+      }
+
+      chal += '<p>';
+
+      chal += 'Game mode: &nbsp;' + data[c].gameMode + '<br />';
+      if (data[c].difficulty) {
+        chal += 'Difficulty: &nbsp;' + data[c].difficulty + '<br />';
+      }
+      chal += 'Questions: &nbsp;' + data[c].number + '<br /></p>';
+
+      if (data[c].challanged === username && !data[c].challengedScore) {
+        chal += '<div class="btn button-challange-friend button-play btn-igraj-chal" data-id="' + data[c]._id + '">PLAY</div>';
+      }
+
+      chal += '</div></div></div>';
+
+      $('.challanges__body').append(chal)
+    }
+  });
 });
 
 $(document).on('click', '.btn-igraj-chal', function (event) {
