@@ -83,25 +83,25 @@
 }
 @media (min-height: 480px) {
   .challanges__body {
-    height: 400px;
+    height: 50%;
   }
 }
 
 @media (min-height: 720px) {
   .challanges__body {
-    height: 550px;
+    height: 60%;
   }
 }
 
 @media (min-height: 872px) {
   .challanges__body {
-    height: 650px;
+    height: 70%;
   }
 }
 
 @media (min-height: 900px) {
   .challanges__body {
-    height: 750px;
+    height: 80%;
   }
 }
 
@@ -117,4 +117,12 @@
   vertical-align: middle;
   font-size: 14px;
   cursor: pointer;
+}
+
+.btn-logout {
+  font-size: 14px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 10px;
 }

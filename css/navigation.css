@@ -96,7 +96,12 @@
   }
 }
 
-.copyright {
+.copyright-text {
+  font-size: 14px;
   position: absolute;
   bottom: 0;
+  width: 100%;
+  float: none;
+  margin: 0 auto;
+  text-align: center;
 }
