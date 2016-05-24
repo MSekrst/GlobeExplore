@@ -156,6 +156,8 @@ $(document).on('click', '#btn-play', function (event) {
 $(document).on('change paste keyup', '#friend', function (event) {
     document.getElementById("friend").style.borderColor = "";
     challanged=$(this).val();
+    if (document.getElementById("invalid username") != null)
+        document.getElementById("modal-body").removeChild(document.getElementById("invalid username"));
 });
 
 $(document).on('change', '#difficulty', function (event) {
