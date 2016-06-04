@@ -169,7 +169,7 @@ mongo.connectToServer(function (err) { //  Initialize database connection
         db.collection('users').find({username: req.body.username}).toArray(function (err, data) {
           if (data.length === 0) {
             db.collection('users').insertOne(req.body);
-            res.render('challange');
+            res.render('challange', {username: req.body.username});
           } else {
             res.render('registration', {noRegistration: true, message: "Username already taken!"});
           }
